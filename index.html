@@ -3,53 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator Modul Ajar - Kurikulum Merdeka</title>
+    <title>Generator Modul Ajar Kurikulum Merdeka</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom right, #fee2e2, #fed7aa); min-height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg, #fee2e2, #fed7aa); }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .header { background: linear-gradient(to right, #dc2626, #b91c1c); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; }
+        .header { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
         .header h1 { font-size: 2em; margin-bottom: 10px; }
-        .header p { opacity: 0.9; }
-        .status { text-align: right; font-size: 0.9em; margin-top: 10px; }
+        .status { text-align: right; font-size: 0.9em; margin-top: 10px; opacity: 0.9; }
         .buttons { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .btn { padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: all 0.3s; text-decoration: none; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .btn-primary { background: #dc2626; color: white; }
-        .btn-secondary { background: #6b7280; color: white; }
-        .btn-success { background: #16a34a; color: white; }
-        .btn-link { background: #fecaca; color: #b91c1c; margin-left: auto; }
-        .progress { background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-        .progress-bar { background: #dc2626; height: 100%; transition: width 0.3s; }
-        .content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 30px; }
-        .step { padding: 15px; border-radius: 8px; cursor: pointer; transition: all 0.3s; background: #f3f4f6; text-align: center; font-size: 0.9em; }
-        .step.active { background: #dc2626; color: white; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); }
-        .step.completed { background: #dcfce7; color: #166534; }
+        .btn { padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.95em; transition: transform 0.2s; text-decoration: none; display: inline-block; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-gray { background: #6b7280; color: white; }
+        .btn-green { background: #16a34a; color: white; }
+        .btn-red { background: #dc2626; color: white; }
+        .btn-pink { background: #fecaca; color: #b91c1c; margin-left: auto; }
+        .progress { background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 20px; }
+        .progress-bar { background: #dc2626; height: 100%; transition: width 0.3s; border-radius: 10px; }
+        .content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 400px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .step { padding: 12px; border-radius: 8px; cursor: pointer; transition: all 0.3s; background: #f3f4f6; text-align: center; font-size: 0.85em; font-weight: 600; }
+        .step.active { background: #dc2626; color: white; }
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; }
         input, select, textarea { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1em; font-family: inherit; }
         input:focus, select:focus, textarea:focus { outline: none; border-color: #dc2626; }
-        .tip { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .list-item { display: flex; gap: 10px; margin-bottom: 10px; }
-        .list-item textarea, .list-item input { flex: 1; }
-        .btn-remove { background: #ef4444; color: white; padding: 8px 12px; border: none; border-radius: 8px; cursor: pointer; }
-        .btn-add { background: transparent; color: #dc2626; border: 2px dashed #dc2626; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: 600; }
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; }
-        .footer { text-align: center; margin-top: 30px; padding: 20px; background: white; border-radius: 15px; color: #6b7280; }
+        .tip { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; }
+        .list-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: start; }
+        .btn-remove { background: #ef4444; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; min-width: 40px; }
+        .btn-add { background: white; color: #dc2626; border: 2px dashed #dc2626; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: 600; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 10px; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; background: white; border-radius: 15px; color: #6b7280; font-size: 0.9em; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
         .modal-content { background: white; max-width: 600px; margin: 50px auto; padding: 30px; border-radius: 15px; max-height: 80vh; overflow-y: auto; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close { font-size: 2em; cursor: pointer; color: #6b7280; }
+        .close { font-size: 2em; cursor: pointer; color: #6b7280; line-height: 1; }
         .saved-item { border: 2px solid #e5e7eb; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
         .saved-item h3 { color: #dc2626; margin-bottom: 5px; }
-        .saved-item-buttons { display: flex; gap: 10px; margin-top: 10px; }
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
             .steps { grid-template-columns: 1fr; }
             .buttons { flex-direction: column; }
-            .btn { justify-content: center; }
+            .btn-pink { margin-left: 0; }
         }
     </style>
 </head>
@@ -62,10 +58,10 @@
         </div>
 
         <div class="buttons">
-            <button class="btn btn-secondary" onclick="showSaved()">📂 Modul Tersimpan</button>
-            <button class="btn btn-success" onclick="saveModule()">💾 Simpan Modul</button>
-            <button class="btn btn-primary" onclick="exportModule()">📥 Export File</button>
-            <a href="https://bahasaindonesiama.blogspot.com" class="btn btn-link" target="_blank">🏠 Ke Blog</a>
+            <button class="btn btn-gray" onclick="showSaved()">📂 Modul Tersimpan</button>
+            <button class="btn btn-green" onclick="saveModule()">💾 Simpan Modul</button>
+            <button class="btn btn-red" onclick="exportModule()">📥 Export File</button>
+            <a href="https://bahasaindonesiama.blogspot.com" class="btn btn-pink" target="_blank">🏠 Ke Blog</a>
         </div>
 
         <div class="progress">
@@ -74,16 +70,18 @@
 
         <div class="steps" id="stepsContainer"></div>
 
-        <div class="content" id="contentArea"></div>
+        <div class="content" id="contentArea">
+            <p style="color: #6b7280;">Loading...</p>
+        </div>
 
         <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep()" id="prevBtn">← Sebelumnya</button>
-            <button class="btn btn-primary" onclick="nextStep()" id="nextBtn">Lanjut →</button>
+            <button class="btn btn-gray" onclick="prevStep()" id="prevBtn">← Sebelumnya</button>
+            <button class="btn btn-red" onclick="nextStep()" id="nextBtn">Lanjut →</button>
         </div>
 
         <div class="footer">
             🔒 100% Aman - Data tersimpan lokal di browser Anda<br>
-            Powered by <a href="https://bahasaindonesiama.blogspot.com" style="color: #dc2626; font-weight: bold;">BahasaIndonesiaMA.blogspot.com</a>
+            Powered by <a href="https://bahasaindonesiama.blogspot.com" style="color: #dc2626; font-weight: bold; text-decoration: none;">BahasaIndonesiaMA.blogspot.com</a>
         </div>
     </div>
 
@@ -101,7 +99,7 @@
         let currentStep = 0;
         const steps = [
             {id: 'identitas', title: '1. Identitas'},
-            {id: 'cp', title: '2. Capaian Pembelajaran'},
+            {id: 'cp', title: '2. CP'},
             {id: 'tujuan', title: '3. Tujuan'},
             {id: 'pemahaman', title: '4. Pemahaman'},
             {id: 'pemantik', title: '5. Pertanyaan'},
@@ -123,18 +121,21 @@
             p5Dimensi: [], p5Keterkaitan: '', mediaSumber: ['']
         };
 
+        window.onload = function() {
+            init();
+        };
+
         function init() {
             renderSteps();
             renderContent();
-            startAutoSave();
             updateProgress();
+            startAutoSave();
         }
 
         function renderSteps() {
             const container = document.getElementById('stepsContainer');
             container.innerHTML = steps.map((step, i) => 
-                `<div class="step ${i === currentStep ? 'active' : ''} ${i < currentStep ? 'completed' : ''}" 
-                      onclick="goToStep(${i})">${step.title}</div>`
+                '<div class="step ' + (i === currentStep ? 'active' : '') + '" onclick="goToStep(' + i + ')">' + step.title + '</div>'
             ).join('');
         }
 
@@ -142,226 +143,144 @@
             const content = document.getElementById('contentArea');
             const step = steps[currentStep];
 
-            switch(step.id) {
-                case 'identitas':
-                    content.innerHTML = `
-                        <h2>Identitas Pembelajaran</h2>
-                        <div class="form-group">
-                            <label>Satuan Pendidikan</label>
-                            <select onchange="updateField('satuan', this.value)" value="${formData.satuan}">
-                                <option value="">Pilih Satuan Pendidikan</option>
-                                <option value="SD" ${formData.satuan==='SD'?'selected':''}>SD</option>
-                                <option value="SMP" ${formData.satuan==='SMP'?'selected':''}>SMP</option>
-                                <option value="MTS" ${formData.satuan==='MTS'?'selected':''}>MTS</option>
-                                <option value="SMA" ${formData.satuan==='SMA'?'selected':''}>SMA</option>
-                                <option value="MA" ${formData.satuan==='MA'?'selected':''}>MA</option>
-                                <option value="SMK" ${formData.satuan==='SMK'?'selected':''}>SMK</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Mata Pelajaran</label>
-                            <input type="text" placeholder="Contoh: Matematika, Bahasa Indonesia" 
-                                   value="${formData.mataPelajaran}" onchange="updateField('mataPelajaran', this.value)">
-                        </div>
-                        <div class="grid-2">
-                            <div class="form-group">
-                                <label>Fase</label>
-                                <select onchange="updateField('fase', this.value)">
-                                    <option value="">Pilih Fase</option>
-                                    <option value="A" ${formData.fase==='A'?'selected':''}>Fase A (Kelas 1-2)</option>
-                                    <option value="B" ${formData.fase==='B'?'selected':''}>Fase B (Kelas 3-4)</option>
-                                    <option value="C" ${formData.fase==='C'?'selected':''}>Fase C (Kelas 5-6)</option>
-                                    <option value="D" ${formData.fase==='D'?'selected':''}>Fase D (Kelas 7-9)</option>
-                                    <option value="E" ${formData.fase==='E'?'selected':''}>Fase E (Kelas 10)</option>
-                                    <option value="F" ${formData.fase==='F'?'selected':''}>Fase F (Kelas 11-12)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Kelas</label>
-                                <input type="text" placeholder="VII, X, 5" value="${formData.kelas}" onchange="updateField('kelas', this.value)">
-                            </div>
-                        </div>
-                        <div class="grid-2">
-                            <div class="form-group">
-                                <label>Semester</label>
-                                <select onchange="updateField('semester', this.value)">
-                                    <option value="">Pilih Semester</option>
-                                    <option value="1" ${formData.semester==='1'?'selected':''}>Semester 1</option>
-                                    <option value="2" ${formData.semester==='2'?'selected':''}>Semester 2</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Alokasi Waktu</label>
-                                <input type="text" placeholder="2 x 45 menit" value="${formData.alokasi}" onchange="updateField('alokasi', this.value)">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Tahun Pelajaran</label>
-                            <input type="text" placeholder="2024/2025" value="${formData.tahunPelajaran}" onchange="updateField('tahunPelajaran', this.value)">
-                        </div>
-                        <div class="form-group">
-                            <label>Penyusun</label>
-                            <input type="text" placeholder="Nama Anda" value="${formData.penyusun}" onchange="updateField('penyusun', this.value)">
-                        </div>
-                    `;
-                    break;
-
-                case 'cp':
-                    content.innerHTML = `
-                        <h2>Capaian Pembelajaran (CP)</h2>
-                        <div class="tip">💡 <strong>Tips:</strong> Capaian Pembelajaran mengacu pada dokumen resmi Kurikulum Merdeka</div>
-                        <div class="form-group">
-                            <label>Capaian Pembelajaran</label>
-                            <textarea rows="8" placeholder="Peserta didik mampu..." onchange="updateField('capaianPembelajaran', this.value)">${formData.capaianPembelajaran}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'tujuan':
-                    content.innerHTML = `
-                        <h2>Tujuan Pembelajaran (HOTS)</h2>
-                        <div class="tip">
-                            💡 <strong>Gunakan Kata Kerja HOTS:</strong><br>
-                            <button class="btn btn-add" style="display:inline-block; width:auto; margin:5px;" onclick="insertText('tujuan-0', 'Menganalisis ')">Menganalisis</button>
-                            <button class="btn btn-add" style="display:inline-block; width:auto; margin:5px;" onclick="insertText('tujuan-0', 'Mengevaluasi ')">Mengevaluasi</button>
-                            <button class="btn btn-add" style="display:inline-block; width:auto; margin:5px;" onclick="insertText('tujuan-0', 'Menciptakan ')">Menciptakan</button>
-                        </div>
-                        <div id="tujuanList">
-                            ${formData.tujuanPembelajaran.map((t, i) => `
-                                <div class="list-item">
-                                    <textarea id="tujuan-${i}" rows="2" placeholder="Tujuan ${i+1}" onchange="updateListItem('tujuanPembelajaran', ${i}, this.value)">${t}</textarea>
-                                    ${formData.tujuanPembelajaran.length > 1 ? `<button class="btn-remove" onclick="removeListItem('tujuanPembelajaran', ${i})">✕</button>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <button class="btn-add" onclick="addListItem('tujuanPembelajaran')">+ Tambah Tujuan</button>
-                    `;
-                    break;
-
-                case 'pemahaman':
-                    content.innerHTML = `
-                        <h2>Pemahaman Bermakna</h2>
-                        <div class="tip">💡 <strong>Tips:</strong> Jelaskan pemahaman yang relevan dengan kehidupan nyata</div>
-                        <div id="pemahamanList">
-                            ${formData.pemahamanBermakna.map((p, i) => `
-                                <div class="list-item">
-                                    <textarea rows="2" placeholder="Pemahaman ${i+1}" onchange="updateListItem('pemahamanBermakna', ${i}, this.value)">${p}</textarea>
-                                    ${formData.pemahamanBermakna.length > 1 ? `<button class="btn-remove" onclick="removeListItem('pemahamanBermakna', ${i})">✕</button>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <button class="btn-add" onclick="addListItem('pemahamanBermakna')">+ Tambah Pemahaman</button>
-                    `;
-                    break;
-
-                case 'pemantik':
-                    content.innerHTML = `
-                        <h2>Pertanyaan Pemantik</h2>
-                        <div class="tip">💡 <strong>Contoh:</strong> Mengapa... penting? Bagaimana dampak...? Apa yang terjadi jika...?</div>
-                        <div id="pemantikList">
-                            ${formData.pertanyaanPemantik.map((p, i) => `
-                                <div class="list-item">
-                                    <input type="text" placeholder="Pertanyaan ${i+1}" value="${p}" onchange="updateListItem('pertanyaanPemantik', ${i}, this.value)">
-                                    ${formData.pertanyaanPemantik.length > 1 ? `<button class="btn-remove" onclick="removeListItem('pertanyaanPemantik', ${i})">✕</button>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <button class="btn-add" onclick="addListItem('pertanyaanPemantik')">+ Tambah Pertanyaan</button>
-                    `;
-                    break;
-
-                case 'pendahuluan':
-                    content.innerHTML = `
-                        <h2>Kegiatan Pendahuluan</h2>
-                        <div class="tip">💡 Salam, Apersepsi, Tujuan, Motivasi</div>
-                        <div class="form-group">
-                            <textarea rows="8" placeholder="1. Guru membuka dengan salam...&#10;2. Apersepsi...&#10;3. Menyampaikan tujuan..." onchange="updateField('kegiatanPendahuluan', this.value)">${formData.kegiatanPendahuluan}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'inti':
-                    content.innerHTML = `
-                        <h2>Kegiatan Inti</h2>
-                        <div class="tip">💡 Eksplorasi → Elaborasi → Aksi/Kreasi</div>
-                        <div class="form-group">
-                            <textarea rows="10" placeholder="Tahap Eksplorasi:&#10;- Siswa mengamati...&#10;&#10;Tahap Elaborasi:&#10;- Diskusi kelompok..." onchange="updateField('kegiatanInti', this.value)">${formData.kegiatanInti}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'penutup':
-                    content.innerHTML = `
-                        <h2>Penutup & Refleksi</h2>
-                        <div class="tip">💡 Kesimpulan, Refleksi, Penguatan</div>
-                        <div class="form-group">
-                            <textarea rows="8" placeholder="1. Kesimpulan bersama...&#10;2. Refleksi..." onchange="updateField('kegiatanPenutup', this.value)">${formData.kegiatanPenutup}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'asesmen':
-                    content.innerHTML = `
-                        <h2>Asesmen Autentik</h2>
-                        <div class="form-group">
-                            <label>Asesmen Diagnostik</label>
-                            <textarea rows="4" placeholder="Observasi awal..." onchange="updateField('asesmenDiagnostik', this.value)">${formData.asesmenDiagnostik}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Asesmen Formatif</label>
-                            <textarea rows="4" placeholder="Penilaian selama proses..." onchange="updateField('asesmenFormatif', this.value)">${formData.asesmenFormatif}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Asesmen Sumatif</label>
-                            <textarea rows="4" placeholder="Penilaian akhir..." onchange="updateField('asesmenSumatif', this.value)">${formData.asesmenSumatif}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'diferensiasi':
-                    content.innerHTML = `
-                        <h2>Diferensiasi & P5 RA</h2>
-                        <div class="form-group">
-                            <label>Diferensiasi Konten</label>
-                            <textarea rows="3" onchange="updateField('diferensiasiKonten', this.value)">${formData.diferensiasiKonten}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Diferensiasi Proses</label>
-                            <textarea rows="3" onchange="updateField('diferensiasiProses', this.value)">${formData.diferensiasiProses}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Diferensiasi Produk</label>
-                            <textarea rows="3" onchange="updateField('diferensiasiProduk', this.value)">${formData.diferensiasiProduk}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Dimensi Profil Pelajar Pancasila</label>
-                            ${['Beriman', 'Berkebinekaan', 'Gotong Royong', 'Mandiri', 'Bernalar Kritis', 'Kreatif'].map(d => `
-                                <label style="display:flex; align-items:center; gap:10px; font-weight:normal; margin:5px 0;">
-                                    <input type="checkbox" ${formData.p5Dimensi.includes(d)?'checked':''} onchange="toggleP5('${d}')"> ${d}
-                                </label>
-                            `).join('')}
-                        </div>
-                        <div class="form-group">
-                            <label>Keterkaitan P5 & Rahmatan lil Alamin</label>
-                            <textarea rows="4" onchange="updateField('p5Keterkaitan', this.value)">${formData.p5Keterkaitan}</textarea>
-                        </div>
-                    `;
-                    break;
-
-                case 'media':
-                    content.innerHTML = `
-                        <h2>Media & Sumber Belajar</h2>
-                        <div id="mediaList">
-                            ${formData.mediaSumber.map((m, i) => `
-                                <div class="list-item">
-                                    <input type="text" placeholder="Media/Sumber ${i+1}" value="${m}" onchange="updateListItem('mediaSumber', ${i}, this.value)">
-                                    ${formData.mediaSumber.length > 1 ? `<button class="btn-remove" onclick="removeListItem('mediaSumber', ${i})">✕</button>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <button class="btn-add" onclick="addListItem('mediaSumber')">+ Tambah Media/Sumber</button>
-                    `;
-                    break;
+            if (step.id === 'identitas') {
+                content.innerHTML = '<h2>Identitas Pembelajaran</h2>' +
+                    '<div class="form-group"><label>Satuan Pendidikan</label>' +
+                    '<select onchange="updateField(\'satuan\', this.value)">' +
+                    '<option value="">Pilih Satuan Pendidikan</option>' +
+                    '<option value="SD"' + (formData.satuan==='SD'?' selected':'') + '>SD</option>' +
+                    '<option value="SMP"' + (formData.satuan==='SMP'?' selected':'') + '>SMP</option>' +
+                    '<option value="MTS"' + (formData.satuan==='MTS'?' selected':'') + '>MTS</option>' +
+                    '<option value="SMA"' + (formData.satuan==='SMA'?' selected':'') + '>SMA</option>' +
+                    '<option value="MA"' + (formData.satuan==='MA'?' selected':'') + '>MA</option>' +
+                    '<option value="SMK"' + (formData.satuan==='SMK'?' selected':'') + '>SMK</option>' +
+                    '</select></div>' +
+                    '<div class="form-group"><label>Mata Pelajaran</label>' +
+                    '<input type="text" placeholder="Contoh: Matematika, Bahasa Indonesia" value="' + formData.mataPelajaran + '" onchange="updateField(\'mataPelajaran\', this.value)"></div>' +
+                    '<div class="grid-2">' +
+                    '<div class="form-group"><label>Fase</label>' +
+                    '<select onchange="updateField(\'fase\', this.value)">' +
+                    '<option value="">Pilih Fase</option>' +
+                    '<option value="A"' + (formData.fase==='A'?' selected':'') + '>Fase A (Kelas 1-2)</option>' +
+                    '<option value="B"' + (formData.fase==='B'?' selected':'') + '>Fase B (Kelas 3-4)</option>' +
+                    '<option value="C"' + (formData.fase==='C'?' selected':'') + '>Fase C (Kelas 5-6)</option>' +
+                    '<option value="D"' + (formData.fase==='D'?' selected':'') + '>Fase D (Kelas 7-9)</option>' +
+                    '<option value="E"' + (formData.fase==='E'?' selected':'') + '>Fase E (Kelas 10)</option>' +
+                    '<option value="F"' + (formData.fase==='F'?' selected':'') + '>Fase F (Kelas 11-12)</option>' +
+                    '</select></div>' +
+                    '<div class="form-group"><label>Kelas</label>' +
+                    '<input type="text" placeholder="VII, X, 5" value="' + formData.kelas + '" onchange="updateField(\'kelas\', this.value)"></div>' +
+                    '</div>' +
+                    '<div class="grid-2">' +
+                    '<div class="form-group"><label>Semester</label>' +
+                    '<select onchange="updateField(\'semester\', this.value)">' +
+                    '<option value="">Pilih Semester</option>' +
+                    '<option value="1"' + (formData.semester==='1'?' selected':'') + '>Semester 1</option>' +
+                    '<option value="2"' + (formData.semester==='2'?' selected':'') + '>Semester 2</option>' +
+                    '</select></div>' +
+                    '<div class="form-group"><label>Alokasi Waktu</label>' +
+                    '<input type="text" placeholder="2 x 45 menit" value="' + formData.alokasi + '" onchange="updateField(\'alokasi\', this.value)"></div>' +
+                    '</div>' +
+                    '<div class="form-group"><label>Tahun Pelajaran</label>' +
+                    '<input type="text" placeholder="2024/2025" value="' + formData.tahunPelajaran + '" onchange="updateField(\'tahunPelajaran\', this.value)"></div>' +
+                    '<div class="form-group"><label>Penyusun</label>' +
+                    '<input type="text" placeholder="Nama Anda" value="' + formData.penyusun + '" onchange="updateField(\'penyusun\', this.value)"></div>';
+            } else if (step.id === 'cp') {
+                content.innerHTML = '<h2>Capaian Pembelajaran (CP)</h2>' +
+                    '<div class="tip">💡 <strong>Tips:</strong> Capaian Pembelajaran mengacu pada dokumen resmi Kurikulum Merdeka</div>' +
+                    '<div class="form-group"><label>Capaian Pembelajaran</label>' +
+                    '<textarea rows="8" placeholder="Peserta didik mampu..." onchange="updateField(\'capaianPembelajaran\', this.value)">' + formData.capaianPembelajaran + '</textarea></div>';
+            } else if (step.id === 'tujuan') {
+                let html = '<h2>Tujuan Pembelajaran (HOTS)</h2>' +
+                    '<div class="tip">💡 <strong>Gunakan Kata Kerja HOTS:</strong><br>' +
+                    '<button class="btn btn-add" style="display:inline-block; width:auto; margin:5px; padding:8px 15px;" onclick="insertKata(\'Menganalisis \')">Menganalisis</button>' +
+                    '<button class="btn btn-add" style="display:inline-block; width:auto; margin:5px; padding:8px 15px;" onclick="insertKata(\'Mengevaluasi \')">Mengevaluasi</button>' +
+                    '<button class="btn btn-add" style="display:inline-block; width:auto; margin:5px; padding:8px 15px;" onclick="insertKata(\'Menciptakan \')">Menciptakan</button>' +
+                    '</div><div id="tujuanList">';
+                formData.tujuanPembelajaran.forEach((t, i) => {
+                    html += '<div class="list-item">' +
+                        '<textarea rows="2" placeholder="Tujuan ' + (i+1) + '" onchange="updateListItem(\'tujuanPembelajaran\', ' + i + ', this.value)">' + t + '</textarea>';
+                    if (formData.tujuanPembelajaran.length > 1) {
+                        html += '<button class="btn-remove" onclick="removeListItem(\'tujuanPembelajaran\', ' + i + ')">✕</button>';
+                    }
+                    html += '</div>';
+                });
+                html += '</div><button class="btn-add" onclick="addListItem(\'tujuanPembelajaran\')">+ Tambah Tujuan</button>';
+                content.innerHTML = html;
+            } else if (step.id === 'pemahaman') {
+                let html = '<h2>Pemahaman Bermakna</h2>' +
+                    '<div class="tip">💡 <strong>Tips:</strong> Jelaskan pemahaman yang relevan dengan kehidupan nyata</div><div id="pemahamanList">';
+                formData.pemahamanBermakna.forEach((p, i) => {
+                    html += '<div class="list-item">' +
+                        '<textarea rows="2" placeholder="Pemahaman ' + (i+1) + '" onchange="updateListItem(\'pemahamanBermakna\', ' + i + ', this.value)">' + p + '</textarea>';
+                    if (formData.pemahamanBermakna.length > 1) {
+                        html += '<button class="btn-remove" onclick="removeListItem(\'pemahamanBermakna\', ' + i + ')">✕</button>';
+                    }
+                    html += '</div>';
+                });
+                html += '</div><button class="btn-add" onclick="addListItem(\'pemahamanBermakna\')">+ Tambah Pemahaman</button>';
+                content.innerHTML = html;
+            } else if (step.id === 'pemantik') {
+                let html = '<h2>Pertanyaan Pemantik</h2>' +
+                    '<div class="tip">💡 <strong>Contoh:</strong> Mengapa... penting? Bagaimana dampak...?</div><div id="pemantikList">';
+                formData.pertanyaanPemantik.forEach((p, i) => {
+                    html += '<div class="list-item">' +
+                        '<input type="text" placeholder="Pertanyaan ' + (i+1) + '" value="' + p + '" onchange="updateListItem(\'pertanyaanPemantik\', ' + i + ', this.value)">';
+                    if (formData.pertanyaanPemantik.length > 1) {
+                        html += '<button class="btn-remove" onclick="removeListItem(\'pertanyaanPemantik\', ' + i + ')">✕</button>';
+                    }
+                    html += '</div>';
+                });
+                html += '</div><button class="btn-add" onclick="addListItem(\'pertanyaanPemantik\')">+ Tambah Pertanyaan</button>';
+                content.innerHTML = html;
+            } else if (step.id === 'pendahuluan') {
+                content.innerHTML = '<h2>Kegiatan Pendahuluan</h2>' +
+                    '<div class="tip">💡 Salam, Apersepsi, Tujuan, Motivasi</div>' +
+                    '<div class="form-group"><textarea rows="8" placeholder="1. Guru membuka dengan salam..." onchange="updateField(\'kegiatanPendahuluan\', this.value)">' + formData.kegiatanPendahuluan + '</textarea></div>';
+            } else if (step.id === 'inti') {
+                content.innerHTML = '<h2>Kegiatan Inti</h2>' +
+                    '<div class="tip">💡 Eksplorasi → Elaborasi → Aksi/Kreasi</div>' +
+                    '<div class="form-group"><textarea rows="10" placeholder="Tahap Eksplorasi..." onchange="updateField(\'kegiatanInti\', this.value)">' + formData.kegiatanInti + '</textarea></div>';
+            } else if (step.id === 'penutup') {
+                content.innerHTML = '<h2>Penutup & Refleksi</h2>' +
+                    '<div class="tip">💡 Kesimpulan, Refleksi, Penguatan</div>' +
+                    '<div class="form-group"><textarea rows="8" placeholder="1. Kesimpulan bersama..." onchange="updateField(\'kegiatanPenutup\', this.value)">' + formData.kegiatanPenutup + '</textarea></div>';
+            } else if (step.id === 'asesmen') {
+                content.innerHTML = '<h2>Asesmen Autentik</h2>' +
+                    '<div class="form-group"><label>Asesmen Diagnostik</label>' +
+                    '<textarea rows="4" placeholder="Observasi awal..." onchange="updateField(\'asesmenDiagnostik\', this.value)">' + formData.asesmenDiagnostik + '</textarea></div>' +
+                    '<div class="form-group"><label>Asesmen Formatif</label>' +
+                    '<textarea rows="4" placeholder="Penilaian selama proses..." onchange="updateField(\'asesmenFormatif\', this.value)">' + formData.asesmenFormatif + '</textarea></div>' +
+                    '<div class="form-group"><label>Asesmen Sumatif</label>' +
+                    '<textarea rows="4" placeholder="Penilaian akhir..." onchange="updateField(\'asesmenSumatif\', this.value)">' + formData.asesmenSumatif + '</textarea></div>';
+            } else if (step.id === 'diferensiasi') {
+                let html = '<h2>Diferensiasi & P5 RA</h2>' +
+                    '<div class="form-group"><label>Diferensiasi Konten</label>' +
+                    '<textarea rows="3" onchange="updateField(\'diferensiasiKonten\', this.value)">' + formData.diferensiasiKonten + '</textarea></div>' +
+                    '<div class="form-group"><label>Diferensiasi Proses</label>' +
+                    '<textarea rows="3" onchange="updateField(\'diferensiasiProses\', this.value)">' + formData.diferensiasiProses + '</textarea></div>' +
+                    '<div class="form-group"><label>Diferensiasi Produk</label>' +
+                    '<textarea rows="3" onchange="updateField(\'diferensiasiProduk\', this.value)">' + formData.diferensiasiProduk + '</textarea></div>' +
+                    '<div class="form-group"><label>Dimensi Profil Pelajar Pancasila</label>';
+                ['Beriman', 'Berkebinekaan', 'Gotong Royong', 'Mandiri', 'Bernalar Kritis', 'Kreatif'].forEach(d => {
+                    html += '<label style="display:flex; align-items:center; gap:10px; font-weight:normal; margin:5px 0;">' +
+                        '<input type="checkbox"' + (formData.p5Dimensi.includes(d)?' checked':'') + ' onchange="toggleP5(\'' + d + '\')">' + d + '</label>';
+                });
+                html += '</div><div class="form-group"><label>Keterkaitan P5 & Rahmatan lil Alamin</label>' +
+                    '<textarea rows="4" onchange="updateField(\'p5Keterkaitan\', this.value)">' + formData.p5Keterkaitan + '</textarea></div>';
+                content.innerHTML = html;
+            } else if (step.id === 'media') {
+                let html = '<h2>Media & Sumber Belajar</h2><div id="mediaList">';
+                formData.mediaSumber.forEach((m, i) => {
+                    html += '<div class="list-item">' +
+                        '<input type="text" placeholder="Media/Sumber ' + (i+1) + '" value="' + m + '" onchange="updateListItem(\'mediaSumber\', ' + i + ', this.value)">';
+                    if (formData.mediaSumber.length > 1) {
+                        html += '<button class="btn-remove" onclick="removeListItem(\'mediaSumber\', ' + i + ')">✕</button>';
+                    }
+                    html += '</div>';
+                });
+                html += '</div><button class="btn-add" onclick="addListItem(\'mediaSumber\')">+ Tambah Media/Sumber</button>';
+                content.innerHTML = html;
             }
 
             updateNavigationButtons();
@@ -388,18 +307,14 @@
         function toggleP5(dimension) {
             const idx = formData.p5Dimensi.indexOf(dimension);
             if (idx > -1) {
-                formData.p5Dimensi.splice(idx, 1);
+                formData[field].splice(idx, 1);
             } else {
                 formData.p5Dimensi.push(dimension);
             }
         }
 
-        function insertText(elemId, text) {
-            const elem = document.getElementById(elemId);
-            if (elem) {
-                elem.value = text + elem.value;
-                updateListItem('tujuanPembelajaran', 0, elem.value);
-            }
+        function insertKata(kata) {
+            alert('Klik di textarea Tujuan, lalu ketik atau paste kata: ' + kata);
         }
 
         function goToStep(index) {
@@ -434,23 +349,26 @@
 
         function updateNavigationButtons() {
             document.getElementById('prevBtn').disabled = currentStep === 0;
+            document.getElementById('prevBtn').style.opacity = currentStep === 0 ? '0.5' : '1';
             document.getElementById('nextBtn').disabled = currentStep === steps.length - 1;
+            document.getElementById('nextBtn').style.opacity = currentStep === steps.length - 1 ? '0.5' : '1';
         }
 
         function saveModule() {
             const id = 'modul_' + Date.now();
-            const data = { id, ...formData, savedAt: new Date().toLocaleString('id-ID') };
+            const data = { id: id, savedAt: new Date().toLocaleString('id-ID') };
+            Object.assign(data, formData);
             localStorage.setItem(id, JSON.stringify(data));
             alert('✅ Modul berhasil disimpan!');
         }
 
         function startAutoSave() {
-            setInterval(() => {
+            setInterval(function() {
                 if (formData.satuan || formData.mataPelajaran) {
                     document.getElementById('autoSaveStatus').textContent = '💾 Menyimpan...';
-                    setTimeout(() => {
+                    setTimeout(function() {
                         document.getElementById('autoSaveStatus').textContent = '✓ Tersimpan';
-                        setTimeout(() => {
+                        setTimeout(function() {
                             document.getElementById('autoSaveStatus').textContent = '';
                         }, 2000);
                     }, 500);
@@ -459,22 +377,122 @@
         }
 
         function exportModule() {
-            const content = `MODUL AJAR KURIKULUM MERDEKA
+            let content = 'MODUL AJAR KURIKULUM MERDEKA\n\n';
+            content += 'A. IDENTITAS PEMBELAJARAN\n';
+            content += '- Satuan Pendidikan: ' + formData.satuan + '\n';
+            content += '- Mata Pelajaran: ' + formData.mataPelajaran + '\n';
+            content += '- Fase/Kelas: ' + formData.fase + '/' + formData.kelas + '\n';
+            content += '- Semester: ' + formData.semester + '\n';
+            content += '- Alokasi Waktu: ' + formData.alokasi + '\n';
+            content += '- Tahun Pelajaran: ' + formData.tahunPelajaran + '\n';
+            content += '- Penyusun: ' + formData.penyusun + '\n\n';
+            content += 'B. CAPAIAN PEMBELAJARAN\n' + formData.capaianPembelajaran + '\n\n';
+            content += 'C. TUJUAN PEMBELAJARAN\n';
+            formData.tujuanPembelajaran.filter(function(t) { return t; }).forEach(function(t, i) {
+                content += (i + 1) + '. ' + t + '\n';
+            });
+            content += '\nD. PEMAHAMAN BERMAKNA\n';
+            formData.pemahamanBermakna.filter(function(p) { return p; }).forEach(function(p) {
+                content += '- ' + p + '\n';
+            });
+            content += '\nE. PERTANYAAN PEMANTIK\n';
+            formData.pertanyaanPemantik.filter(function(p) { return p; }).forEach(function(p) {
+                content += '- ' + p + '\n';
+            });
+            content += '\nF. KEGIATAN PENDAHULUAN\n' + formData.kegiatanPendahuluan + '\n\n';
+            content += 'G. KEGIATAN INTI\n' + formData.kegiatanInti + '\n\n';
+            content += 'H. PENUTUP DAN REFLEKSI\n' + formData.kegiatanPenutup + '\n\n';
+            content += 'I. ASESMEN AUTENTIK\n';
+            content += 'Asesmen Diagnostik: ' + formData.asesmenDiagnostik + '\n';
+            content += 'Asesmen Formatif: ' + formData.asesmenFormatif + '\n';
+            content += 'Asesmen Sumatif: ' + formData.asesmenSumatif + '\n\n';
+            content += 'J. DIFERENSIASI & P5 RA\n';
+            content += 'Konten: ' + formData.diferensiasiKonten + '\n';
+            content += 'Proses: ' + formData.diferensiasiProses + '\n';
+            content += 'Produk: ' + formData.diferensiasiProduk + '\n';
+            content += 'Dimensi P5: ' + formData.p5Dimensi.join(', ') + '\n';
+            content += 'Keterkaitan: ' + formData.p5Keterkaitan + '\n\n';
+            content += 'K. MEDIA DAN SUMBER\n';
+            formData.mediaSumber.filter(function(m) { return m; }).forEach(function(m) {
+                content += '- ' + m + '\n';
+            });
+            content += '\n---\nDibuat dengan Generator Modul Ajar - BahasaIndonesiaMA.blogspot.com';
 
-A. IDENTITAS PEMBELAJARAN
-- Satuan Pendidikan: ${formData.satuan}
-- Mata Pelajaran: ${formData.mataPelajaran}
-- Fase/Kelas: ${formData.fase}/${formData.kelas}
-- Semester: ${formData.semester}
-- Alokasi Waktu: ${formData.alokasi}
-- Tahun Pelajaran: ${formData.tahunPelajaran}
-- Penyusun: ${formData.penyusun}
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Modul_Ajar_' + (formData.mataPelajaran || 'Draft') + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
 
-B. CAPAIAN PEMBELAJARAN
-${formData.capaianPembelajaran}
+        function showSaved() {
+            const modal = document.getElementById('savedModal');
+            const list = document.getElementById('savedList');
+            let html = '';
+            let hasModules = false;
 
-C. TUJUAN PEMBELAJARAN
-${formData.tujuanPembelajaran.filter(t => t).map((t, i) => `${i + 1}. ${t}`).join('\n')}
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('modul_')) {
+                    hasModules = true;
+                    try {
+                        const data = JSON.parse(localStorage.getItem(key));
+                        html += '<div class="saved-item">';
+                        html += '<h3>' + (data.mataPelajaran || 'Draft') + '</h3>';
+                        html += '<p style="color:#6b7280; font-size:0.9em;">' + data.satuan + ' - Kelas ' + data.kelas + '</p>';
+                        html += '<p style="color:#6b7280; font-size:0.85em; margin-top:5px;">Disimpan: ' + data.savedAt + '</p>';
+                        html += '<div style="display:flex; gap:10px; margin-top:10px;">';
+                        html += '<button class="btn btn-red" style="font-size:0.9em;" onclick="loadModule(\'' + key + '\')">Muat</button>';
+                        html += '<button class="btn btn-gray" style="font-size:0.9em;" onclick="deleteModule(\'' + key + '\')">Hapus</button>';
+                        html += '</div></div>';
+                    } catch (e) {
+                        console.log('Error loading module:', e);
+                    }
+                }
+            }
 
-D. PEMAHAMAN BERMAKNA
-${formData.pemahamanBermakna.filter(p => p).map(p => '- ' + p).join('\n'
+            if (!hasModules) {
+                html = '<p style="text-align:center; color:#6b7280; padding:40px;">Belum ada modul yang tersimpan</p>';
+            }
+
+            list.innerHTML = html;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('savedModal').style.display = 'none';
+        }
+
+        function loadModule(key) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                Object.assign(formData, data);
+                currentStep = 0;
+                renderSteps();
+                renderContent();
+                updateProgress();
+                closeModal();
+                alert('✅ Modul berhasil dimuat!');
+            } catch (e) {
+                alert('❌ Gagal memuat modul');
+            }
+        }
+
+        function deleteModule(key) {
+            if (confirm('Yakin ingin menghapus modul ini?')) {
+                localStorage.removeItem(key);
+                showSaved();
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('savedModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
