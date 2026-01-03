@@ -17,6 +17,7 @@
         .btn-gray { background: #6b7280; color: white; }
         .btn-green { background: #16a34a; color: white; }
         .btn-red { background: #dc2626; color: white; }
+        .btn-blue { background: #2563eb; color: white; }
         .btn-pink { background: #fecaca; color: #b91c1c; margin-left: auto; }
         .progress { background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 20px; }
         .progress-bar { background: #dc2626; height: 100%; transition: width 0.3s; border-radius: 10px; }
@@ -30,6 +31,8 @@
         input:focus, select:focus, textarea:focus { outline: none; border-color: #dc2626; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .tip { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; }
+        .template-box { background: #dbeafe; border: 2px solid #3b82f6; padding: 20px; border-radius: 12px; margin: 20px 0; }
+        .template-box h4 { color: #1e40af; margin-bottom: 15px; font-size: 1.1em; }
         .list-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: start; }
         .btn-remove { background: #ef4444; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; min-width: 40px; }
         .btn-add { background: white; color: #dc2626; border: 2px dashed #dc2626; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: 600; }
@@ -81,7 +84,8 @@
 
         <div class="footer">
             🔒 100% Aman - Data tersimpan lokal di browser Anda<br>
-            Powered by <a href="https://bahasaindonesiama.blogspot.com" style="color: #dc2626; font-weight: bold; text-decoration: none;">BahasaIndonesiaMA.blogspot.com</a>
+            Powered by <a href="https://bahasaindonesiama.blogspot.com" style="color: #dc2626; font-weight: bold; text-decoration: none;">BahasaIndonesiaMA.blogspot.com</a><br>
+            <small style="opacity: 0.7;">v1.1.0 - Template System</small>
         </div>
     </div>
 
@@ -121,6 +125,140 @@
             p5Dimensi: [], p5Keterkaitan: '', mediaSumber: ['']
         };
 
+        // DATABASE TEMPLATE
+        const templateDatabase = {
+            'Bahasa Indonesia': {
+                'Teks Anekdot': {
+                    fase: 'E',
+                    kelas: 'X',
+                    cp: 'Peserta didik mampu memahami, menganalisis struktur dan kaidah kebahasaan, serta memproduksi teks anekdot dengan memperhatikan konteks sosial budaya, tujuan, dan pemirsa.',
+                    tujuan: [
+                        'Menganalisis struktur teks anekdot (abstraksi, orientasi, krisis, reaksi, dan koda)',
+                        'Mengevaluasi penggunaan majas dan gaya bahasa dalam teks anekdot',
+                        'Menciptakan teks anekdot dengan tema aktual dan mengandung kritik sosial'
+                    ],
+                    pemahaman: [
+                        'Teks anekdot merupakan cara efektif menyampaikan kritik sosial dengan gaya yang menghibur',
+                        'Struktur teks anekdot membantu penyampaian pesan yang terorganisir dan mudah dipahami'
+                    ],
+                    pemantik: [
+                        'Mengapa kritik sosial lebih efektif disampaikan melalui cerita lucu?',
+                        'Bagaimana anekdot dapat mempengaruhi cara pandang masyarakat?',
+                        'Apa perbedaan anekdot dengan humor biasa?'
+                    ],
+                    pendahuluan: '1. Guru membuka pembelajaran dengan salam dan doa\n2. Apersepsi: Guru menanyakan pengalaman siswa mendengar atau membaca cerita lucu yang mengandung sindiran\n3. Guru menyampaikan tujuan pembelajaran tentang teks anekdot\n4. Guru memotivasi siswa dengan menjelaskan relevansi teks anekdot dalam kehidupan sehari-hari',
+                    inti: 'Tahap Eksplorasi:\n- Siswa mengamati beberapa contoh teks anekdot dari berbagai sumber\n- Siswa mengidentifikasi ciri-ciri dan struktur teks anekdot\n\nTahap Elaborasi:\n- Diskusi kelompok: menganalisis struktur dan kaidah kebahasaan teks anekdot\n- Siswa membandingkan beberapa teks anekdot dan mengidentifikasi keunggulan masing-masing\n- Siswa mengumpulkan ide untuk membuat teks anekdot sendiri\n\nTahap Kreasi:\n- Siswa menyusun teks anekdot dengan tema aktual\n- Presentasi hasil karya dan saling memberikan umpan balik',
+                    penutup: '1. Siswa bersama guru menyimpulkan materi tentang teks anekdot\n2. Refleksi: Apa yang sudah dipahami? Apa tantangan dalam membuat teks anekdot?\n3. Guru memberikan penguatan dan apresiasi\n4. Guru menginformasikan pembelajaran selanjutnya tentang publikasi teks anekdot',
+                    asesmenDiagnostik: 'Observasi pemahaman awal siswa tentang teks anekdot melalui tanya jawab',
+                    asesmenFormatif: 'Penilaian selama diskusi kelompok dan proses penyusunan teks anekdot',
+                    asesmenSumatif: 'Penilaian produk teks anekdot dan presentasi dengan rubrik yang mencakup struktur, kaidah kebahasaan, dan kreativitas',
+                    diferensiasiKonten: 'Menyediakan contoh teks anekdot dengan tingkat kompleksitas berbeda sesuai kemampuan siswa',
+                    diferensiasiProses: 'Siswa dapat bekerja individu atau berpasangan sesuai gaya belajar',
+                    diferensiasiProduk: 'Siswa dapat memilih membuat teks anekdot tertulis, komik, atau video pendek',
+                    p5Dimensi: ['Bernalar Kritis', 'Kreatif'],
+                    p5Keterkaitan: 'Pembelajaran ini mengembangkan kemampuan bernalar kritis dalam menganalisis fenomena sosial dan kreatif dalam menyampaikan kritik konstruktif, sejalan dengan nilai Rahmatan lil Alamin dalam memberikan manfaat bagi sesama melalui kritik yang membangun.',
+                    mediaSumber: ['Buku teks Bahasa Indonesia Kelas X', 'Video contoh teks anekdot', 'LKPD analisis struktur teks', 'Portal berita online']
+                },
+                'Teks Eksposisi': {
+                    fase: 'E',
+                    kelas: 'X',
+                    cp: 'Peserta didik mampu memahami, menganalisis, dan memproduksi teks eksposisi dengan memperhatikan struktur, kaidah kebahasaan, serta argumentasi yang logis.',
+                    tujuan: [
+                        'Menganalisis struktur teks eksposisi (tesis, argumen, penegasan ulang)',
+                        'Mengevaluasi kekuatan argumentasi dalam teks eksposisi',
+                        'Menciptakan teks eksposisi dengan tema aktual dan argumentasi yang logis'
+                    ],
+                    pemahaman: [
+                        'Teks eksposisi membantu menyampaikan informasi dan pendapat secara sistematis',
+                        'Argumentasi yang kuat memerlukan data dan fakta yang valid'
+                    ],
+                    pemantik: [
+                        'Mengapa argumentasi yang logis penting dalam menyampaikan pendapat?',
+                        'Bagaimana membedakan fakta dan opini dalam teks eksposisi?',
+                        'Apa dampak teks eksposisi yang baik bagi pembaca?'
+                    ],
+                    pendahuluan: '1. Guru membuka dengan salam dan doa\n2. Apersepsi: menanyakan pengalaman siswa membaca artikel opini\n3. Menyampaikan tujuan pembelajaran\n4. Memotivasi dengan contoh teks eksposisi aktual',
+                    inti: 'Eksplorasi: Siswa membaca berbagai teks eksposisi\nElaborasi: Diskusi dan analisis struktur serta argumentasi\nKreasi: Menyusun teks eksposisi dengan tema pilihan',
+                    penutup: '1. Kesimpulan materi\n2. Refleksi pembelajaran\n3. Penguatan\n4. Informasi pembelajaran berikutnya',
+                    asesmenDiagnostik: 'Pertanyaan lisan tentang pemahaman awal teks eksposisi',
+                    asesmenFormatif: 'Penilaian diskusi dan draft teks eksposisi',
+                    asesmenSumatif: 'Penilaian produk teks eksposisi final',
+                    diferensiasiKonten: 'Teks dengan tingkat kompleksitas bervariasi',
+                    diferensiasiProses: 'Kerja individu atau kelompok',
+                    diferensiasiProduk: 'Artikel, infografis, atau video eksposisi',
+                    p5Dimensi: ['Bernalar Kritis', 'Mandiri'],
+                    p5Keterkaitan: 'Mengembangkan pemikiran kritis dan kemampuan berargumentasi untuk kebaikan bersama',
+                    mediaSumber: ['Buku teks', 'Artikel koran', 'Video tutorial', 'LKPD']
+                }
+            },
+            'Matematika': {
+                'Trigonometri': {
+                    fase: 'E',
+                    kelas: 'X',
+                    cp: 'Peserta didik mampu memahami konsep perbandingan trigonometri pada segitiga siku-siku, menggunakan identitas trigonometri, dan menerapkannya dalam pemecahan masalah kontekstual.',
+                    tujuan: [
+                        'Menganalisis hubungan antara sudut dan sisi dalam segitiga siku-siku menggunakan perbandingan trigonometri',
+                        'Mengevaluasi penerapan identitas trigonometri dalam berbagai kasus',
+                        'Memecahkan masalah kontekstual yang berkaitan dengan trigonometri'
+                    ],
+                    pemahaman: [
+                        'Trigonometri membantu menghitung jarak dan sudut yang sulit diukur langsung dalam kehidupan nyata',
+                        'Konsep trigonometri diterapkan dalam navigasi, arsitektur, dan astronomi'
+                    ],
+                    pemantik: [
+                        'Bagaimana arsitek menentukan kemiringan atap yang ideal?',
+                        'Mengapa pilot pesawat perlu memahami trigonometri?',
+                        'Bagaimana menghitung tinggi gedung tanpa mengukurnya langsung?'
+                    ],
+                    pendahuluan: '1. Salam dan doa\n2. Apersepsi: menunjukkan aplikasi trigonometri dalam kehidupan\n3. Menyampaikan tujuan pembelajaran\n4. Motivasi dengan video penerapan trigonometri',
+                    inti: 'Eksplorasi: Siswa mengamati segitiga siku-siku dan mengidentifikasi perbandingan sisi\nElaborasi: Diskusi kelompok menyelesaikan masalah trigonometri\nKreasi: Membuat proyek pengukuran tinggi benda menggunakan trigonometri',
+                    penutup: '1. Kesimpulan tentang konsep trigonometri\n2. Refleksi: Apa manfaat trigonometri?\n3. Penguatan dan apresiasi\n4. Informasi materi berikutnya',
+                    asesmenDiagnostik: 'Tes awal pemahaman konsep segitiga dan sudut',
+                    asesmenFormatif: 'Observasi selama diskusi dan latihan soal',
+                    asesmenSumatif: 'Tes tertulis dan proyek pengukuran',
+                    diferensiasiKonten: 'Soal dengan tingkat kesulitan bertingkat',
+                    diferensiasiProses: 'Bantuan scaffolding untuk siswa yang membutuhkan',
+                    diferensiasiProduk: 'Laporan tertulis atau presentasi video',
+                    p5Dimensi: ['Bernalar Kritis', 'Kreatif'],
+                    p5Keterkaitan: 'Menggunakan matematika untuk memecahkan masalah nyata dan memberikan solusi bermanfaat',
+                    mediaSumber: ['Buku Matematika Kelas X', 'GeoGebra', 'Video simulasi', 'Alat ukur (busur, penggaris)']
+                }
+            },
+            'IPA': {
+                'Sistem Pencernaan': {
+                    fase: 'D',
+                    kelas: 'VIII',
+                    cp: 'Peserta didik mampu memahami, menganalisis struktur dan fungsi sistem pencernaan manusia, serta menerapkan pola hidup sehat untuk menjaga kesehatan sistem pencernaan.',
+                    tujuan: [
+                        'Menganalisis hubungan antara struktur organ pencernaan dengan fungsinya',
+                        'Mengevaluasi dampak pola makan terhadap kesehatan sistem pencernaan',
+                        'Merancang program pola makan sehat untuk menjaga sistem pencernaan'
+                    ],
+                    pemahaman: [
+                        'Sistem pencernaan yang sehat penting untuk penyerapan nutrisi optimal',
+                        'Pola makan dan gaya hidup sangat mempengaruhi kesehatan pencernaan'
+                    ],
+                    pemantik: [
+                        'Mengapa kita perlu mengunyah makanan dengan baik?',
+                        'Apa yang terjadi jika sistem pencernaan kita bermasalah?',
+                        'Bagaimana makanan yang kita makan diubah menjadi energi?'
+                    ],
+                    pendahuluan: '1. Salam dan doa\n2. Apersepsi: bertanya tentang makanan favorit siswa\n3. Menyampaikan tujuan tentang sistem pencernaan\n4. Motivasi dengan video proses pencernaan',
+                    inti: 'Eksplorasi: Mengamati torso sistem pencernaan\nElaborasi: Diskusi tentang proses pencernaan dari mulut hingga anus\nKreasi: Membuat poster pola makan sehat',
+                    penutup: '1. Kesimpulan tentang sistem pencernaan\n2. Refleksi: Apa yang akan diubah dari pola makan?\n3. Penguatan\n4. Tugas mengamati pola makan sendiri',
+                    asesmenDiagnostik: 'Tanya jawab pemahaman awal tentang pencernaan',
+                    asesmenFormatif: 'Observasi diskusi dan pembuatan poster',
+                    asesmenSumatif: 'Tes tertulis dan presentasi program makan sehat',
+                    diferensiasiKonten: 'Video animasi dan teks dengan kompleksitas berbeda',
+                    diferensiasiProses: 'Kerja kelompok atau individu sesuai pilihan',
+                    diferensiasiProduk: 'Poster, infografis, atau video edukasi',
+                    p5Dimensi: ['Beriman', 'Mandiri'],
+                    p5Keterkaitan: 'Menjaga kesehatan tubuh sebagai amanah dan berbagi pengetahuan untuk kesehatan bersama',
+                    mediaSumber: ['Buku IPA Kelas VIII', 'Torso sistem pencernaan', 'Video animasi', 'Leaflet kesehatan']
+                }
+            }
+        };
+
         window.onload = function() {
             init();
         };
@@ -139,12 +277,78 @@
             ).join('');
         }
 
+        function showTemplateSelector() {
+            const mapel = formData.mataPelajaran;
+            if (!mapel) {
+                return '<div class="template-box" style="background:#fee2e2; border-color:#dc2626;"><p style="color:#991b1b;">⚠️ <strong>Isi Mata Pelajaran terlebih dahulu</strong> untuk melihat template yang tersedia</p></div>';
+            }
+
+            const templates = templateDatabase[mapel];
+            if (!templates) {
+                return '<div class="template-box" style="background:#fef3c7; border-color:#f59e0b;"><p style="color:#92400e;">📋 Template untuk mata pelajaran <strong>' + mapel + '</strong> sedang dalam pengembangan. Silakan isi manual.</p></div>';
+            }
+
+            let html = '<div class="template-box">';
+            html += '<h4>⚡ Mau lebih cepat? Gunakan Template Siap Pakai!</h4>';
+            html += '<p style="margin-bottom:15px; font-size:0.9em;">Pilih topik di bawah, semua bagian akan otomatis terisi. Anda bisa edit sesuai kebutuhan.</p>';
+            html += '<div class="form-group"><label>Pilih Topik:</label><select id="topikTemplate" style="font-size:1em;">';
+            html += '<option value="">-- Pilih Topik --</option>';
+            Object.keys(templates).forEach(function(topik) {
+                html += '<option value="' + topik + '">' + topik + '</option>';
+            });
+            html += '</select></div>';
+            html += '<button onclick="loadTemplate()" class="btn btn-blue" style="width:100%; padding:15px; font-size:1.05em;">✨ Muat Template Sekarang</button>';
+            html += '<p style="margin-top:10px; font-size:0.85em; color:#6b7280;">💡 <strong>Tips:</strong> Template akan mengisi 90% modul. Review dan sesuaikan dengan kondisi kelas Anda.</p>';
+            html += '</div>';
+            return html;
+        }
+
+        function loadTemplate() {
+            const mapel = formData.mataPelajaran;
+            const topik = document.getElementById('topikTemplate').value;
+
+            if (!topik) {
+                alert('⚠️ Pilih topik terlebih dahulu!');
+                return;
+            }
+
+            const template = templateDatabase[mapel][topik];
+            if (template) {
+                formData.capaianPembelajaran = template.cp;
+                formData.tujuanPembelajaran = template.tujuan.slice();
+                formData.pemahamanBermakna = template.pemahaman.slice();
+                formData.pertanyaanPemantik = template.pemantik.slice();
+                formData.kegiatanPendahuluan = template.pendahuluan;
+                formData.kegiatanInti = template.inti;
+                formData.kegiatanPenutup = template.penutup;
+                formData.asesmenDiagnostik = template.asesmenDiagnostik;
+                formData.asesmenFormatif = template.asesmenFormatif;
+                formData.asesmenSumatif = template.asesmenSumatif;
+                formData.diferensiasiKonten = template.diferensiasiKonten;
+                formData.diferensiasiProses = template.diferensiasiProses;
+                formData.diferensiasiProduk = template.diferensiasiProduk;
+                formData.p5Dimensi = template.p5Dimensi.slice();
+                formData.p5Keterkaitan = template.p5Keterkaitan;
+                formData.mediaSumber = template.mediaSumber.slice();
+
+                // Update fase dan kelas jika cocok
+                if (formData.fase === '' || formData.kelas === '') {
+                    formData.fase = template.fase || formData.fase;
+                    formData.kelas = template.kelas || formData.kelas;
+                }
+
+                renderContent();
+                alert('✅ Template berhasil dimuat!\n\n📝 Semua bagian telah terisi otomatis.\n💡 Silakan review dan edit sesuai kebutuhan kelas Anda.\n\n➡️ Klik "Lanjut" untuk melihat hasilnya!');
+            }
+        }
+
         function renderContent() {
             const content = document.getElementById('contentArea');
             const step = steps[currentStep];
 
             if (step.id === 'identitas') {
                 content.innerHTML = '<h2>Identitas Pembelajaran</h2>' +
+                    showTemplateSelector() +
                     '<div class="form-group"><label>Satuan Pendidikan</label>' +
                     '<select onchange="updateField(\'satuan\', this.value)">' +
                     '<option value="">Pilih Satuan Pendidikan</option>' +
@@ -156,7 +360,7 @@
                     '<option value="SMK"' + (formData.satuan==='SMK'?' selected':'') + '>SMK</option>' +
                     '</select></div>' +
                     '<div class="form-group"><label>Mata Pelajaran</label>' +
-                    '<input type="text" placeholder="Contoh: Matematika, Bahasa Indonesia" value="' + formData.mataPelajaran + '" onchange="updateField(\'mataPelajaran\', this.value)"></div>' +
+                    '<input type="text" placeholder="Contoh: Matematika, Bahasa Indonesia" value="' + formData.mataPelajaran + '" onchange="updateField(\'mataPelajaran\', this.value); renderContent();"></div>' +
                     '<div class="grid-2">' +
                     '<div class="form-group"><label>Fase</label>' +
                     '<select onchange="updateField(\'fase\', this.value)">' +
@@ -197,7 +401,7 @@
                     '<button class="btn btn-add" style="display:inline-block; width:auto; margin:5px; padding:8px 15px;" onclick="insertKata(\'Mengevaluasi \')">Mengevaluasi</button>' +
                     '<button class="btn btn-add" style="display:inline-block; width:auto; margin:5px; padding:8px 15px;" onclick="insertKata(\'Menciptakan \')">Menciptakan</button>' +
                     '</div><div id="tujuanList">';
-                formData.tujuanPembelajaran.forEach((t, i) => {
+                formData.tujuanPembelajaran.forEach(function(t, i) {
                     html += '<div class="list-item">' +
                         '<textarea rows="2" placeholder="Tujuan ' + (i+1) + '" onchange="updateListItem(\'tujuanPembelajaran\', ' + i + ', this.value)">' + t + '</textarea>';
                     if (formData.tujuanPembelajaran.length > 1) {
@@ -209,8 +413,8 @@
                 content.innerHTML = html;
             } else if (step.id === 'pemahaman') {
                 let html = '<h2>Pemahaman Bermakna</h2>' +
-                    '<div class="tip">💡 <strong>Tips:</strong> Jelaskan pemahaman yang relevan dengan kehidupan nyata</div><div id="pemahamanList">';
-                formData.pemahamanBermakna.forEach((p, i) => {
+                    '<div class="tip">💡 <strong>Tips:</strong> Jelaskan pemahaman yang relevan dengan kehidupan nyata</div><div>';
+                formData.pemahamanBermakna.forEach(function(p, i) {
                     html += '<div class="list-item">' +
                         '<textarea rows="2" placeholder="Pemahaman ' + (i+1) + '" onchange="updateListItem(\'pemahamanBermakna\', ' + i + ', this.value)">' + p + '</textarea>';
                     if (formData.pemahamanBermakna.length > 1) {
@@ -222,8 +426,8 @@
                 content.innerHTML = html;
             } else if (step.id === 'pemantik') {
                 let html = '<h2>Pertanyaan Pemantik</h2>' +
-                    '<div class="tip">💡 <strong>Contoh:</strong> Mengapa... penting? Bagaimana dampak...?</div><div id="pemantikList">';
-                formData.pertanyaanPemantik.forEach((p, i) => {
+                    '<div class="tip">💡 <strong>Contoh:</strong> Mengapa... penting? Bagaimana dampak...?</div><div>';
+                formData.pertanyaanPemantik.forEach(function(p, i) {
                     html += '<div class="list-item">' +
                         '<input type="text" placeholder="Pertanyaan ' + (i+1) + '" value="' + p + '" onchange="updateListItem(\'pertanyaanPemantik\', ' + i + ', this.value)">';
                     if (formData.pertanyaanPemantik.length > 1) {
@@ -262,16 +466,16 @@
                     '<div class="form-group"><label>Diferensiasi Produk</label>' +
                     '<textarea rows="3" onchange="updateField(\'diferensiasiProduk\', this.value)">' + formData.diferensiasiProduk + '</textarea></div>' +
                     '<div class="form-group"><label>Dimensi Profil Pelajar Pancasila</label>';
-                ['Beriman', 'Berkebinekaan', 'Gotong Royong', 'Mandiri', 'Bernalar Kritis', 'Kreatif'].forEach(d => {
+                ['Beriman', 'Berkebinekaan', 'Gotong Royong', 'Mandiri', 'Bernalar Kritis', 'Kreatif'].forEach(function(d) {
                     html += '<label style="display:flex; align-items:center; gap:10px; font-weight:normal; margin:5px 0;">' +
-                        '<input type="checkbox"' + (formData.p5Dimensi.includes(d)?' checked':'') + ' onchange="toggleP5(\'' + d + '\')">' + d + '</label>';
+                        '<input type="checkbox"' + (formData.p5Dimensi.indexOf(d) > -1 ?' checked':'') + ' onchange="toggleP5(\'' + d + '\')">' + d + '</label>';
                 });
                 html += '</div><div class="form-group"><label>Keterkaitan P5 & Rahmatan lil Alamin</label>' +
                     '<textarea rows="4" onchange="updateField(\'p5Keterkaitan\', this.value)">' + formData.p5Keterkaitan + '</textarea></div>';
                 content.innerHTML = html;
             } else if (step.id === 'media') {
-                let html = '<h2>Media & Sumber Belajar</h2><div id="mediaList">';
-                formData.mediaSumber.forEach((m, i) => {
+                let html = '<h2>Media & Sumber Belajar</h2><div>';
+                formData.mediaSumber.forEach(function(m, i) {
                     html += '<div class="list-item">' +
                         '<input type="text" placeholder="Media/Sumber ' + (i+1) + '" value="' + m + '" onchange="updateListItem(\'mediaSumber\', ' + i + ', this.value)">';
                     if (formData.mediaSumber.length > 1) {
@@ -307,14 +511,14 @@
         function toggleP5(dimension) {
             const idx = formData.p5Dimensi.indexOf(dimension);
             if (idx > -1) {
-                formData[field].splice(idx, 1);
+                formData.p5Dimensi.splice(idx, 1);
             } else {
                 formData.p5Dimensi.push(dimension);
             }
         }
 
         function insertKata(kata) {
-            alert('Klik di textarea Tujuan, lalu ketik atau paste kata: ' + kata);
+            alert('💡 Copy kata ini dan paste di textarea Tujuan: ' + kata);
         }
 
         function goToStep(index) {
@@ -365,13 +569,10 @@
         function startAutoSave() {
             setInterval(function() {
                 if (formData.satuan || formData.mataPelajaran) {
-                    document.getElementById('autoSaveStatus').textContent = '💾 Menyimpan...';
+                    document.getElementById('autoSaveStatus').textContent = '💾 Tersimpan otomatis';
                     setTimeout(function() {
-                        document.getElementById('autoSaveStatus').textContent = '✓ Tersimpan';
-                        setTimeout(function() {
-                            document.getElementById('autoSaveStatus').textContent = '';
-                        }, 2000);
-                    }, 500);
+                        document.getElementById('autoSaveStatus').textContent = '';
+                    }, 2000);
                 }
             }, 30000);
         }
