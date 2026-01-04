@@ -1,4 +1,131 @@
-        // DATABASE TEMPLATE
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Modul Ajar Kurikulum Merdeka</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: linear-gradient(135deg, #fee2e2, #fed7aa); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .status { text-align: right; font-size: 0.9em; margin-top: 10px; opacity: 0.9; }
+        .buttons { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.95em; transition: transform 0.2s; text-decoration: none; display: inline-block; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-gray { background: #6b7280; color: white; }
+        .btn-green { background: #16a34a; color: white; }
+        .btn-red { background: #dc2626; color: white; }
+        .btn-blue { background: #2563eb; color: white; }
+        .btn-pink { background: #fecaca; color: #b91c1c; margin-left: auto; }
+        .progress { background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 20px; }
+        .progress-bar { background: #dc2626; height: 100%; transition: width 0.3s; border-radius: 10px; }
+        .content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 400px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .step { padding: 12px; border-radius: 8px; cursor: pointer; transition: all 0.3s; background: #f3f4f6; text-align: center; font-size: 0.85em; font-weight: 600; }
+        .step.active { background: #dc2626; color: white; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; }
+        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1em; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #dc2626; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .tip { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; }
+        .template-box { background: #dbeafe; border: 2px solid #3b82f6; padding: 20px; border-radius: 12px; margin: 20px 0; }
+        .template-box h4 { color: #1e40af; margin-bottom: 15px; font-size: 1.1em; }
+        .list-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: start; }
+        .btn-remove { background: #ef4444; color: white; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; min-width: 40px; }
+        .btn-add { background: white; color: #dc2626; border: 2px dashed #dc2626; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: 600; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 10px; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; background: white; border-radius: 15px; color: #6b7280; font-size: 0.9em; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+        .modal-content { background: white; max-width: 600px; margin: 50px auto; padding: 30px; border-radius: 15px; max-height: 80vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close { font-size: 2em; cursor: pointer; color: #6b7280; line-height: 1; }
+        .saved-item { border: 2px solid #e5e7eb; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+        .saved-item h3 { color: #dc2626; margin-bottom: 5px; }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .buttons { flex-direction: column; }
+            .btn-pink { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Generator Modul Ajar</h1>
+            <p>SD - SMP/MTS, SMA/MA/SMK | Kurikulum Merdeka - KBC</p>
+            <div class="status" id="autoSaveStatus"></div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-gray" onclick="showSaved()">📂 Modul Tersimpan</button>
+            <button class="btn btn-green" onclick="saveModule()">💾 Simpan Modul</button>
+            <button class="btn btn-red" onclick="exportModule()">📥 Export File</button>
+            <a href="https://bahasaindonesiama.blogspot.com" class="btn btn-pink" target="_blank">🏠 Ke Blog</a>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar" style="width: 9%"></div>
+        </div>
+
+        <div class="steps" id="stepsContainer"></div>
+
+        <div class="content" id="contentArea">
+            <p style="color: #6b7280;">Loading...</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn btn-gray" onclick="prevStep()" id="prevBtn">← Sebelumnya</button>
+            <button class="btn btn-red" onclick="nextStep()" id="nextBtn">Lanjut →</button>
+        </div>
+
+        <div class="footer">
+            🔒 100% Aman - Data tersimpan lokal di browser Anda<br>
+            Powered by <a href="https://bahasaindonesiama.blogspot.com" style="color: #dc2626; font-weight: bold; text-decoration: none;">BahasaIndonesiaMA.blogspot.com</a><br>
+            <small style="opacity: 0.7;">v1.1.0 - Template System</small>
+        </div>
+    </div>
+
+    <div id="savedModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modul Tersimpan</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="savedList"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = [
+            {id: 'identitas', title: '1. Identitas'},
+            {id: 'cp', title: '2. CP'},
+            {id: 'tujuan', title: '3. Tujuan'},
+            {id: 'pemahaman', title: '4. Pemahaman'},
+            {id: 'pemantik', title: '5. Pertanyaan'},
+            {id: 'pendahuluan', title: '6. Pendahuluan'},
+            {id: 'inti', title: '7. Kegiatan Inti'},
+            {id: 'penutup', title: '8. Penutup'},
+            {id: 'asesmen', title: '9. Asesmen'},
+            {id: 'diferensiasi', title: '10. Diferensiasi'},
+            {id: 'media', title: '11. Media'}
+        ];
+
+        let formData = {
+            satuan: '', mataPelajaran: '', fase: '', kelas: '', semester: '', alokasi: '',
+            tahunPelajaran: '', penyusun: '', capaianPembelajaran: '',
+            tujuanPembelajaran: [''], pemahamanBermakna: [''], pertanyaanPemantik: [''],
+            kegiatanPendahuluan: '', kegiatanInti: '', kegiatanPenutup: '',
+            asesmenDiagnostik: '', asesmenFormatif: '', asesmenSumatif: '',
+            diferensiasiKonten: '', diferensiasiProses: '', diferensiasiProduk: '',
+            p5Dimensi: [], p5Keterkaitan: '', mediaSumber: ['']
+        };
+
+               // DATABASE TEMPLATE
         const templateDatabase = {
             'Bahasa Indonesia': {
                 'Teks Anekdot': {
