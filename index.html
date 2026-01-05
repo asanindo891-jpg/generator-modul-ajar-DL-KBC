@@ -5,30 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generator Modul Ajar</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#fee2e2,#fed7aa)}.container{max-width:1200px;margin:0 auto;padding:20px}.header{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;padding:30px;border-radius:15px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.2)}.header h1{font-size:2em;margin-bottom:10px}.status{text-align:right;font-size:.9em;margin-top:10px;opacity:.9}.buttons{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}.btn{padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:.95em;transition:transform .2s;text-decoration:none;display:inline-block}.btn:hover{transform:translateY(-2px)}.btn-gray{background:#6b7280;color:#fff}.btn-green{background:#16a34a;color:#fff}.btn-red{background:#dc2626;color:#fff}.btn-blue{background:#2563eb;color:#fff}.btn-pink{background:#fecaca;color:#b91c1c;margin-left:auto}.progress{background:#e5e7eb;height:8px;border-radius:10px;margin-bottom:20px}.progress-bar{background:#dc2626;height:100%;transition:width .3s;border-radius:10px}.content{background:#fff;border-radius:15px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,.1);min-height:400px}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:20px}.step{padding:12px;border-radius:8px;cursor:pointer;transition:all .3s;background:#f3f4f6;text-align:center;font-size:.85em;font-weight:600}.step.active{background:#dc2626;color:#fff}.form-group{margin-bottom:20px}label{display:block;font-weight:600;margin-bottom:8px;color:#374151}input,select,textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:1em;font-family:inherit}input:focus,select:focus,textarea:focus{outline:0;border-color:#dc2626}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}.tip{background:#fef3c7;border-left:4px solid #f59e0b;padding:15px;border-radius:8px;margin-bottom:20px;font-size:.9em}.template-box{background:#dbeafe;border:2px solid #3b82f6;padding:20px;border-radius:12px;margin:20px 0}.template-box h4{color:#1e40af;margin-bottom:15px;font-size:1.1em}.list-item{display:flex;gap:10px;margin-bottom:10px;align-items:start}.btn-remove{background:#ef4444;color:#fff;padding:10px 15px;border:none;border-radius:8px;cursor:pointer;min-width:40px}.btn-add{background:#fff;color:#dc2626;border:2px dashed #dc2626;padding:10px;border-radius:8px;cursor:pointer;width:100%;margin-top:10px;font-weight:600}.nav-buttons{display:flex;justify-content:space-between;margin-top:30px;gap:10px}.footer{text-align:center;margin-top:30px;padding:20px;background:#fff;border-radius:15px;color:#6b7280;font-size:.9em}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000}.modal-content{background:#fff;max-width:600px;margin:50px auto;padding:30px;border-radius:15px;max-height:80vh;overflow-y:auto}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{font-size:2em;cursor:pointer;color:#6b7280;line-height:1}.saved-item{border:2px solid #e5e7eb;padding:15px;border-radius:8px;margin-bottom:10px}.saved-item h3{color:#dc2626;margin-bottom:5px}@media(max-width:768px){.grid-2{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.buttons{flex-direction:column}.btn-pink{margin-left:0}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#fee2e2,#fed7aa);padding:20px}
+.container{max-width:1200px;margin:0 auto}
+.header{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;padding:30px;border-radius:15px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.header h1{font-size:2em;margin-bottom:10px}
+.buttons{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.btn{padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:.95em;transition:transform .2s;text-decoration:none;display:inline-block}
+.btn:hover{transform:translateY(-2px)}
+.btn-gray{background:#6b7280;color:#fff}
+.btn-green{background:#16a34a;color:#fff}
+.btn-red{background:#dc2626;color:#fff}
+.btn-blue{background:#2563eb;color:#fff}
+.progress{background:#e5e7eb;height:8px;border-radius:10px;margin-bottom:20px}
+.progress-bar{background:#dc2626;height:100%;transition:width .3s;border-radius:10px}
+.content{background:#fff;border-radius:15px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,.1);min-height:400px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:20px}
+.step{padding:12px 8px;border-radius:8px;cursor:pointer;transition:all .3s;background:#f3f4f6;text-align:center;font-size:.85em;font-weight:600}
+.step.active{background:#dc2626;color:#fff}
+.form-group{margin-bottom:20px}
+label{display:block;font-weight:600;margin-bottom:8px;color:#374151}
+input,select,textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:1em;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:0;border-color:#dc2626}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.template-box{background:#dbeafe;border:2px solid #3b82f6;padding:20px;border-radius:12px;margin:20px 0}
+.template-box h4{color:#1e40af;margin-bottom:15px}
+.list-item{display:flex;gap:10px;margin-bottom:10px;align-items:start}
+.btn-remove{background:#ef4444;color:#fff;padding:10px 15px;border:none;border-radius:8px;cursor:pointer;min-width:40px}
+.btn-add{background:#fff;color:#dc2626;border:2px dashed #dc2626;padding:10px;border-radius:8px;cursor:pointer;width:100%;margin-top:10px;font-weight:600}
+.nav-buttons{display:flex;justify-content:space-between;margin-top:30px;gap:10px}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000}
+.modal-content{background:#fff;max-width:600px;margin:50px auto;padding:30px;border-radius:15px;max-height:80vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close{font-size:2em;cursor:pointer;color:#6b7280;line-height:1}
+.saved-item{border:2px solid #e5e7eb;padding:15px;border-radius:8px;margin-bottom:10px}
+.saved-item h3{color:#dc2626;margin-bottom:5px}
+@media(max-width:768px){.grid-2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="header">
 <h1>📝 Generator Modul Ajar</h1>
-<p>Kurikulum Merdeka - 18 Template Ready</p>
-<div class="status" id="autoSaveStatus"></div>
+<p>Kurikulum Merdeka - Template Ready</p>
+<div id="autoSaveStatus" style="text-align:right;margin-top:10px;font-size:.9em"></div>
 </div>
 <div class="buttons">
 <button class="btn btn-gray" onclick="showSaved()">📂 Tersimpan</button>
 <button class="btn btn-green" onclick="saveModule()">💾 Simpan</button>
 <button class="btn btn-red" onclick="exportModule()">📥 Export</button>
-<a href="https://bahasaindonesiama.blogspot.com" class="btn btn-pink" target="_blank">🏠 Blog</a>
 </div>
-<div class="progress"><div class="progress-bar" id="progressBar" style="width:9%"></div></div>
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 <div class="steps" id="stepsContainer"></div>
-<div class="content" id="contentArea"><p style="color:#6b7280">Loading...</p></div>
+<div class="content" id="contentArea"></div>
 <div class="nav-buttons">
 <button class="btn btn-gray" onclick="prevStep()" id="prevBtn">← Sebelumnya</button>
 <button class="btn btn-red" onclick="nextStep()" id="nextBtn">Lanjut →</button>
 </div>
-<div class="footer">🔒 Data tersimpan lokal di browser<br>by <a href="https://bahasaindonesiama.blogspot.com" style="color:#dc2626;font-weight:700;text-decoration:none">BahasaIndonesiaMA.blogspot.com</a></div>
 </div>
 <div id="savedModal" class="modal">
 <div class="modal-content">
@@ -38,23 +71,323 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script>
-let currentStep=0;
-const steps=[{id:'identitas',title:'1. Identitas'},{id:'cp',title:'2. CP'},{id:'tujuan',title:'3. Tujuan'},{id:'pemahaman',title:'4. Pemahaman'},{id:'pemantik',title:'5. Pertanyaan'},{id:'pendahuluan',title:'6. Pendahuluan'},{id:'inti',title:'7. Inti'},{id:'penutup',title:'8. Penutup'},{id:'asesmen',title:'9. Asesmen'},{id:'diferensiasi',title:'10. Diferensiasi'},{id:'media',title:'11. Media'}];
-let formData={satuan:'',mataPelajaran:'',fase:'',kelas:'',semester:'',alokasi:'',tahunPelajaran:'',penyusun:'',capaianPembelajaran:'',tujuanPembelajaran:[''],pemahamanBermakna:[''],pertanyaanPemantik:[''],kegiatanPendahuluan:'',kegiatanInti:'',kegiatanPenutup:'',asesmenDiagnostik:'',asesmenFormatif:'',asesmenSumatif:'',diferensiasiKonten:'',diferensiasiProses:'',diferensiasiProduk:'',p5Dimensi:[],p5Keterkaitan:'',mediaSumber:['']};
-const TEMPLATES={'Bahasa Indonesia':{'Teks Anekdot (Kelas X)':{cp:'Peserta didik mampu memahami, menganalisis struktur dan kaidah kebahasaan, serta memproduksi teks anekdot dengan memperhatikan konteks sosial budaya.',tujuan:['Menganalisis struktur teks anekdot (abstraksi, orientasi, krisis, reaksi, koda)','Mengevaluasi penggunaan majas dalam teks anekdot','Menciptakan teks anekdot dengan kritik sosial'],pemahaman:['Teks anekdot menyampaikan kritik sosial dengan menghibur','Struktur anekdot membantu penyampaian pesan terorganisir'],pemantik:['Mengapa kritik lewat cerita lucu lebih efektif?','Bagaimana anekdot mempengaruhi masyarakat?','Apa beda anekdot dengan humor biasa?'],pendahuluan:'1. Salam dan doa\n2. Apersepsi: pengalaman mendengar cerita lucu bersindiran\n3. Tujuan pembelajaran\n4. Motivasi: relevansi teks anekdot',inti:'Eksplorasi: Mengamati contoh teks anekdot\nElaborasi: Analisis struktur dan kaidah kebahasaan\nKreasi: Menyusun teks anekdot tema aktual',penutup:'1. Kesimpulan materi\n2. Refleksi pembelajaran\n3. Penguatan\n4. Informasi pembelajaran berikutnya',asesmenDiagnostik:'Observasi pemahaman awal melalui tanya jawab',asesmenFormatif:'Penilaian diskusi dan penyusunan teks',asesmenSumatif:'Penilaian produk teks dan presentasi',diferensiasiKonten:'Teks dengan tingkat kompleksitas berbeda',diferensiasiProses:'Kerja individu atau berpasangan',diferensiasiProduk:'Teks tertulis, komik, atau video',p5Dimensi:['Bernalar kritis','Kreatif'],p5Keterkaitan:'Mengembangkan kritik konstruktif untuk kebaikan bersama',mediaSumber:['Buku teks Bahasa Indonesia X','Video contoh anekdot','LKPD','Portal berita']}},'Matematika':{'Trigonometri (Kelas X)':{cp:'Peserta didik mampu memahami perbandingan trigonometri dan menerapkannya dalam pemecahan masalah.',tujuan:['Menganalisis hubungan sudut dan sisi segitiga','Mengevaluasi identitas trigonometri','Memecahkan masalah kontekstual'],pemahaman:['Trigonometri menghitung jarak dan sudut sulit diukur','Diterapkan dalam navigasi, arsitektur, astronomi'],pemantik:['Bagaimana arsitek tentukan kemiringan atap?','Mengapa pilot perlu trigonometri?','Cara hitung tinggi gedung tanpa ukur langsung?'],pendahuluan:'1. Salam dan doa\n2. Apersepsi: aplikasi trigonometri\n3. Tujuan pembelajaran\n4. Motivasi: video penerapan',inti:'Eksplorasi: Segitiga siku-siku\nElaborasi: Diskusi masalah trigonometri\nKreasi: Proyek pengukuran tinggi benda',penutup:'1. Kesimpulan\n2. Refleksi manfaat\n3. Penguatan\n4. Informasi berikutnya',asesmenDiagnostik:'Tes konsep segitiga dan sudut',asesmenFormatif:'Observasi diskusi dan latihan',asesmenSumatif:'Tes tertulis dan proyek',diferensiasiKonten:'Soal tingkat kesulitan bertingkat',diferensiasiProses:'Scaffolding untuk yang membutuhkan',diferensiasiProduk:'Laporan tertulis atau video',p5Dimensi:['Bernalar kritis','Kreatif'],p5Keterkaitan:'Matematika untuk solusi bermanfaat',mediaSumber:['Buku Matematika X','GeoGebra','Video','Alat ukur']}},'IPA':{'Sistem Pencernaan (Kelas VIII)':{cp:'Peserta didik mampu menganalisis sistem pencernaan dan menerapkan pola hidup sehat.',tujuan:['Menganalisis struktur dan fungsi organ pencernaan','Mengevaluasi dampak pola makan','Merancang program makan sehat'],pemahaman:['Sistem pencernaan sehat penting untuk nutrisi optimal','Pola makan mempengaruhi kesehatan pencernaan'],pemantik:['Mengapa mengunyah dengan baik penting?','Apa terjadi jika pencernaan bermasalah?','Bagaimana makanan jadi energi?'],pendahuluan:'1. Salam dan doa\n2. Apersepsi: makanan favorit\n3. Tujuan pembelajaran\n4. Motivasi: video proses pencernaan',inti:'Eksplorasi: Torso sistem pencernaan\nElaborasi: Diskusi proses pencernaan\nKreasi: Poster pola makan sehat',penutup:'1. Kesimpulan\n2. Refleksi pola makan\n3. Penguatan\n4. Tugas observasi',asesmenDiagnostik:'Tanya jawab pemahaman awal',asesmenFormatif:'Observasi diskusi dan poster',asesmenSumatif:'Tes tertulis dan presentasi program',diferensiasiKonten:'Video dan teks berbeda kompleksitas',diferensiasiProses:'Kelompok atau individu',diferensiasiProduk:'Poster, infografis, video',p5Dimensi:['Beriman dan bertakwa kepada Tuhan YME','Mandiri'],p5Keterkaitan:'Menjaga kesehatan sebagai amanah',mediaSumber:['Buku IPA VIII','Torso','Video animasi','Leaflet']}},'IPS':{'Letak Geografis Indonesia (Kelas VII)':{cp:'Peserta didik mampu menganalisis letak geografis Indonesia dan pengaruhnya.',tujuan:['Menganalisis letak geografis dan astronomis','Mengevaluasi keuntungan dan tantangan','Mengaitkan dengan iklim dan kehidupan'],pemahaman:['Letak geografis memberikan keuntungan strategis','Posisi astronomis mempengaruhi iklim tropis'],pemantik:['Mengapa Indonesia negara maritim?','Bagaimana letak pengaruhi cuaca?','Apa keuntungan posisi silang?'],pendahuluan:'1. Salam dan doa\n2. Apersepsi: peta Indonesia\n3. Tujuan pembelajaran\n4. Motivasi: foto keindahan alam',inti:'Eksplorasi: Peta dan globe\nElaborasi: Diskusi keuntungan dan tantangan\nKreasi: Infografis pengaruh letak',penutup:'1. Kesimpulan\n2. Refleksi mensyukuri\n3. Penguatan\n4. Tugas cari berita',asesmenDiagnostik:'Tanya jawab pemahaman',asesmenFormatif:'Observasi diskusi',asesmenSumatif:'Tes dan proyek infografis',diferensiasiKonten:'Peta detail berbeda',diferensiasiProses:'Individu atau kelompok',diferensiasiProduk:'Infografis, peta konsep, presentasi',p5Dimensi:['Berkebinekaan global','Bernalar kritis'],p5Keterkaitan:'Mensyukuri karunia geografis untuk kemakmuran',mediaSumber:['Buku IPS VII','Peta Indonesia','Globe','Video']}}};
-window.onload=function(){init()};
-function init(){loadFromLocalStorage();renderSteps();renderContent();updateProgress();startAutoSave()}
-function renderSteps(){document.getElementById('stepsContainer').innerHTML=steps.map((s,i)=>'<div class="step '+(i===currentStep?'active':'')+'" onclick="goToStep('+i+')">'+s.title+'</div>').join('')}
-function showTemplateSelector(){const m=formData.mataPelajaran;if(!m)return '<div class="template-box" style="background:#fee2e2;border-color:#dc2626"><p style="color:#991b1b">⚠️ <strong>Isi Mata Pelajaran dulu</strong></p></div>';const t=TEMPLATES[m];if(!t)return '<div class="template-box" style="background:#fef3c7;border-color:#f59e0b"><p style="color:#92400e">📋 Template <strong>'+m+'</strong> dalam pengembangan</p></div>';let h='<div class="template-box"><h4>⚡ Template Siap Pakai!</h4><div class="form-group"><label>Pilih Topik:</label><select id="topikTemplate"><option value="">-- Pilih --</option>';Object.keys(t).forEach(k=>h+='<option value="'+k+'">'+k+'</option>');h+='</select></div><button onclick="loadTemplate()" class="btn btn-blue" style="width:100%;padding:15px">✨ Muat Template</button></div>';return h}
-function loadTemplate(){const m=formData.mataPelajaran,t=document.getElementById('topikTemplate').value;if(!t){alert('⚠️ Pilih topik!');return}const tp=TEMPLATES[m][t];if(tp){formData.capaianPembelajaran=tp.cp;formData.tujuanPembelajaran=tp.tujuan.slice();formData.pemahamanBermakna=tp.pemahaman.slice();formData.pertanyaanPemantik=tp.pemantik.slice();formData.kegiatanPendahuluan=tp.pendahuluan;formData.kegiatanInti=tp.inti;formData.kegiatanPenutup=tp.penutup;formData.asesmenDiagnostik=tp.asesmenDiagnostik;formData.asesmenFormatif=tp.asesmenFormatif;formData.asesmenSumatif=tp.asesmenSumatif;formData.diferensiasiKonten=tp.diferensiasiKonten;formData.diferensiasiProses=tp.diferensiasiProses;formData.diferensiasiProduk=tp.diferensiasiProduk;formData.p5Dimensi=tp.p5Dimensi.slice();formData.p5Keterkaitan=tp.p5Keterkaitan;formData.mediaSumber=tp.mediaSumber.slice();renderContent();alert('✅ Template dimuat!')}}
-function renderContent(){const c=document.getElementById('contentArea'),s=steps[currentStep];if(s.id==='identitas'){c.innerHTML='<h2>Identitas</h2>'+showTemplateSelector()+'<div class="form-group"><label>Satuan</label><select onchange="updateField(\'satuan\',this.value)"><option value="">Pilih</option><option '+(formData.satuan==='SD'?'selected':'')+' value="SD">SD</option><option '+(formData.satuan==='SMP'?'selected':'')+' value="SMP">SMP</option><option '+(formData.satuan==='SMA'?'selected':'')+' value="SMA">SMA</option></select></div><div class="form-group"><label>Mata Pelajaran</label><input value="'+formData.mataPelajaran+'" onchange="updateField(\'mataPelajaran\',this.value);renderContent()"></div><div class="grid-2"><div class="form-group"><label>Fase</label><select onchange="updateField(\'fase\',this.value)"><option value="">Pilih</option><option '+(formData.fase==='D'?'selected':'')+' value="D">D (7-9)</option><option '+(formData.fase==='E'?'selected':'')+' value="E">E (10)</option></select></div><div class="form-group"><label>Kelas</label><input value="'+formData.kelas+'" onchange="updateField(\'kelas\',this.value)"></div></div><div class="grid-2"><div class="form-group"><label>Semester</label><select onchange="updateField(\'semester\',this.value)"><option value="">Pilih</option><option '+(formData.semester==='1'?'selected':'')+' value="1">1</option><option '+(formData.semester==='2'?'selected':'')+' value="2">2</option></select></div><div class="form-group"><label>Alokasi</label><input value="'+formData.alokasi+'" placeholder="2x45 menit" onchange="updateField(\'alokasi\',this.value)"></div></div><div class="form-group"><label>Tahun Pelajaran</label><input value="'+formData.tahunPelajaran+'" placeholder="2024/2025" onchange="updateField(\'tahunPelajaran\',this.value)"></div><div class="form-group"><label>Penyusun</label><input value="'+formData.penyusun+'" onchange="updateField(\'penyusun\',this.value)"></div>'}else if(s.id==='cp'){c.innerHTML='<h2>Capaian Pembelajaran</h2><div class="form-group"><textarea rows="8" onchange="updateField(\'capaianPembelajaran\',this.value)">'+formData.capaianPembelajaran+'</textarea></div>'}else if(s.id==='tujuan'){let h='<h2>Tujuan (HOTS)</h2><div id="tujuanList">';formData.tujuanPembelajaran.forEach((t,i)=>{h+='<div class="list-item"><textarea rows="2" onchange="updateListItem(\'tujuanPembelajaran\','+i+',this.value)">'+t+'</textarea>';if(formData.tujuanPembelajaran.length>1)h+='<button class="btn-remove" onclick="removeListItem(\'tujuanPembelajaran\','+i+')">✕</button>';h+='</div>'});h+='</div><button class="btn-add" onclick="addListItem(\'tujuanPembelajaran\')">+ Tambah</button>';c.innerHTML=h}else if(s.id==='pemahaman'){let h='<h2>Pemahaman Bermakna</h2><div>';formData.pemahamanBermakna.forEach((p,i)=>{h+='<div class="list-item"><textarea rows="2" onchange="updateListItem(\'pemahamanBermakna\','+i+',this.value)">'+p+'</textarea>';if(formData.pemahamanBermakna.length>1)h+='<button class="btn-remove" onclick="removeListItem(\'pemahamanBermakna\','+i+')">✕</button>';h+='</div>'});h+='</div><button class="btn-add" onclick="addListItem(\'pemahamanBermakna\')">+ Tambah</button>';c.innerHTML=h}else if(s.id==='pemantik'){let h='<h2>Pertanyaan Pemantik</h2><div>';formData.pertanyaanPemantik.forEach((p,i)=>{h+='<div class="list-item"><input value="'+p+'" onchange="updateListItem(\'pertanyaanPemantik\','+i+',this.value)">';if(formData.pertanyaanPemantik.length>1)h+='<button class="btn-remove" onclick="removeListItem(\'pertanyaanPemantik\','+i+')">✕</button>';h+='</div>'});h+='</div><button class="btn-add" onclick="addListItem(\'pertanyaanPemantik\')">+ Tambah</button>';c.innerHTML=h}else if(s.id==='pendahuluan'){c.innerHTML='<h2>Kegiatan Pendahuluan</h2><div class="form-group"><textarea rows="8" onchange="updateField(\'kegiatanPendahuluan\',this.value)">'+formData.kegiatanPendahuluan+'</textarea></div>'}else if(s.id==='inti'){c.innerHTML='<h2>Kegiatan Inti</h2><div class="form-group"><textarea rows="10" onchange="updateField(\'kegiatanInti\',this.value)">'+formData.kegiatanInti+'</textarea></div>'}else if(s.id==='penutup'){c.innerHTML='<h2>Penutup</h2><div class="form-group"><textarea rows="8" onchange="updateField(\'kegiatanPenutup\',this.value)">'+formData.kegiatanPenutup+'</textarea></div>'}else if(s.id==='asesmen'){c.innerHTML='<h2>Asesmen</h2><div class="form-group"><label>Diagnostik</label><textarea rows="3" onchange="updateField(\'asesmenDiagnostik\',this.value)">'+formData.asesmenDiagnostik+'</textarea></div><div class="form-group"><label>Formatif</label><textarea rows="3" onchange="updateField(\'asesmenFormatif\',this.value)">'+formData.asesmenFormatif+'</textarea></div><div class="form-group"><label>Sumatif</label><textarea rows="3" onchange="updateField(\'asesmenSumatif\',this.value)">'+formData.asesmenSumatif+'</textarea></div>'}else if(s.id==='diferensiasi'){c.innerHTML='<h2>Diferensiasi</h2><div class="form-group"><label>Konten</label><textarea rows="3" onchange="updateField(\'diferensiasiKonten\',this.value)">'+formData.diferensiasiKonten+'</textarea></div><div class="form-group"><label>Proses</label><textarea rows="3" onchange="updateField(\'diferensiasiProses\',this.value)">'+formData.diferensiasiProses+'</textarea></div><div class="form-group"><label>Produk</label><textarea rows="3" onchange="updateField(\'diferensiasiProduk\',this.value)">'+formData.diferensiasiProduk+'</textarea></div>'}else if(s.id==='media'){let h='<h2>P5 & Media</h2><div class="form-group"><label>Dimensi P5</label><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">';['Beriman dan bertakwa kepada Tuhan YME','Berkebinekaan global','Bergotong royong','Mandiri','Bernalar kritis','Kreatif'].forEach(d=>{h+='<label style="display:flex;align-items:center;gap:8px;padding:10px;background:#f9fafb;border-radius:6px"><input type="checkbox" value="'+d+'" onchange="toggleP5(\''+d+'\')"'+(formData.p5Dimensi.indexOf(d)!==-1?' checked':'')+'><span style="font-size:.9em">'+d+'</span></label>'});h+='</div></div><div class="form-group"><label>Keterkaitan P5</label><textarea rows="3" onchange="updateField(\'p5Keterkaitan\',this.value)">'+formData.p5Keterkaitan+'</textarea></div><h3>Media & Sumber</h3><div>';formData.mediaSumber.forEach((m,i)=>{h+='<div class="list-item"><input value="'+m+'" onchange="updateListItem(\'mediaSumber\','+i+',this.value)">';if(formData.mediaSumber.length>1)h+='<button class="btn-remove" onclick="removeListItem(\'mediaSumber\','+i+')">✕</button>';h+='</div>'});h+='</div><button class="btn-add" onclick="addListItem(\'mediaSumber\')">+ Tambah</button>';c.innerHTML=h}}
-function updateField(f,v){formData[f]=v;saveToLocalStorage()}
-function updateListItem(f,i,v){formData[f][i]=v;saveToLocalStorage()}
-function addListItem(f){formData[f].push('');renderContent();saveToLocalStorage()}
-function removeListItem(f,i){formData[f].splice(i,1);renderContent();saveToLocalStorage()}
-function toggleP5(d){const i=formData.p5Dimensi.indexOf(d);i===-1?formData.p5Dimensi.push(d):formData.p5Dimensi.splice(i,1);saveToLocalStorage()}
-function nextStep(){if(currentStep<steps.length-1){currentStep++;renderSteps();renderContent();updateProgress();window.scrollTo(0,0)}else exportModule()}
-function prevStep(){if(currentStep>0){currentStep--;renderSteps();renderContent();updateProgress();window.scrollTo(0,0)}}
-function goToStep(i){currentStep=i;renderSteps();renderContent();updateProgress();window.scrollTo(0,0)}
-function updateProgress(){const p=((currentStep+1)/steps.length)*100;document.getElementById('progressBar').style.width=p+'%';document.getElementById('prevBtn').style.display=currentStep===0?'none':'block';document.getElementById('nextBtn').textContent=currentStep===steps.length-1?'🎉 Export':'Lanjut →'}
-function saveToLocalStorage(){localStorage.setItem('modulAjarDraft',JSON.stringify(formData));showAutoSaveStatus('💾
+let currentStep = 0;
+const steps = [
+{id:'identitas',title:'1. Identitas'},
+{id:'cp',title:'2. CP'},
+{id:'tujuan',title:'3. Tujuan'},
+{id:'pemahaman',title:'4. Pemahaman'},
+{id:'pemantik',title:'5. Pertanyaan'},
+{id:'pendahuluan',title:'6. Pendahuluan'},
+{id:'inti',title:'7. Inti'},
+{id:'penutup',title:'8. Penutup'},
+{id:'asesmen',title:'9. Asesmen'},
+{id:'diferensiasi',title:'10. Diferensiasi'},
+{id:'media',title:'11. Media'}
+];
+
+let formData = {
+satuan:'',mataPelajaran:'',fase:'',kelas:'',semester:'',alokasi:'',tahunPelajaran:'',penyusun:'',
+capaianPembelajaran:'',tujuanPembelajaran:[''],pemahamanBermakna:[''],pertanyaanPemantik:[''],
+kegiatanPendahuluan:'',kegiatanInti:'',kegiatanPenutup:'',asesmenDiagnostik:'',asesmenFormatif:'',
+asesmenSumatif:'',diferensiasiKonten:'',diferensiasiProses:'',diferensiasiProduk:'',
+p5Dimensi:[],p5Keterkaitan:'',mediaSumber:['']
+};
+
+const TEMPLATES = {
+'Bahasa Indonesia': {
+'Teks Anekdot (X)': {
+cp:'Peserta didik mampu memahami, menganalisis struktur dan kaidah kebahasaan, serta memproduksi teks anekdot.',
+tujuan:['Menganalisis struktur teks anekdot','Mengevaluasi penggunaan majas','Menciptakan teks anekdot'],
+pemahaman:['Teks anekdot menyampaikan kritik sosial dengan menghibur'],
+pemantik:['Mengapa kritik lewat cerita lucu lebih efektif?'],
+pendahuluan:'1. Salam dan doa\n2. Apersepsi\n3. Tujuan\n4. Motivasi',
+inti:'Eksplorasi: Mengamati contoh\nElaborasi: Analisis struktur\nKreasi: Menyusun teks',
+penutup:'1. Kesimpulan\n2. Refleksi\n3. Penguatan',
+asesmenDiagnostik:'Tanya jawab pemahaman awal',
+asesmenFormatif:'Penilaian diskusi',
+asesmenSumatif:'Penilaian produk teks',
+diferensiasiKonten:'Teks berbeda kompleksitas',
+diferensiasiProses:'Individu atau berpasangan',
+diferensiasiProduk:'Tertulis, komik, video',
+p5Dimensi:['Bernalar kritis','Kreatif'],
+p5Keterkaitan:'Mengembangkan kritik konstruktif',
+mediaSumber:['Buku teks','Video','LKPD']
+}
+},
+'Matematika': {
+'Trigonometri (X)': {
+cp:'Peserta didik mampu memahami perbandingan trigonometri dan menerapkannya.',
+tujuan:['Menganalisis hubungan sudut dan sisi','Mengevaluasi identitas trigonometri','Memecahkan masalah'],
+pemahaman:['Trigonometri menghitung jarak dan sudut sulit diukur'],
+pemantik:['Bagaimana arsitek tentukan kemiringan atap?'],
+pendahuluan:'1. Salam dan doa\n2. Apersepsi\n3. Tujuan\n4. Motivasi',
+inti:'Eksplorasi: Segitiga siku-siku\nElaborasi: Diskusi\nKreasi: Proyek pengukuran',
+penutup:'1. Kesimpulan\n2. Refleksi\n3. Penguatan',
+asesmenDiagnostik:'Tes konsep prasyarat',
+asesmenFormatif:'Observasi diskusi',
+asesmenSumatif:'Tes tertulis dan proyek',
+diferensiasiKonten:'Soal bertingkat',
+diferensiasiProses:'Scaffolding',
+diferensiasiProduk:'Laporan atau video',
+p5Dimensi:['Bernalar kritis','Kreatif'],
+p5Keterkaitan:'Matematika untuk solusi',
+mediaSumber:['Buku','GeoGebra','Video']
+}
+}
+};
+
+window.onload = function() {
+loadFromLocalStorage();
+renderSteps();
+renderContent();
+updateProgress();
+};
+
+function renderSteps() {
+let html = '';
+for(let i = 0; i < steps.length; i++) {
+html += '<div class="step ' + (i === currentStep ? 'active' : '') + '" onclick="goToStep(' + i + ')">' + steps[i].title + '</div>';
+}
+document.getElementById('stepsContainer').innerHTML = html;
+}
+
+function showTemplateSelector() {
+const m = formData.mataPelajaran;
+if(!m) return '<div class="template-box"><p>⚠️ Isi Mata Pelajaran dulu</p></div>';
+const t = TEMPLATES[m];
+if(!t) return '<div class="template-box"><p>📋 Template dalam pengembangan</p></div>';
+let html = '<div class="template-box"><h4>⚡ Template Siap Pakai</h4><select id="topikTemplate"><option value="">-- Pilih --</option>';
+for(let k in t) {
+html += '<option value="' + k + '">' + k + '</option>';
+}
+html += '</select><br><br><button onclick="loadTemplate()" class="btn btn-blue" style="width:100%">✨ Muat Template</button></div>';
+return html;
+}
+
+function loadTemplate() {
+const m = formData.mataPelajaran;
+const t = document.getElementById('topikTemplate').value;
+if(!t) { alert('Pilih topik!'); return; }
+const tp = TEMPLATES[m][t];
+if(tp) {
+formData.capaianPembelajaran = tp.cp;
+formData.tujuanPembelajaran = tp.tujuan.slice();
+formData.pemahamanBermakna = tp.pemahaman.slice();
+formData.pertanyaanPemantik = tp.pemantik.slice();
+formData.kegiatanPendahuluan = tp.pendahuluan;
+formData.kegiatanInti = tp.inti;
+formData.kegiatanPenutup = tp.penutup;
+formData.asesmenDiagnostik = tp.asesmenDiagnostik;
+formData.asesmenFormatif = tp.asesmenFormatif;
+formData.asesmenSumatif = tp.asesmenSumatif;
+formData.diferensiasiKonten = tp.diferensiasiKonten;
+formData.diferensiasiProses = tp.diferensiasiProses;
+formData.diferensiasiProduk = tp.diferensiasiProduk;
+formData.p5Dimensi = tp.p5Dimensi.slice();
+formData.p5Keterkaitan = tp.p5Keterkaitan;
+formData.mediaSumber = tp.mediaSumber.slice();
+renderContent();
+alert('✅ Template dimuat!');
+}
+}
+
+function renderContent() {
+const c = document.getElementById('contentArea');
+const s = steps[currentStep];
+if(s.id === 'identitas') {
+c.innerHTML = '<h2>Identitas</h2>' + showTemplateSelector() +
+'<div class="form-group"><label>Satuan</label><select onchange="updateField(\'satuan\',this.value)"><option value="">Pilih</option><option value="SD">SD</option><option value="SMP">SMP</option><option value="SMA">SMA</option></select></div>' +
+'<div class="form-group"><label>Mata Pelajaran</label><input value="' + formData.mataPelajaran + '" onchange="updateField(\'mataPelajaran\',this.value);renderContent()"></div>' +
+'<div class="grid-2"><div class="form-group"><label>Kelas</label><input value="' + formData.kelas + '" onchange="updateField(\'kelas\',this.value)"></div>' +
+'<div class="form-group"><label>Semester</label><select onchange="updateField(\'semester\',this.value)"><option value="">Pilih</option><option value="1">1</option><option value="2">2</option></select></div></div>' +
+'<div class="form-group"><label>Alokasi</label><input value="' + formData.alokasi + '" placeholder="2x45 menit" onchange="updateField(\'alokasi\',this.value)"></div>' +
+'<div class="form-group"><label>Penyusun</label><input value="' + formData.penyusun + '" onchange="updateField(\'penyusun\',this.value)"></div>';
+} else if(s.id === 'cp') {
+c.innerHTML = '<h2>Capaian Pembelajaran</h2><textarea rows="8" onchange="updateField(\'capaianPembelajaran\',this.value)">' + formData.capaianPembelajaran + '</textarea>';
+} else if(s.id === 'tujuan') {
+let h = '<h2>Tujuan (HOTS)</h2>';
+for(let i = 0; i < formData.tujuanPembelajaran.length; i++) {
+h += '<div class="list-item"><textarea rows="2" onchange="updateListItem(\'tujuanPembelajaran\',' + i + ',this.value)">' + formData.tujuanPembelajaran[i] + '</textarea>';
+if(formData.tujuanPembelajaran.length > 1) h += '<button class="btn-remove" onclick="removeListItem(\'tujuanPembelajaran\',' + i + ')">✕</button>';
+h += '</div>';
+}
+h += '<button class="btn-add" onclick="addListItem(\'tujuanPembelajaran\')">+ Tambah</button>';
+c.innerHTML = h;
+} else if(s.id === 'pemahaman') {
+let h = '<h2>Pemahaman Bermakna</h2>';
+for(let i = 0; i < formData.pemahamanBermakna.length; i++) {
+h += '<div class="list-item"><textarea rows="2" onchange="updateListItem(\'pemahamanBermakna\',' + i + ',this.value)">' + formData.pemahamanBermakna[i] + '</textarea>';
+if(formData.pemahamanBermakna.length > 1) h += '<button class="btn-remove" onclick="removeListItem(\'pemahamanBermakna\',' + i + ')">✕</button>';
+h += '</div>';
+}
+h += '<button class="btn-add" onclick="addListItem(\'pemahamanBermakna\')">+ Tambah</button>';
+c.innerHTML = h;
+} else if(s.id === 'pemantik') {
+let h = '<h2>Pertanyaan Pemantik</h2>';
+for(let i = 0; i < formData.pertanyaanPemantik.length; i++) {
+h += '<div class="list-item"><input value="' + formData.pertanyaanPemantik[i] + '" onchange="updateListItem(\'pertanyaanPemantik\',' + i + ',this.value)">';
+if(formData.pertanyaanPemantik.length > 1) h += '<button class="btn-remove" onclick="removeListItem(\'pertanyaanPemantik\',' + i + ')">✕</button>';
+h += '</div>';
+}
+h += '<button class="btn-add" onclick="addListItem(\'pertanyaanPemantik\')">+ Tambah</button>';
+c.innerHTML = h;
+} else if(s.id === 'pendahuluan') {
+c.innerHTML = '<h2>Kegiatan Pendahuluan</h2><textarea rows="8" onchange="updateField(\'kegiatanPendahuluan\',this.value)">' + formData.kegiatanPendahuluan + '</textarea>';
+} else if(s.id === 'inti') {
+c.innerHTML = '<h2>Kegiatan Inti</h2><textarea rows="10" onchange="updateField(\'kegiatanInti\',this.value)">' + formData.kegiatanInti + '</textarea>';
+} else if(s.id === 'penutup') {
+c.innerHTML = '<h2>Penutup</h2><textarea rows="8" onchange="updateField(\'kegiatanPenutup\',this.value)">' + formData.kegiatanPenutup + '</textarea>';
+} else if(s.id === 'asesmen') {
+c.innerHTML = '<h2>Asesmen</h2><div class="form-group"><label>Diagnostik</label><textarea rows="3" onchange="updateField(\'asesmenDiagnostik\',this.value)">' + formData.asesmenDiagnostik + '</textarea></div>' +
+'<div class="form-group"><label>Formatif</label><textarea rows="3" onchange="updateField(\'asesmenFormatif\',this.value)">' + formData.asesmenFormatif + '</textarea></div>' +
+'<div class="form-group"><label>Sumatif</label><textarea rows="3" onchange="updateField(\'asesmenSumatif\',this.value)">' + formData.asesmenSumatif + '</textarea></div>';
+} else if(s.id === 'diferensiasi') {
+c.innerHTML = '<h2>Diferensiasi</h2><div class="form-group"><label>Konten</label><textarea rows="3" onchange="updateField(\'diferensiasiKonten\',this.value)">' + formData.diferensiasiKonten + '</textarea></div>' +
+'<div class="form-group"><label>Proses</label><textarea rows="3" onchange="updateField(\'diferensiasiProses\',this.value)">' + formData.diferensiasiProses + '</textarea></div>' +
+'<div class="form-group"><label>Produk</label><textarea rows="3" onchange="updateField(\'diferensiasiProduk\',this.value)">' + formData.diferensiasiProduk + '</textarea></div>';
+} else if(s.id === 'media') {
+let h = '<h2>P5 & Media</h2><div class="form-group"><label>Dimensi P5</label>';
+const dims = ['Beriman bertakwa','Berkebinekaan global','Bergotong royong','Mandiri','Bernalar kritis','Kreatif'];
+for(let d of dims) {
+const checked = formData.p5Dimensi.indexOf(d) !== -1 ? ' checked' : '';
+h += '<label style="display:block;margin:5px 0"><input type="checkbox" value="' + d + '" onchange="toggleP5(\'' + d + '\')"' + checked + '> ' + d + '</label>';
+}
+h += '</div><div class="form-group"><label>Keterkaitan P5</label><textarea rows="3" onchange="updateField(\'p5Keterkaitan\',this.value)">' + formData.p5Keterkaitan + '</textarea></div><h3>Media</h3>';
+for(let i = 0; i < formData.mediaSumber.length; i++) {
+h += '<div class="list-item"><input value="' + formData.mediaSumber[i] + '" onchange="updateListItem(\'mediaSumber\',' + i + ',this.value)">';
+if(formData.mediaSumber.length > 1) h += '<button class="btn-remove" onclick="removeListItem(\'mediaSumber\',' + i + ')">✕</button>';
+h += '</div>';
+}
+h += '<button class="btn-add" onclick="addListItem(\'mediaSumber\')">+ Tambah</button>';
+c.innerHTML = h;
+}
+}
+
+function updateField(f, v) { formData[f] = v; saveToLocalStorage(); }
+function updateListItem(f, i, v) { formData[f][i] = v; saveToLocalStorage(); }
+function addListItem(f) { formData[f].push(''); renderContent(); }
+function removeListItem(f, i) { formData[f].splice(i, 1); renderContent(); }
+function toggleP5(d) {
+const idx = formData.p5Dimensi.indexOf(d);
+if(idx === -1) formData.p5Dimensi.push(d);
+else formData.p5Dimensi.splice(idx, 1);
+saveToLocalStorage();
+}
+
+function nextStep() {
+if(currentStep < steps.length - 1) {
+currentStep++;
+renderSteps();
+renderContent();
+updateProgress();
+window.scrollTo(0, 0);
+} else exportModule();
+}
+
+function prevStep() {
+if(currentStep > 0) {
+currentStep--;
+renderSteps();
+renderContent();
+updateProgress();
+window.scrollTo(0, 0);
+}
+}
+
+function goToStep(i) {
+currentStep = i;
+renderSteps();
+renderContent();
+updateProgress();
+window.scrollTo(0, 0);
+}
+
+function updateProgress() {
+const p = ((currentStep + 1) / steps.length) * 100;
+document.getElementById('progressBar').style.width = p + '%';
+document.getElementById('prevBtn').style.display = currentStep === 0 ? 'none' : 'block';
+document.getElementById('nextBtn').textContent = currentStep === steps.length - 1 ? '🎉 Export' : 'Lanjut →';
+}
+
+function saveToLocalStorage() {
+localStorage.setItem('modulAjarDraft', JSON.stringify(formData));
+}
+
+function loadFromLocalStorage() {
+const s = localStorage.getItem('modulAjarDraft');
+if(s) formData = JSON.parse(s);
+}
+
+function saveModule() {
+if(!formData.mataPelajaran || !formData.kelas) {
+alert('⚠️ Lengkapi Mata Pelajaran dan Kelas!');
+return;
+}
+const ms = JSON.parse(localStorage.getItem('savedModules') || '[]');
+ms.push({id: Date.now(), data: JSON.parse(JSON.stringify(formData)), timestamp: new Date().toISOString()});
+localStorage.setItem('savedModules', JSON.stringify(ms));
+alert('✅ Modul disimpan!');
+}
+
+function showSaved() {
+const ms = JSON.parse(localStorage.getItem('savedModules') || '[]');
+let h = '';
+if(ms.length === 0) h = '<p style="text-align:center;padding:40px">Belum ada modul</p>';
+else {
+for(let m of ms.reverse()) {
+const d = new Date(m.timestamp);
+h += '<div class="saved-item"><h3>' + (m.data.mataPelajaran || 'Tanpa Judul') + ' - Kelas ' + (m.data.kelas || '-') + '</h3>' +
+'<p style="color:#6b7280;font-size:.9em">' + d.toLocaleString('id-ID') + '</p>' +
+'<button class="btn btn-blue" style="margin-top:10px" onclick="loadSavedModule(' + m.id + ')">📂 Muat</button> ' +
+'<button class="btn btn-red" style="margin-top:10px" onclick="deleteSavedModule(' + m.id + ')">🗑️ Hapus</button></div>';
+}
+}
+document.getElementById('savedList').innerHTML = h;
+document.getElementById('savedModal').style.display = 'block';
+}
+
+function loadSavedModule(id) {
+const ms = JSON.parse(localStorage.getItem('savedModules') || '[]');
+const m = ms.find(x => x.id === id);
+if(m) {
+formData = JSON.parse(JSON.stringify(m.data));
+currentStep = 0;
+renderSteps();
+renderContent();
+updateProgress();
+closeModal();
+alert('✅ Modul dimuat!');
+}
+}
+
+function deleteSavedModule(id) {
+if(confirm('Yakin hapus?')) {
+let ms = JSON.parse(localStorage.getItem('savedModules') || '[]');
+ms = ms.filter(m => m.id !== id);
+localStorage.setItem('savedModules', JSON.stringify(ms));
+showSaved();
+}
+}
+
+function closeModal() {
+document.getElementById('savedModal').style.display = 'none';
+}
+
+function exportModule() {
+let txt = '='.repeat(80) + '\nMODUL AJAR KURIKULUM MERDEKA\n' + '='.repeat(80) + '\n\n';
+txt += 'Satuan: ' + formData.satuan + '\nMata Pelajaran: ' + formData.mataPelajaran + '\nKelas: ' + formData.kelas + '\n\n';
+txt += 'CAPAIAN PEMBELAJARAN\n' + formData.capaianPembelajaran + '\n\n';
+txt += 'TUJUAN\n';
+for(let i = 0; i < formData.tujuanPembelajaran.length; i++) {
+if(formData.tujuanPembelajaran[i]) txt += (i+1) + '. ' + formData.tujuanPembelajaran[i] + '\n';
+}
+txt += '\n' + '='.repeat(80);
+const blob = new Blob([txt], {type: 'text/plain;charset=utf-8'});
+const fn = 'Modul_' + (formData.mataPelajaran || 'Untitled').replace(/\s+/g, '_') + '.txt';
+saveAs(blob, fn);
+alert('🎉 Export berhasil!');
+}
+</script>
+</body>
+</html>
