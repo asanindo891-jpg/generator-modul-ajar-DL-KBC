@@ -74,7 +74,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:#dc2626}
 <div class="modal-content">
 <div class="modal-header"><h2>🤖 AI Generator Modul Ajar</h2><span class="close" onclick="closeAIModal()">&times;</span></div>
 <div style="background:#fef3c7;padding:15px;border-radius:8px;margin-bottom:20px">
-<p style="font-size:.9em"><strong>✨ Fitur Baru!</strong> AI akan generate modul ajar lengkap berdasarkan input Anda.</p>
+<p style="font-size:.9em"><strong>✨ Fitur Smart Generator!</strong> Otomatis membuat modul lengkap berdasarkan input Anda.</p>
 </div>
 <div class="form-group">
 <label>Mata Pelajaran</label>
@@ -88,20 +88,16 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:#dc2626}
 <label>Topik/Materi</label>
 <input id="aiTopik" placeholder="Contoh: Persamaan Linear, Teks Eksposisi">
 </div>
-<div class="form-group">
-<label>Deskripsi Tambahan (opsional)</label>
-<textarea id="aiDeskripsi" rows="3" placeholder="Contoh: Fokus pada HOTS, pembelajaran diferensiasi, dll"></textarea>
-</div>
-<button class="btn btn-blue" onclick="generateWithAI()" id="aiGenerateBtn" style="width:100%;padding:15px;font-size:1.1em">
-🤖 Generate dengan AI
+<button class="btn btn-blue" onclick="doGenerate()" id="aiGenerateBtn" style="width:100%;padding:15px;font-size:1.1em">
+🤖 Generate Modul Lengkap
 </button>
 <div id="aiLoading" style="display:none;text-align:center;padding:20px">
-<p style="font-size:1.2em">⏳ AI sedang membuat modul ajar...</p>
-<p style="color:#6b7280;margin-top:10px">Mohon tunggu 10-15 detik</p>
+<p style="font-size:1.2em">⏳ Sedang membuat modul...</p>
+<p style="color:#6b7280;margin-top:10px">Tunggu sebentar</p>
 </div>
 <div id="aiResult" style="display:none;margin-top:20px;padding:15px;background:#d1fae5;border-radius:8px">
-<p style="color:#065f46;font-weight:600">✅ Modul berhasil di-generate!</p>
-<p style="margin-top:10px;font-size:.9em">Klik "Tutup" untuk melihat hasilnya di form.</p>
+<p style="color:#065f46;font-weight:600">✅ Modul berhasil dibuat!</p>
+<p style="margin-top:10px;font-size:.9em">Silakan cek di form</p>
 </div>
 </div>
 </div>
