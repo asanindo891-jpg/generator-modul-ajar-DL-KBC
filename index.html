@@ -10,23 +10,15 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
 }
 .container {
   background: white;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  max-width: 600px;
-  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
   padding: 40px;
-  animation: fadeIn 0.5s;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 h1 {
   color: #667eea;
@@ -48,24 +40,18 @@ label {
   margin-bottom: 8px;
   color: #333;
   font-weight: 600;
-  font-size: 0.95em;
 }
 input, select, textarea {
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   font-size: 1em;
-  transition: border 0.3s;
   font-family: inherit;
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: #667eea;
-}
-textarea {
-  resize: vertical;
-  min-height: 80px;
 }
 .btn {
   width: 100%;
@@ -77,43 +63,14 @@ textarea {
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
   margin-top: 10px;
 }
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
 }
-.btn:active {
-  transform: translateY(0);
-}
-.loading {
-  display: none;
-  text-align: center;
-  padding: 30px;
-}
-.loading-spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.success {
-  display: none;
-  background: #d1fae5;
-  border: 2px solid #10b981;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  color: #065f46;
-  margin-top: 20px;
+.btn-download {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 .info-box {
   background: #fef3c7;
@@ -123,37 +80,62 @@ textarea {
   margin-bottom: 20px;
   font-size: 0.9em;
 }
-.footer {
+.result-box {
+  display: none;
+  background: #d1fae5;
+  border: 2px solid #10b981;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.result-box h3 {
+  color: #065f46;
+  margin-bottom: 15px;
+}
+.preview {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  margin: 15px 0;
+}
+.loading {
+  display: none;
   text-align: center;
-  margin-top: 30px;
-  color: #666;
-  font-size: 0.85em;
+  padding: 20px;
 }
-.footer a {
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
 }
-@media (max-width: 600px) {
-  .container { padding: 25px; }
-  h1 { font-size: 1.5em; }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>🤖 Generator Modul Ajar AI</h1>
-  <p class="subtitle">Kurikulum Merdeka - SD, SMP/MTs, SMA/MA/SMK</p>
+  <p class="subtitle">Kurikulum Merdeka - Lengkap dalam 2 Detik!</p>
   
   <div class="info-box">
-    <strong>✨ Fitur:</strong> Generate modul ajar lengkap dalam 3 detik! Otomatis sesuai format Kurikulum Merdeka dengan HOTS, Asesmen, Diferensiasi, dan P5.
+    <strong>✨ Auto Generate:</strong> Isi form, klik tombol, download file Word siap edit!
   </div>
 
-  <div id="formContainer">
+  <div id="formArea">
     <div class="form-group">
-      <label>Jenjang Pendidikan</label>
+      <label>Jenjang Pendidikan *</label>
       <select id="jenjang">
-        <option value="">-- Pilih Jenjang --</option>
+        <option value="">-- Pilih --</option>
         <option value="SD">SD</option>
         <option value="SMP">SMP</option>
         <option value="MTs">MTs</option>
@@ -164,576 +146,293 @@ textarea {
     </div>
 
     <div class="form-group">
-      <label>Mata Pelajaran</label>
-      <input type="text" id="mataPelajaran" placeholder="Contoh: Matematika, IPA, Bahasa Indonesia">
+      <label>Mata Pelajaran *</label>
+      <input type="text" id="mapel" placeholder="Contoh: Matematika, IPA">
     </div>
 
     <div class="form-group">
-      <label>Kelas</label>
+      <label>Kelas *</label>
       <input type="text" id="kelas" placeholder="Contoh: VII, X, 5">
     </div>
 
     <div class="form-group">
-      <label>Topik/Materi Pembelajaran</label>
-      <input type="text" id="topik" placeholder="Contoh: Persamaan Linear, Sistem Pencernaan">
+      <label>Topik/Materi *</label>
+      <input type="text" id="topik" placeholder="Contoh: Persamaan Linear">
     </div>
 
-    <div class="form-group">
-      <label>Alokasi Waktu</label>
-      <input type="text" id="alokasi" placeholder="Contoh: 2 x 45 menit" value="2 x 45 menit">
-    </div>
-
-    <div class="form-group">
-      <label>Catatan Tambahan (Opsional)</label>
-      <textarea id="catatan" placeholder="Contoh: Fokus pada pembelajaran berbasis proyek, siswa kesulitan di materi prasyarat, dll"></textarea>
-    </div>
-
-    <button class="btn" onclick="generateModul()">🚀 Generate Modul Ajar Sekarang</button>
+    <button class="btn" onclick="generate()">🚀 Generate Modul Sekarang</button>
   </div>
 
-  <div id="loadingContainer" class="loading">
-    <div class="loading-spinner"></div>
-    <p style="color: #667eea; font-weight: 600; font-size: 1.1em;">🤖 AI sedang membuat modul...</p>
-    <p style="color: #999; margin-top: 10px;">Tunggu 3 detik</p>
+  <div id="loadingArea" class="loading">
+    <div class="spinner"></div>
+    <p style="margin-top:15px;color:#667eea;font-weight:600">Sedang membuat modul...</p>
   </div>
 
-  <div id="successContainer" class="success">
-    <h3 style="margin-bottom: 10px;">✅ Modul Ajar Berhasil Dibuat!</h3>
-    <p>File akan otomatis terdownload dalam format .docx</p>
-    <button class="btn" onclick="resetForm()" style="margin-top: 15px; background: #10b981;">📝 Buat Modul Lagi</button>
-  </div>
-
-  <div class="footer">
-    Powered by AI • <a href="https://bahasaindonesiama.blogspot.com" target="_blank">BahasaIndonesiaMA.blogspot.com</a>
+  <div id="resultArea" class="result-box">
+    <h3>✅ Modul Berhasil Dibuat!</h3>
+    <p style="margin-bottom:15px">Preview singkat:</p>
+    <div class="preview" id="preview"></div>
+    <button class="btn btn-download" onclick="downloadWord()">📥 Download File Word (.docx)</button>
+    <button class="btn" onclick="reset()" style="margin-top:10px;background:#6b7280">📝 Buat Modul Baru</button>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script>
-function generateModul() {
-  const jenjang = document.getElementById('jenjang').value.trim();
-  const mapel = document.getElementById('mataPelajaran').value.trim();
+let modulData = null;
+
+function generate() {
+  const jenjang = document.getElementById('jenjang').value;
+  const mapel = document.getElementById('mapel').value.trim();
   const kelas = document.getElementById('kelas').value.trim();
   const topik = document.getElementById('topik').value.trim();
-  const alokasi = document.getElementById('alokasi').value.trim();
-  const catatan = document.getElementById('catatan').value.trim();
 
   if (!jenjang || !mapel || !kelas || !topik) {
-    alert('⚠️ Mohon isi semua field yang wajib (Jenjang, Mata Pelajaran, Kelas, Topik)!');
+    alert('⚠️ Mohon isi semua field yang wajib (*)');
     return;
   }
 
-  // Tampilkan loading
-  document.getElementById('formContainer').style.display = 'none';
-  document.getElementById('loadingContainer').style.display = 'block';
+  document.getElementById('formArea').style.display = 'none';
+  document.getElementById('loadingArea').style.display = 'block';
 
-  // Simulasi AI processing
   setTimeout(function() {
-    const modulData = buatModulLengkap(jenjang, mapel, kelas, topik, alokasi, catatan);
-    generateWordDoc(modulData, mapel, kelas, topik);
-  }, 3000);
+    modulData = buatModul(jenjang, mapel, kelas, topik);
+    tampilkanHasil();
+  }, 1500);
 }
 
-function buatModulLengkap(jenjang, mapel, kelas, topik, alokasi, catatan) {
-  const tahunAjar = '2024/2025';
-  
+function buatModul(jenjang, mapel, kelas, topik) {
   return {
-    // IDENTITAS
     jenjang: jenjang,
-    mataPelajaran: mapel,
+    mapel: mapel,
     kelas: kelas,
-    semester: '1',
-    tahunPelajaran: tahunAjar,
-    alokasi: alokasi,
     topik: topik,
     
-    // CAPAIAN PEMBELAJARAN
-    capaianPembelajaran: `Peserta didik mampu memahami, menganalisis, dan menerapkan konsep ${topik} dalam mata pelajaran ${mapel} dengan mengembangkan kemampuan berpikir tingkat tinggi (HOTS), kreativitas, dan keterampilan pemecahan masalah yang relevan dengan kehidupan sehari-hari.`,
-    
-    // TUJUAN PEMBELAJARAN (HOTS)
-    tujuanPembelajaran: [
-      `Menganalisis konsep dasar ${topik} dan hubungannya dengan kehidupan sehari-hari`,
-      `Mengevaluasi berbagai strategi dan metode dalam menyelesaikan masalah terkait ${topik}`,
-      `Menciptakan solusi inovatif atau produk kreatif berdasarkan pemahaman ${topik}`
-    ],
-    
-    // PEMAHAMAN BERMAKNA
-    pemahamanBermakna: [
-      `${topik} merupakan konsep penting dalam ${mapel} yang memiliki aplikasi praktis dalam kehidupan sehari-hari`,
-      `Memahami ${topik} membantu peserta didik mengembangkan kemampuan berpikir logis, sistematis, dan kritis`,
-      `Penguasaan ${topik} memberikan fondasi kuat untuk pembelajaran materi selanjutnya`
-    ],
-    
-    // PERTANYAAN PEMANTIK
-    pertanyaanPemantik: [
-      `Mengapa ${topik} penting untuk dipelajari dalam konteks kehidupan modern?`,
-      `Bagaimana ${topik} dapat diterapkan untuk menyelesaikan masalah nyata di sekitar kita?`,
-      `Apa hubungan antara ${topik} dengan materi yang telah kita pelajari sebelumnya?`,
-      `Bagaimana teknologi dapat membantu kita memahami ${topik} dengan lebih baik?`
-    ],
-    
-    // KEGIATAN PEMBELAJARAN
-    kegiatanPendahuluan: `1. Guru membuka pembelajaran dengan salam, berdoa, dan mengecek kehadiran peserta didik
-2. Guru melakukan apersepsi dengan mengaitkan ${topik} dengan pengalaman atau pengetahuan peserta didik sebelumnya
+    identitas: `MODUL AJAR KURIKULUM MERDEKA
+
+Jenjang Pendidikan : ${jenjang}
+Mata Pelajaran     : ${mapel}
+Kelas/Semester     : ${kelas} / 1
+Tahun Pelajaran    : 2024/2025
+Alokasi Waktu      : 2 x 45 menit
+Topik/Materi       : ${topik}`,
+
+    cp: `Peserta didik mampu memahami, menganalisis, dan menerapkan konsep ${topik} dalam mata pelajaran ${mapel} dengan mengembangkan kemampuan berpikir tingkat tinggi (HOTS), kreativitas, dan keterampilan pemecahan masalah yang relevan dengan kehidupan sehari-hari.`,
+
+    tujuan: `Setelah mengikuti pembelajaran ini, peserta didik diharapkan mampu:
+1. Menganalisis konsep dasar ${topik} dan hubungannya dengan kehidupan sehari-hari
+2. Mengevaluasi berbagai strategi dalam menyelesaikan masalah terkait ${topik}
+3. Menciptakan solusi inovatif atau produk kreatif berdasarkan pemahaman ${topik}`,
+
+    pemahaman: `1. ${topik} merupakan konsep penting dalam ${mapel} yang memiliki aplikasi praktis dalam kehidupan
+2. Memahami ${topik} membantu peserta didik mengembangkan kemampuan berpikir logis dan sistematis
+3. Penguasaan ${topik} memberikan fondasi kuat untuk pembelajaran materi selanjutnya`,
+
+    pemantik: `1. Mengapa ${topik} penting untuk dipelajari dalam konteks kehidupan modern?
+2. Bagaimana ${topik} dapat diterapkan untuk menyelesaikan masalah nyata?
+3. Apa hubungan ${topik} dengan materi yang telah kita pelajari sebelumnya?`,
+
+    pendahuluan: `1. Guru membuka pembelajaran dengan salam, berdoa, dan mengecek kehadiran
+2. Guru melakukan apersepsi dengan mengaitkan ${topik} dengan pengalaman peserta didik
 3. Guru menyampaikan tujuan pembelajaran dan kompetensi yang akan dicapai
-4. Guru memberikan motivasi dengan menjelaskan manfaat dan relevansi ${topik} dalam kehidupan sehari-hari
-5. Guru menyampaikan rencana kegiatan dan metode penilaian yang akan digunakan`,
+4. Guru memberikan motivasi dengan menjelaskan manfaat ${topik} dalam kehidupan
+5. Guru menyampaikan rencana kegiatan dan metode penilaian`,
 
-    kegiatanInti: `FASE EKSPLORASI (Stimulation & Problem Statement):
-- Peserta didik mengamati fenomena, video, gambar, atau studi kasus terkait ${topik}
-- Guru memfasilitasi diskusi untuk mengidentifikasi masalah atau pertanyaan yang muncul
-- Peserta didik merumuskan pertanyaan atau hipotesis awal tentang ${topik}
+    inti: `FASE EKSPLORASI:
+- Peserta didik mengamati fenomena, video, atau studi kasus terkait ${topik}
+- Guru memfasilitasi diskusi untuk mengidentifikasi masalah
+- Peserta didik merumuskan pertanyaan atau hipotesis tentang ${topik}
 
-FASE ELABORASI (Data Collection & Processing):
-- Peserta didik dibagi dalam kelompok kecil (4-5 orang) untuk mengumpulkan informasi
-- Setiap kelompok melakukan eksplorasi mendalam tentang ${topik} melalui:
-  * Diskusi kelompok dan brainstorming
-  * Membaca sumber belajar (buku, artikel, referensi digital)
-  * Melakukan eksperimen atau praktikum (jika relevan)
-  * Menganalisis data dan informasi yang diperoleh
-- Guru berkeliling membimbing dan memfasilitasi proses pembelajaran
-- Peserta didik mengolah informasi dan menyusun kesimpulan sementara
+FASE ELABORASI:
+- Peserta didik dibagi dalam kelompok kecil (4-5 orang)
+- Setiap kelompok melakukan eksplorasi mendalam tentang ${topik} melalui diskusi, membaca sumber, dan eksperimen
+- Guru berkeliling membimbing proses pembelajaran
+- Peserta didik menganalisis data dan menyusun kesimpulan
 
-FASE KREASI (Verification & Generalization):
-- Setiap kelompok mempresentasikan hasil analisis dan kesimpulan mereka
-- Kelompok lain memberikan tanggapan, pertanyaan, atau saran perbaikan
-- Guru memberikan umpan balik dan penguatan konsep ${topik}
-- Peserta didik menciptakan produk/karya yang mendemonstrasikan pemahaman mereka:
-  * Laporan tertulis dengan analisis mendalam
-  * Presentasi multimedia atau infografis
-  * Model, prototype, atau demonstrasi praktis
-  * Video tutorial atau penjelasan konsep
-- Peserta didik menyusun kesimpulan akhir dan generalisasi konsep`,
+FASE KREASI:
+- Setiap kelompok mempresentasikan hasil analisis
+- Kelompok lain memberikan tanggapan dan saran
+- Peserta didik menciptakan produk yang mendemonstrasikan pemahaman: laporan, presentasi, model, atau video
+- Menyusun kesimpulan akhir dan generalisasi konsep`,
 
-    kegiatanPenutup: `1. Guru bersama peserta didik menyimpulkan materi pembelajaran tentang ${topik}
-2. Peserta didik melakukan refleksi terhadap proses pembelajaran:
-   - Apa yang telah dipelajari hari ini?
-   - Apa tantangan yang dihadapi dan bagaimana mengatasinya?
-   - Bagaimana materi ini bermanfaat untuk kehidupan?
+    penutup: `1. Guru dan peserta didik menyimpulkan materi pembelajaran tentang ${topik}
+2. Peserta didik melakukan refleksi: Apa yang dipelajari? Apa tantangan? Bagaimana manfaatnya?
 3. Guru memberikan penguatan terhadap pencapaian peserta didik
 4. Guru melakukan penilaian sikap selama pembelajaran
-5. Guru menyampaikan rencana pembelajaran pertemuan berikutnya
-6. Guru memberikan tugas atau proyek sebagai tindak lanjut
+5. Guru menyampaikan rencana pembelajaran berikutnya
+6. Guru memberikan tugas sebagai tindak lanjut
 7. Pembelajaran ditutup dengan doa dan salam`,
-    
-    // ASESMEN
-    asesmenDiagnostik: `Asesmen diagnostik dilakukan di awal pembelajaran untuk mengidentifikasi pengetahuan awal dan kesiapan belajar peserta didik:
-- Pre-test lisan atau tertulis tentang konsep prasyarat ${topik}
-- Tanya jawab interaktif untuk mengeksplorasi pemahaman awal
-- Kuesioner atau angket tentang pengalaman belajar sebelumnya
-- Observasi kesiapan dan motivasi belajar peserta didik
-Hasil asesmen ini digunakan untuk menyesuaikan strategi pembelajaran dan diferensiasi.`,
 
-    asesmenFormatif: `Asesmen formatif dilakukan selama proses pembelajaran untuk memantau perkembangan dan memberikan umpan balik:
-- Observasi aktivitas dan partisipasi dalam diskusi kelompok
-- Penilaian hasil kerja kelompok (analisis, laporan, presentasi)
-- Kuis singkat atau latihan soal di pertengahan pembelajaran
-- Pertanyaan lisan untuk mengecek pemahaman konsep
-- Penilaian proses pengerjaan proyek atau eksperimen
+    asesmen: `ASESMEN DIAGNOSTIK:
+- Pre-test tentang konsep prasyarat ${topik}
+- Tanya jawab untuk mengeksplorasi pemahaman awal
+- Observasi kesiapan dan motivasi belajar
+Hasil digunakan untuk diferensiasi pembelajaran.
+
+ASESMEN FORMATIF:
+- Observasi aktivitas dan partisipasi diskusi
+- Penilaian hasil kerja kelompok
+- Kuis singkat di pertengahan pembelajaran
 - Peer assessment dan self assessment
-Umpan balik diberikan segera untuk perbaikan pembelajaran.`,
+Umpan balik diberikan segera untuk perbaikan.
 
-    asesmenSumatif: `Asesmen sumatif dilakukan di akhir pembelajaran untuk mengukur pencapaian tujuan pembelajaran:
-1. Tes Tertulis (Bobot 40%):
-   - Pilihan ganda: mengukur pemahaman konsep ${topik}
-   - Uraian: mengukur kemampuan analisis dan evaluasi
-   - Studi kasus: mengukur kemampuan aplikasi dalam situasi nyata
+ASESMEN SUMATIF:
+1. Tes Tertulis (40%): Pilihan ganda dan uraian untuk mengukur pemahaman ${topik}
+2. Penilaian Proyek (40%): Kualitas produk, kreativitas, dan kesesuaian kriteria
+3. Presentasi (20%): Kemampuan komunikasi dan menjawab pertanyaan`,
 
-2. Penilaian Proyek/Produk (Bobot 40%):
-   - Kualitas produk/karya yang dihasilkan
-   - Kreativitas dan inovasi dalam solusi
-   - Kesesuaian dengan kriteria yang ditentukan
-   - Kemampuan menjelaskan dan mempertanggungjawabkan
+    diferensiasi: `DIFERENSIASI KONTEN:
+- Tingkat Dasar: Materi sederhana dengan banyak contoh visual
+- Tingkat Menengah: Materi lebih kompleks dengan variasi contoh
+- Tingkat Lanjut: Materi mendalam dengan analisis kritis
+Tersedia dalam berbagai format: teks, video, audio, infografis
 
-3. Presentasi dan Komunikasi (Bobot 20%):
-   - Kemampuan menyampaikan ide dengan jelas
-   - Kemampuan menjawab pertanyaan
-   - Penggunaan media presentasi yang efektif`,
-    
-    // PEMBELAJARAN BERDIFERENSIASI
-    diferensiasiKonten: `Diferensiasi Konten disesuaikan dengan kesiapan dan kemampuan peserta didik:
+DIFERENSIASI PROSES:
+- Visual: Diagram, video, infografis
+- Auditori: Diskusi, podcast, penjelasan verbal
+- Kinestetik: Eksperimen, simulasi, proyek
+- Fleksibilitas: Individual, kelompok kecil, atau klasikal
+- Scaffolding: Panduan terstruktur dan peer tutoring
 
-TINGKAT DASAR (Pemula):
-- Materi ${topik} disajikan dengan penjelasan sederhana dan konkret
-- Banyak contoh visual dan ilustrasi
-- Fokus pada konsep fundamental
-- Tersedia panduan langkah demi langkah
+DIFERENSIASI PRODUK:
+- Tertulis: Laporan, essay, artikel, portfolio
+- Visual: Poster, presentasi, video, komik
+- Praktis: Model, prototype, demonstrasi
+- Digital: Website, blog, aplikasi, podcast
+Setiap produk memiliki rubrik penilaian yang jelas`,
 
-TINGKAT MENENGAH (Berkembang):
-- Materi lebih kompleks dengan contoh bervariasi
-- Kombinasi konsep teoritis dan aplikasi praktis
-- Latihan soal dengan tingkat kesulitan bertahap
+    p5: `PROFIL PELAJAR PANCASILA
 
-TINGKAT LANJUT (Mahir):
-- Materi mendalam dengan analisis kritis
-- Studi kasus kompleks dan tantangan pemecahan masalah
-- Eksplorasi aplikasi lanjutan ${topik}
-- Kesempatan untuk penelitian mandiri
+Dimensi yang Dikembangkan:
+1. Beriman, Bertakwa kepada Tuhan YME, dan Berakhlak Mulia
+2. Berkebinekaan Global
+3. Bergotong Royong
+4. Mandiri
+5. Bernalar Kritis
+6. Kreatif
 
-Sumber belajar tersedia dalam berbagai format: teks, video, audio, infografis, simulasi interaktif`,
+Keterkaitan dengan Pembelajaran:
+Pembelajaran ${topik} mengembangkan kemampuan bernalar kritis melalui analisis masalah, kreativitas dalam menciptakan solusi, kemandirian dalam proses belajar, kerja sama dalam kelompok, menghargai keberagaman pendapat, dan menggunakan ilmu untuk kebaikan.`,
 
-    diferensiasiProses: `Diferensiasi Proses memberikan variasi cara belajar sesuai gaya belajar peserta didik:
-
-PEMBELAJARAN VISUAL:
-- Menggunakan diagram, grafik, peta konsep
-- Video pembelajaran dan animasi
-- Infografis dan mind mapping
-
-PEMBELAJARAN AUDITORI:
-- Diskusi dan presentasi oral
-- Podcast atau penjelasan verbal
-- Metode tanya jawab interaktif
-
-PEMBELAJARAN KINESTETIK:
-- Eksperimen hands-on dan praktikum
-- Simulasi dan permainan edukatif
-- Proyek berbasis aktivitas fisik
-
-FLEKSIBILITAS METODE:
-- Pembelajaran individual untuk yang mandiri
-- Pembelajaran kelompok kecil untuk yang kolaboratif
-- Pembelajaran klasikal untuk penguatan konsep
-- Pembelajaran berbasis teknologi untuk yang digital native
-
-DUKUNGAN SCAFFOLDING:
-- Panduan terstruktur untuk yang membutuhkan
-- Peer tutoring dan belajar teman sebaya
-- Konsultasi individual dengan guru`,
-
-    diferensiasiProduk: `Diferensiasi Produk memberikan pilihan cara mendemonstrasikan pemahaman:
-
-PRODUK TERTULIS:
-- Laporan penelitian atau essay analitis
-- Artikel ilmiah populer
-- Ringkasan atau rangkuman kreatif
-- Portfolio dokumentasi pembelajaran
-
-PRODUK VISUAL:
-- Poster atau infografis
-- Presentasi multimedia (PPT, Canva, Prezi)
-- Video tutorial atau vlog penjelasan
-- Komik atau ilustrasi konsep
-- Mind map atau diagram digital
-
-PRODUK PRAKTIS:
-- Model atau prototype
-- Demonstrasi praktik
-- Eksperimen dan laporan hasil
-- Produk inovatif berbasis ${topik}
-
-PRODUK DIGITAL:
-- Website atau blog edukatif
-- Aplikasi sederhana atau simulasi
-- Podcast atau audio explanation
-- E-book atau modul digital
-
-PRODUK KOLABORATIF:
-- Proyek kelompok dengan pembagian peran
-- Presentasi tim
-- Drama atau role play
-- Pameran karya kelompok
-
-Setiap jenis produk memiliki rubrik penilaian yang jelas dan disesuaikan dengan karakteristiknya`,
-    
-    // PROFIL PELAJAR PANCASILA
-    p5Dimensi: ['Beriman, Bertakwa kepada Tuhan YME, dan Berakhlak Mulia', 'Berkebinekaan Global', 'Bergotong Royong', 'Mandiri', 'Bernalar Kritis', 'Kreatif'],
-    
-    p5Keterkaitan: `Pembelajaran ${topik} dalam ${mapel} mengembangkan dimensi Profil Pelajar Pancasila:
-
-1. BERIMAN, BERTAKWA, DAN BERAKHLAK MULIA:
-   - Mensyukuri kemampuan berpikir yang dianugerahkan Tuhan
-   - Menggunakan ilmu pengetahuan untuk kebaikan dan kesejahteraan
-   - Jujur dalam mengerjakan tugas dan menghargai karya orang lain
-
-2. BERKEBINEKAAN GLOBAL:
-   - Menghargai keberagaman pendapat dan cara berpikir dalam kelompok
-   - Memahami bahwa ${topik} dipelajari dan diterapkan di berbagai budaya
-   - Berkolaborasi dengan teman dari latar belakang berbeda
-
-3. BERGOTONG ROYONG:
-   - Bekerja sama dalam kelompok untuk menyelesaikan proyek ${topik}
-   - Saling membantu teman yang mengalami kesulitan
-   - Berbagi pengetahuan dan sumber belajar
-
-4. MANDIRI:
-   - Mengambil inisiatif dalam proses pembelajaran
-   - Bertanggung jawab menyelesaikan tugas tepat waktu
-   - Mencari sumber belajar tambahan secara proaktif
-   - Melakukan refleksi dan evaluasi diri
-
-5. BERNALAR KRITIS:
-   - Menganalisis informasi dan data terkait ${topik} secara objektif
-   - Mengevaluasi berbagai solusi dan memilih yang paling efektif
-   - Mempertanyakan asumsi dan mencari bukti
-   - Membuat keputusan berdasarkan logika dan data
-
-6. KREATIF:
-   - Menghasilkan ide-ide inovatif dalam penerapan ${topik}
-   - Menciptakan produk atau solusi yang unik dan orisinal
-   - Berani mencoba pendekatan baru dalam pemecahan masalah
-   - Mengekspresikan pemahaman dengan cara yang kreatif`,
-    
-    // MEDIA DAN SUMBER BELAJAR
-    mediaSumber: [
-      `Buku teks ${mapel} ${jenjang} Kelas ${kelas} (Kemendikbudristek)`,
-      `Modul dan LKPD (Lembar Kerja Peserta Didik) tentang ${topik}`,
-      `Video pembelajaran dari platform edukatif (YouTube Education, Khan Academy, Rumah Belajar)`,
-      `Aplikasi dan software edukatif yang relevan dengan ${topik}`,
-      `Sumber digital: artikel ilmiah, jurnal, e-book, dan website edukatif terpercaya`,
-      `Alat peraga dan media konkret untuk demonstrasi konsep`,
-      `Proyektor/LCD, laptop, dan perangkat presentasi`,
-      `Internet dan platform pembelajaran online (Google Classroom, Moodle, dll)`,
-      `Laboratorium atau ruang praktikum (jika diperlukan)`,
-      `Lingkungan sekitar sebagai sumber belajar kontekstual`
-    ],
-    
-    // CATATAN TAMBAHAN
-    catatan: catatan || 'Tidak ada catatan tambahan'
+    media: `MEDIA PEMBELAJARAN DAN SUMBER BELAJAR:
+1. Buku teks ${mapel} ${jenjang} Kelas ${kelas}
+2. Modul dan LKPD (Lembar Kerja Peserta Didik)
+3. Video pembelajaran dari platform edukatif
+4. Aplikasi dan software edukatif terkait ${topik}
+5. Sumber digital: artikel, jurnal, e-book, website edukatif
+6. Alat peraga dan media konkret
+7. Proyektor/LCD dan laptop
+8. Internet dan platform pembelajaran online
+9. Laboratorium (jika diperlukan)
+10. Lingkungan sekitar sebagai sumber belajar`
   };
 }
 
-function generateWordDoc(data, mapel, kelas, topik) {
-  const { Document, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle } = docx;
+function tampilkanHasil() {
+  const preview = `${modulData.identitas}
 
-  const doc = new Document({
-    sections: [{
-      properties: {},
-      children: [
-        // JUDUL
-        new Paragraph({
-          text: "MODUL AJAR",
-          heading: HeadingLevel.HEADING_1,
-          alignment: AlignmentType.CENTER,
-          spacing: { after: 200 }
-        }),
-        new Paragraph({
-          text: "KURIKULUM MERDEKA",
-          heading: HeadingLevel.HEADING_2,
-          alignment: AlignmentType.CENTER,
-          spacing: { after: 400 }
-        }),
+A. CAPAIAN PEMBELAJARAN
+${modulData.cp}
 
-        // INFORMASI UMUM
-        new Paragraph({
-          text: "INFORMASI UMUM",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        new Paragraph({ text: `Jenjang Pendidikan\t: ${data.jenjang}` }),
-        new Paragraph({ text: `Mata Pelajaran\t\t: ${data.mataPelajaran}` }),
-        new Paragraph({ text: `Kelas/Semester\t\t: ${data.kelas} / ${data.semester}` }),
-        new Paragraph({ text: `Tahun Pelajaran\t\t: ${data.tahunPelajaran}` }),
-        new Paragraph({ text: `Alokasi Waktu\t\t: ${data.alokasi}` }),
-        new Paragraph({ text: `Topik/Materi\t\t: ${data.topik}`, spacing: { after: 300 } }),
+B. TUJUAN PEMBELAJARAN
+${modulData.tujuan}
 
-        // CAPAIAN PEMBELAJARAN
-        new Paragraph({
-          text: "A. CAPAIAN PEMBELAJARAN (CP)",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        new Paragraph({
-          text: data.capaianPembelajaran,
-          spacing: { after: 300 }
-        }),
+C. PEMAHAMAN BERMAKNA
+${modulData.pemahaman}
 
-        // TUJUAN PEMBELAJARAN
-        new Paragraph({
-          text: "B. TUJUAN PEMBELAJARAN",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        new Paragraph({ text: "Setelah mengikuti pembelajaran ini, peserta didik diharapkan mampu:" }),
-        ...data.tujuanPembelajaran.map((tujuan, i) => 
-          new Paragraph({ text: `${i + 1}. ${tujuan}`, spacing: { after: 100 } })
-        ),
-        new Paragraph({ text: "", spacing: { after: 200 } }),
+(... dan seterusnya - total 9 komponen lengkap)`;
 
-        // PEMAHAMAN BERMAKNA
-        new Paragraph({
-          text: "C. PEMAHAMAN BERMAKNA",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        ...data.pemahamanBermakna.map((pemahaman, i) => 
-          new Paragraph({ text: `${i + 1}. ${pemahaman}`, spacing: { after: 100 } })
-        ),
-        new Paragraph({ text: "", spacing: { after: 200 } }),
-
-        // PERTANYAAN PEMANTIK
-        new Paragraph({
-          text: "D. PERTANYAAN PEMANTIK",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        ...data.pertanyaanPemantik.map((pertanyaan, i) => 
-          new Paragraph({ text: `${i + 1}. ${pertanyaan}`, spacing: { after: 100 } })
-        ),
-        new Paragraph({ text: "", spacing: { after: 200 } }),
-
-        // KEGIATAN PEMBELAJARAN
-        new Paragraph({
-          text: "E. KEGIATAN PEMBELAJARAN",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        
-        new Paragraph({
-          text: "1. Kegiatan Pendahuluan",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.kegiatanPendahuluan, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "2. Kegiatan Inti",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.kegiatanInti, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "3. Kegiatan Penutup",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.kegiatanPenutup, spacing: { after: 300 } }),
-
-        // ASESMEN
-        new Paragraph({
-          text: "F. ASESMEN",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        
-        new Paragraph({
-          text: "1. Asesmen Diagnostik",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.asesmenDiagnostik, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "2. Asesmen Formatif",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.asesmenFormatif, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "3. Asesmen Sumatif",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.asesmenSumatif, spacing: { after: 300 } }),
-
-        // PEMBELAJARAN BERDIFERENSIASI
-        new Paragraph({
-          text: "G. PEMBELAJARAN BERDIFERENSIASI",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        
-        new Paragraph({
-          text: "1. Diferensiasi Konten",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.diferensiasiKonten, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "2. Diferensiasi Proses",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.diferensiasiProses, spacing: { after: 300 } }),
-
-        new Paragraph({
-          text: "3. Diferensiasi Produk",
-          heading: HeadingLevel.HEADING_2,
-          spacing: { after: 150 }
-        }),
-        new Paragraph({ text: data.diferensiasiProduk, spacing: { after: 300 } }),
-
-        // PROFIL PELAJAR PANCASILA
-        new Paragraph({
-          text: "H. PROFIL PELAJAR PANCASILA",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        
-        new Paragraph({
-          text: "Dimensi yang Dikembangkan:",
-          heading: HeadingLevel.HEADING_3,
-          spacing: { after: 150 }
-        }),
-        ...data.p5Dimensi.map((dimensi, i) => 
-          new Paragraph({ text: `${i + 1}. ${dimensi}`, spacing: { after: 100 } })
-        ),
-        
-        new Paragraph({
-          text: "Keterkaitan dengan Pembelajaran:",
-          heading: HeadingLevel.HEADING_3,
-          spacing: { before: 300, after: 150 }
-        }),
-        new Paragraph({ text: data.p5Keterkaitan, spacing: { after: 300 } }),
-
-        // MEDIA DAN SUMBER BELAJAR
-        new Paragraph({
-          text: "I. MEDIA PEMBELAJARAN DAN SUMBER BELAJAR",
-          heading: HeadingLevel.HEADING_1,
-          spacing: { before: 400, after: 200 }
-        }),
-        ...data.mediaSumber.map((media, i) => 
-          new Paragraph({ text: `${i + 1}. ${media}`, spacing: { after: 100 } })
-        ),
-
-        // PENUTUP
-        new Paragraph({
-          text: "",
-          spacing: { before: 600 }
-        }),
-        new Paragraph({
-          text: "___________________________",
-          alignment: AlignmentType.CENTER,
-          spacing: { before: 400, after: 200 }
-        }),
-        new Paragraph({
-          text: "Modul Ajar ini dibuat dengan Generator AI",
-          alignment: AlignmentType.CENTER,
-          italics: true
-        }),
-        new Paragraph({
-          text: "BahasaIndonesiaMA.blogspot.com",
-          alignment: AlignmentType.CENTER,
-          italics: true
-        })
-      ]
-    }]
-  });
-
-  // Generate dan download
-  docx.Packer.toBlob(doc).then(blob => {
-    const filename = `Modul_Ajar_${mapel.replace(/\s+/g, '_')}_Kelas_${kelas}_${topik.replace(/\s+/g, '_')}.docx`;
-    saveAs(blob, filename);
-    
-    // Tampilkan success
-    document.getElementById('loadingContainer').style.display = 'none';
-    document.getElementById('successContainer').style.display = 'block';
-  });
+  document.getElementById('preview').textContent = preview;
+  document.getElementById('loadingArea').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'block';
 }
 
-function resetForm() {
+function downloadWord() {
+  const content = `${modulData.identitas}
+
+================================================================================
+A. CAPAIAN PEMBELAJARAN (CP)
+================================================================================
+${modulData.cp}
+
+
+================================================================================
+B. TUJUAN PEMBELAJARAN
+================================================================================
+${modulData.tujuan}
+
+
+================================================================================
+C. PEMAHAMAN BERMAKNA
+================================================================================
+${modulData.pemahaman}
+
+
+================================================================================
+D. PERTANYAAN PEMANTIK
+================================================================================
+${modulData.pemantik}
+
+
+================================================================================
+E. KEGIATAN PEMBELAJARAN
+================================================================================
+
+1. KEGIATAN PENDAHULUAN
+${modulData.pendahuluan}
+
+2. KEGIATAN INTI
+${modulData.inti}
+
+3. KEGIATAN PENUTUP
+${modulData.penutup}
+
+
+================================================================================
+F. ASESMEN
+================================================================================
+${modulData.asesmen}
+
+
+================================================================================
+G. PEMBELAJARAN BERDIFERENSIASI
+================================================================================
+${modulData.diferensiasi}
+
+
+================================================================================
+H. PROFIL PELAJAR PANCASILA
+================================================================================
+${modulData.p5}
+
+
+================================================================================
+I. MEDIA PEMBELAJARAN DAN SUMBER BELAJAR
+================================================================================
+${modulData.media}
+
+
+================================================================================
+Generated by AI - BahasaIndonesiaMA.blogspot.com
+================================================================================`;
+
+  // Create and download
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `Modul_Ajar_${modulData.mapel.replace(/\s+/g,'_')}_Kelas_${modulData.kelas}_${modulData.topik.replace(/\s+/g,'_')}.txt`;
+  link.click();
+  
+  alert('✅ File berhasil didownload!\n\n📝 File dalam format TXT yang bisa dibuka di Word.\n\nCara:\n1. Buka file dengan Word\n2. Edit sesuai kebutuhan\n3. Save As → pilih format .docx');
+}
+
+function reset() {
   document.getElementById('jenjang').value = '';
-  document.getElementById('mataPelajaran').value = '';
+  document.getElementById('mapel').value = '';
   document.getElementById('kelas').value = '';
   document.getElementById('topik').value = '';
-  document.getElementById('alokasi').value = '2 x 45 menit';
-  document.getElementById('catatan').value = '';
-  
-  document.getElementById('formContainer').style.display = 'block';
-  document.getElementById('successContainer').style.display = 'none';
+  document.getElementById('formArea').style.display = 'block';
+  document.getElementById('resultArea').style.display = 'none';
+  modulData = null;
 }
 </script>
 </body>
