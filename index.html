@@ -400,14 +400,26 @@ ${modulData.pemahaman}
 
 (... dan seterusnya - total 9 komponen lengkap)
 
-💡 BONUS: LKPD juga sudah siap! Klik tombol hijau untuk download.`;
+💡 BONUS: LKPD juga sudah siap! Scroll ke bawah untuk download.`;
 
   document.getElementById('preview').textContent = preview;
   document.getElementById('loadingArea').style.display = 'none';
   document.getElementById('resultArea').style.display = 'block';
   
+  // Scroll ke result area
+  setTimeout(function() {
+    document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+  
   console.log('Result area displayed');
   console.log('modulData:', modulData);
+  
+  // Debug: Cek apakah tombol LKPD ada
+  const btnLKPD = document.querySelector('button[onclick="downloadLKPD()"]');
+  console.log('Tombol LKPD ditemukan:', btnLKPD ? 'YA' : 'TIDAK');
+  if (btnLKPD) {
+    console.log('Tombol LKPD style:', window.getComputedStyle(btnLKPD).display);
+  }
 }
 
 function downloadWord() {
