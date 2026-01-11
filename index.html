@@ -20,181 +20,55 @@
     margin: 20px auto;
     padding: 40px;
   }
-  h1 {
-    color: #667eea;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 2em;
-  }
-  .subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 30px;
-    font-size: 0.9em;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 600;
-  }
+  h1 { color: #667eea; text-align: center; margin-bottom: 10px; font-size: 2em; }
+  .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 0.9em; }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; }
   input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 1em;
-    font-family: inherit;
-  }
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #667eea;
+    width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
   }
   .btn {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
+    width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: bold;
+    cursor: pointer; margin-top: 10px;
   }
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-  }
-  .btn-download {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  }
-  /* STYLE TOMBOL LKPD BARU */
-  .btn-lkpd {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  }
-  .info-box {
-    background: #fef3c7;
-    border-left: 4px solid #f59e0b;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-  }
-  .result-box {
-    display: none;
-    background: #d1fae5;
-    border: 2px solid #10b981;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  .result-box h3 {
-    color: #065f46;
-    margin-bottom: 15px;
-  }
-  .preview {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    max-height: 200px;
-    overflow-y: auto;
-    font-size: 0.9em;
-    margin: 15px 0;
-  }
-  .loading {
-    display: none;
-    text-align: center;
-    padding: 20px;
-  }
-  .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-  }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+  .btn-download { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+  
+  /* Style khusus Tombol LKPD agar terlihat beda */
+  .btn-lkpd { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+  
+  .result-box { display: none; background: #d1fae5; border: 2px solid #10b981; border-radius: 10px; padding: 20px; margin-top: 20px; }
+  .preview { background: white; border: 1px solid #ddd; border-radius: 5px; padding: 15px; max-height: 200px; overflow-y: auto; font-size: 0.9em; margin: 15px 0; }
+  .loading { display: none; text-align: center; padding: 20px; }
+  .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 
 <div class="container">
   <h1>🤖 Generator Modul Ajar AI</h1>
-  <p class="subtitle">Kurikulum Merdeka - Lengkap dalam hitungan detik!</p>
-  
-  <div class="info-box">
-    <strong>✨ Auto Generate:</strong> Isi form, klik tombol, download file siap edit!
-  </div>
+  <p class="subtitle">Kurikulum Merdeka - Cepat & Otomatis</p>
 
   <div id="formArea">
-    <div class="form-group">
-      <label>Jenjang Pendidikan *</label>
-      <select id="jenjang">
-        <option value="">-- Pilih --</option>
-        <option value="SD">SD</option>
-        <option value="SMP">SMP</option>
-        <option value="SMA">SMA</option>
-        <option value="SMK">SMK</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Mata Pelajaran *</label>
-      <input type="text" id="mapel" placeholder="Contoh: Matematika">
-    </div>
-
-    <div class="form-group">
-      <label>Kelas *</label>
-      <input type="text" id="kelas" placeholder="Contoh: VII">
-    </div>
-
-    <div class="form-group">
-      <label>Topik/Materi *</label>
-      <input type="text" id="topik" placeholder="Contoh: Ekosistem">
-    </div>
-
-    <button class="btn" onclick="generate()">🚀 Generate Modul Sekarang</button>
+    <div class="form-group"><label>Jenjang *</label><select id="jenjang"><option value="SMP">SMP</option></select></div>
+    <div class="form-group"><label>Mata Pelajaran *</label><input type="text" id="mapel" value="IPA"></div>
+    <div class="form-group"><label>Kelas *</label><input type="text" id="kelas" value="VIII"></div>
+    <div class="form-group"><label>Topik *</label><input type="text" id="topik" value="Sistem Pencernaan"></div>
+    <button class="btn" onclick="generate()">🚀 Generate Modul & LKPD</button>
   </div>
 
-  <div id="loadingArea" class="loading">
-    <div class="spinner"></div>
-    <p style="margin-top:15px;color:#667eea;font-weight:600">Sedang menyusun Modul & LKPD...</p>
-  </div>
+  <div id="loadingArea" class="loading"><div class="spinner"></div><p>Menyusun data...</p></div>
 
   <div id="resultArea" class="result-box">
     <h3>✅ Berhasil Dibuat!</h3>
     <div class="preview" id="preview"></div>
     
-    <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
-      <button class="btn btn-download" onclick="showFullPreview()">👁️ Preview</button>
-      <button class="btn btn-download" onclick="downloadWord()">📥 Modul (.txt)</button>
-      <button class="btn btn-lkpd" onclick="downloadLKPD()" style="grid-column: span 2;">📝 Download LKPD (Lembar Kerja)</button>
+    <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
+      <button class="btn btn-download" onclick="downloadWord()">📥 Download Modul</button>
+      <button class="btn btn-lkpd" onclick="downloadLKPD()">📝 Download LKPD</button>
     </div>
-
-    <button class="btn" onclick="resetPage()" style="margin-top:10px;background:#6b7280">📝 Buat Modul Baru</button>
-  </div>
-</div>
-
-<div id="previewModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;overflow:auto">
-  <div style="background:white;max-width:800px;margin:20px auto;border-radius:15px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;border-bottom:2px solid #eee;padding-bottom:10px">
-      <h2>Preview Modul</h2>
-      <button onclick="closePreview()" style="background:red;color:white;border:none;padding:5px 15px;border-radius:5px;cursor:pointer">Tutup</button>
-    </div>
-    <div id="fullPreview" style="white-space:pre-wrap;margin-top:20px;font-family:monospace"></div>
+    <button class="btn" onclick="location.reload()" style="background:#6b7280">Buat Baru</button>
   </div>
 </div>
 
@@ -203,69 +77,40 @@ let modulData = null;
 
 function generate() {
   const jenjang = document.getElementById('jenjang').value;
-  const mapel = document.getElementById('mapel').value.trim();
-  const kelas = document.getElementById('kelas').value.trim();
-  const topik = document.getElementById('topik').value.trim();
-
-  if (!jenjang || !mapel || !kelas || !topik) {
-    alert('Mohon lengkapi semua data!');
-    return;
-  }
+  const mapel = document.getElementById('mapel').value;
+  const kelas = document.getElementById('kelas').value;
+  const topik = document.getElementById('topik').value;
 
   document.getElementById('formArea').style.display = 'none';
   document.getElementById('loadingArea').style.display = 'block';
 
-  setTimeout(function() {
-    modulData = buatModul(jenjang, mapel, kelas, topik);
-    document.getElementById('preview').textContent = modulData.identitas + "\n\nMenunggu download...";
+  setTimeout(() => {
+    modulData = {
+      jenjang, mapel, kelas, topik,
+      identitas: `MODUL AJAR\nMapel: ${mapel}\nTopik: ${topik}`
+    };
+    document.getElementById('preview').innerText = modulData.identitas + "\n\n(Draft Modul & LKPD telah siap diunduh)";
     document.getElementById('loadingArea').style.display = 'none';
     document.getElementById('resultArea').style.display = 'block';
-  }, 1500);
-}
-
-// Fungsi bantu untuk buat Modul
-function buatModul(jenjang, mapel, kelas, topik) {
-  return {
-    jenjang, mapel, kelas, topik,
-    identitas: `MODUL AJAR KURIKULUM MERDEKA\nMapel: ${mapel}\nKelas: ${kelas}\nTopik: ${topik}`,
-    konten: `A. TUJUAN: Peserta didik memahami ${topik}\nB. KEGIATAN: Diskusi dan Proyek\nC. ASESMEN: Tes Tertulis dan Rubrik.`
-  };
-}
-
-// FUNGSI DOWNLOAD LKPD
-function downloadLKPD() {
-  if (!modulData) return;
-  const content = `LEMBAR KERJA PESERTA DIDIK (LKPD)\nMapel: ${modulData.mapel}\nTopik: ${modulData.topik}\n\nTugas Siswa:\n1. Jelaskan konsep ${modulData.topik}!\n2. Diskusikan dengan kelompok...`;
-  
-  const blob = new Blob([content], { type: 'text/plain' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `LKPD_${modulData.topik}.txt`;
-  link.click();
+  }, 1000);
 }
 
 function downloadWord() {
-  const content = `${modulData.identitas}\n\n${modulData.konten}`;
-  const blob = new Blob([content], { type: 'text/plain' });
+  const blob = new Blob([modulData.identitas], {type: 'text/plain'});
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `Modul_${modulData.topik}.txt`;
+  link.download = "Modul_Ajar.txt";
   link.click();
 }
 
-function showFullPreview() {
-  document.getElementById('fullPreview').textContent = modulData.identitas + "\n\n" + modulData.konten;
-  document.getElementById('previewModal').style.display = 'block';
-}
-
-function closePreview() {
-  document.getElementById('previewModal').style.display = 'none';
-}
-
-function resetPage() {
-  location.reload();
+function downloadLKPD() {
+  const isiLKPD = `LEMBAR KERJA PESERTA DIDIK (LKPD)\nTopik: ${modulData.topik}\n\n1. Amati gambar sistem pencernaan...\n2. Jelaskan fungsi lambung...`;
+  const blob = new Blob([isiLKPD], {type: 'text/plain'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = "LKPD_" + modulData.topik + ".txt";
+  link.click();
 }
 </script>
-
 </body>
 </html>
