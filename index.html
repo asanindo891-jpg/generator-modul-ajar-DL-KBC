@@ -414,11 +414,20 @@ ${modulData.pemahaman}
   console.log('Result area displayed');
   console.log('modulData:', modulData);
   
-  // Debug: Cek apakah tombol LKPD ada
-  const btnLKPD = document.querySelector('button[onclick="downloadLKPD()"]');
-  console.log('Tombol LKPD ditemukan:', btnLKPD ? 'YA' : 'TIDAK');
+  // Debug dengan ID
+  const lkpdBox = document.getElementById('lkpdBox');
+  const btnLKPD = document.getElementById('btnDownloadLKPD');
+  const tipsBox = document.getElementById('tipsBox');
+  
+  console.log('LKPD Box:', lkpdBox ? 'DITEMUKAN ✅' : 'TIDAK ADA ❌');
+  console.log('Button LKPD:', btnLKPD ? 'DITEMUKAN ✅' : 'TIDAK ADA ❌');
+  console.log('Tips Box:', tipsBox ? 'DITEMUKAN ✅' : 'TIDAK ADA ❌');
+  
   if (btnLKPD) {
-    console.log('Tombol LKPD style:', window.getComputedStyle(btnLKPD).display);
+    const styles = window.getComputedStyle(btnLKPD);
+    console.log('Button LKPD display:', styles.display);
+    console.log('Button LKPD visibility:', styles.visibility);
+    console.log('Button LKPD background:', styles.background);
   }
 }
 
