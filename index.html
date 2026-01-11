@@ -714,4 +714,246 @@ Pertanyaan Analisis:
    _______________________________________________________________________
    _______________________________________________________________________`,
 
-    kegiatan3: `KREASI:
+    kegiatan3: `KREASI: "Mari Berkarya dengan ${topik}"
+
+Tujuan: Menciptakan produk atau solusi berdasarkan pemahaman ${topik}
+
+Langkah Kerja:
+1. Pilih satu bentuk karya yang akan dibuat oleh kelompok:
+   □ Poster/Infografis
+   □ Presentasi Multimedia
+   □ Video Penjelasan
+   □ Model/Prototype
+   □ Laporan Proyek
+   □ Karya lain: _________________
+
+2. Rencanakan karya kalian dengan mengisi tabel di bawah:
+
+PERENCANAAN PROYEK
+Judul Karya    : ______________________________________________
+Bentuk Karya   : ______________________________________________
+Tujuan         : ______________________________________________
+Target Audiens : ______________________________________________
+Bahan/Alat     : ______________________________________________
+Pembagian Tugas:
+  - Anggota 1  : ______________________________________________
+  - Anggota 2  : ______________________________________________
+  - Anggota 3  : ______________________________________________
+  - Anggota 4  : ______________________________________________
+  - Anggota 5  : ______________________________________________
+
+3. Kerjakan proyek sesuai rencana
+4. Presentasikan hasil karya di depan kelas
+
+Pertanyaan Refleksi Proyek:
+
+1. Apa konsep ${topik} yang kalian terapkan dalam karya ini?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+
+2. Apa tantangan yang kalian hadapi saat membuat karya?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+
+3. Apa yang kalian pelajari dari proses pembuatan karya ini?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+
+4. Bagaimana karya ini bisa bermanfaat untuk orang lain?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________`,
+
+    refleksi: `REFLEKSI PEMBELAJARAN
+
+Setelah menyelesaikan semua kegiatan, jawablah pertanyaan refleksi berikut dengan jujur:
+
+1. Apa 3 hal baru yang kalian pelajari hari ini tentang ${topik}?
+   a. ___________________________________________________________________
+   b. ___________________________________________________________________
+   c. ___________________________________________________________________
+
+2. Bagian mana dari pembelajaran hari ini yang paling menarik? Mengapa?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+
+3. Apa yang masih kalian bingungkan atau ingin kalian pelajari lebih lanjut?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+
+4. Bagaimana kalian akan menerapkan pengetahuan tentang ${topik} dalam kehidupan sehari-hari?
+   Jawab: ________________________________________________________________
+   _______________________________________________________________________
+   _______________________________________________________________________
+
+5. Nilai kemampuan kelompok kalian hari ini (1-10): _____
+   Alasan: _______________________________________________________________
+   _______________________________________________________________________
+
+EVALUASI DIRI
+
+Beri tanda centang (✓) sesuai dengan kondisi kalian:
+
+□ Saya aktif berpartisipasi dalam diskusi kelompok
+□ Saya menghargai pendapat teman yang berbeda
+□ Saya menyelesaikan tugas tepat waktu
+□ Saya membantu teman yang kesulitan
+□ Saya mencatat hal-hal penting dengan baik
+□ Saya bertanya jika ada yang tidak dimengerti
+□ Saya memberikan ide kreatif untuk proyek kelompok
+□ Saya bisa menjelaskan ${topik} dengan baik`,
+
+    rubrik: `RUBRIK PENILAIAN LKPD
+
+Nama Kelompok: _________________________  Kelas: __________
+
+NO | ASPEK PENILAIAN        | SKOR 1-4 | CATATAN
+----|------------------------|----------|----------------------------------
+ 1  | Kelengkapan Jawaban    |          |
+    | Semua pertanyaan       |          |
+    | dijawab dengan lengkap |          |
+----|------------------------|----------|----------------------------------
+ 2  | Kedalaman Analisis     |          |
+    | Jawaban menunjukkan    |          |
+    | pemahaman mendalam     |          |
+----|------------------------|----------|----------------------------------
+ 3  | Kreativitas Produk     |          |
+    | Karya unik, inovatif,  |          |
+    | dan menarik            |          |
+----|------------------------|----------|----------------------------------
+ 4  | Kerjasama Kelompok     |          |
+    | Semua anggota aktif    |          |
+    | berkontribusi          |          |
+----|------------------------|----------|----------------------------------
+ 5  | Presentasi             |          |
+    | Jelas, percaya diri,   |          |
+    | komunikatif            |          |
+----|------------------------|----------|----------------------------------
+    | TOTAL SKOR             |          | / 20
+
+Keterangan Skor:
+4 = Sangat Baik (Melampaui harapan)
+3 = Baik (Sesuai harapan)
+2 = Cukup (Perlu perbaikan)
+1 = Kurang (Perlu bimbingan intensif)
+
+NILAI AKHIR = (Total Skor / 20) x 100 = __________
+
+Kategori Nilai:
+□ 90-100 : Sangat Baik (A)
+□ 80-89  : Baik (B)
+□ 70-79  : Cukup (C)
+□ <70    : Perlu Perbaikan (D)
+
+Catatan Guru:
+_________________________________________________________________________
+_________________________________________________________________________
+_________________________________________________________________________
+
+
+Tanda Tangan:
+
+Guru Mata Pelajaran                    Siswa
+
+
+
+
+_______________________                _______________________`
+  };
+}
+
+function showFullPreview() {
+  const fullContent = `${modulData.identitas}
+
+================================================================================
+A. CAPAIAN PEMBELAJARAN (CP)
+================================================================================
+${modulData.cp}
+
+
+================================================================================
+B. TUJUAN PEMBELAJARAN
+================================================================================
+${modulData.tujuan}
+
+
+================================================================================
+C. PEMAHAMAN BERMAKNA
+================================================================================
+${modulData.pemahaman}
+
+
+================================================================================
+D. PERTANYAAN PEMANTIK
+================================================================================
+${modulData.pemantik}
+
+
+================================================================================
+E. KEGIATAN PEMBELAJARAN
+================================================================================
+
+1. KEGIATAN PENDAHULUAN
+${modulData.pendahuluan}
+
+2. KEGIATAN INTI
+${modulData.inti}
+
+3. KEGIATAN PENUTUP
+${modulData.penutup}
+
+
+================================================================================
+F. ASESMEN
+================================================================================
+${modulData.asesmen}
+
+
+================================================================================
+G. PEMBELAJARAN BERDIFERENSIASI
+================================================================================
+${modulData.diferensiasi}
+
+
+================================================================================
+H. PROFIL PELAJAR PANCASILA
+================================================================================
+${modulData.p5}
+
+
+================================================================================
+I. MEDIA PEMBELAJARAN DAN SUMBER BELAJAR
+================================================================================
+${modulData.media}
+
+
+${modulData.tandaTangan}
+
+
+================================================================================
+Generated by AI - BahasaIndonesiaMA.blogspot.com
+================================================================================`;
+
+  document.getElementById('fullPreview').textContent = fullContent;
+  document.getElementById('previewModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePreview() {
+  document.getElementById('previewModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function reset() {
+  document.getElementById('jenjang').value = '';
+  document.getElementById('mapel').value = '';
+  document.getElementById('kelas').value = '';
+  document.getElementById('topik').value = '';
+  document.getElementById('formArea').style.display = 'block';
+  document.getElementById('resultArea').style.display = 'none';
+  modulData = null;
+}
+</script>
+</body>
+</html>
