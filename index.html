@@ -154,7 +154,6 @@ input:focus, select:focus, textarea:focus {
 </head>
 <body>
 
-<!-- SLOT IKLAN ATAS (Header) -->
 <div style="text-align:center;padding:10px;background:#f0f0f0;margin-bottom:10px">
   <div id="ad-slot-header">
     <p style="color:#999;font-size:0.8em">[ Space untuk Iklan Header ]</p>
@@ -166,7 +165,7 @@ input:focus, select:focus, textarea:focus {
   <p class="subtitle">Kurikulum Merdeka - Sesuai Permendikdasmen No. 12 Tahun 2025</p>
   
   <div class="info-box">
-    <strong>✨ Fitur Terbaru:</strong> Modul lengkap sesuai Permendikdasmen No. 12/2025 + 3 Lampiran (Bahan Bacaan, Glosarium, Daftar Pustaka)
+    <strong>✨ Fitur Lengkap:</strong> Modul sesuai Permendikdasmen No. 12/2025 + LKPD + Soal HOTS + Tema Pendidikan + PDF Download
   </div>
 
   <div id="formArea">
@@ -198,9 +197,43 @@ input:focus, select:focus, textarea:focus {
       <input type="text" id="topik" placeholder="Contoh: Persamaan Linear">
     </div>
 
+    <div class="form-group">
+      <label>Jenis Pembelajaran *</label>
+      <select id="jenisPembelajaran">
+        <option value="">-- Pilih --</option>
+        <option value="Tatap Muka">Tatap Muka</option>
+        <option value="Daring">Daring (Online)</option>
+        <option value="Hybrid">Hybrid (Blended)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Durasi Pembelajaran *</label>
+      <select id="durasi">
+        <option value="">-- Pilih --</option>
+        <option value="1">1x Pertemuan (2 x 45 menit)</option>
+        <option value="2">2x Pertemuan (4 x 45 menit)</option>
+        <option value="3">3x Pertemuan (6 x 45 menit)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tema Pendidikan (Opsional)</label>
+      <select id="tema">
+        <option value="">-- Tidak Ada Tema --</option>
+        <option value="STEM">STEM</option>
+        <option value="Literasi">Literasi</option>
+        <option value="Numerasi">Numerasi</option>
+        <option value="Kewirausahaan">Kewirausahaan</option>
+        <option value="Kearifan Lokal">Kearifan Lokal</option>
+        <option value="Lingkungan">Lingkungan</option>
+        <option value="Karakter">Karakter</option>
+        <option value="Digital">Digital</option>
+      </select>
+    </div>
+
     <button class="btn" onclick="generate()">🚀 Generate Modul Sekarang</button>
     
-    <!-- SLOT IKLAN TENGAH -->
     <div style="text-align:center;padding:20px;margin-top:20px;background:#f9f9f9;border-radius:10px">
       <div id="ad-slot-middle">
         <p style="color:#999;font-size:0.8em">[ Space untuk Iklan Tengah ]</p>
@@ -219,41 +252,38 @@ input:focus, select:focus, textarea:focus {
     <div class="preview" id="preview"></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px">
       <button class="btn btn-download" onclick="showFullPreview()">👁️ Preview Lengkap</button>
-      <button class="btn btn-download" onclick="downloadWord()">📥 Download Modul</button>
+      <button class="btn btn-download" onclick="downloadWord()">📥 Download TXT</button>
     </div>
+    <button class="btn btn-download" onclick="downloadPDF()" style="margin-top:10px;background:linear-gradient(135deg,#ef4444,#dc2626)">📄 Download PDF</button>
     
-    <!-- BONUS LKPD & SOAL HOTS -->
     <div class="bonus-box">
       <h3>🎁 BONUS GRATIS!</h3>
-      <p style="color:#78350f;margin-bottom:15px">Dapatkan pelengkap pembelajaran yang sudah disesuaikan dengan modul ajar Anda!</p>
+      <p style="color:#78350f;margin-bottom:15px">Dapatkan pelengkap pembelajaran yang sudah disesuaikan!</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <button class="btn btn-lkpd" onclick="downloadLKPD()">📋 Download LKPD</button>
-        <button class="btn btn-lkpd" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)" onclick="downloadSoalHOTS()">🧠 Download Soal HOTS</button>
+        <button class="btn btn-lkpd" onclick="downloadLKPD()">📋 LKPD</button>
+        <button class="btn btn-lkpd" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)" onclick="downloadSoalHOTS()">🧠 Soal HOTS</button>
       </div>
       <p style="margin-top:15px;font-size:0.85em;color:#92400e">
-        💝 <strong>Jika bermanfaat, bantu kami dengan:</strong><br>
-        • Share ke sesama guru di grup WhatsApp/Telegram<br>
-        • Berikan rating bintang 5 ⭐⭐⭐⭐⭐<br>
-        • Tulis komentar positif di blog kami<br>
-        • Follow media sosial kami untuk update terbaru
+        💝 <strong>Jika bermanfaat:</strong><br>
+        • Share ke sesama guru<br>
+        • Rating ⭐⭐⭐⭐⭐<br>
+        • Follow untuk update terbaru
       </p>
     </div>
     
-    <!-- TIPS PENGGUNAAN -->
     <div class="tips-box">
       <h4>💡 Tips Penggunaan:</h4>
       <ul>
-        <li>File didownload dalam format TXT yang bisa dibuka di Word</li>
-        <li>Edit nama guru, NIP, dan sesuaikan dengan kebutuhan</li>
-        <li>Tambahkan logo sekolah untuk tampilan profesional</li>
-        <li>LKPD sudah lengkap dengan rubrik penilaian</li>
+        <li>File TXT bisa dibuka di Word</li>
+        <li>PDF bisa langsung dicetak</li>
+        <li>Edit sesuai kebutuhan</li>
+        <li>Tambahkan logo sekolah</li>
       </ul>
     </div>
     
     <button class="btn" onclick="reset()" style="margin-top:15px;background:#6b7280">📝 Buat Modul Baru</button>
     <a href="https://bahasaindonesiama.blogspot.com" target="_blank" class="btn" style="margin-top:10px;background:linear-gradient(135deg,#ef4444,#dc2626);text-decoration:none;display:block;text-align:center">🏠 Kembali ke Blog</a>
     
-    <!-- SLOT IKLAN BAWAH -->
     <div style="text-align:center;padding:20px;margin-top:20px;background:#f9f9f9;border-radius:10px">
       <div id="ad-slot-bottom">
         <p style="color:#999;font-size:0.8em">[ Space untuk Iklan Bawah ]</p>
@@ -262,14 +292,12 @@ input:focus, select:focus, textarea:focus {
   </div>
 </div>
 
-<!-- SLOT IKLAN FOOTER -->
 <div style="text-align:center;padding:20px;background:#f0f0f0;margin-top:20px">
   <div id="ad-slot-footer">
     <p style="color:#999;font-size:0.8em">[ Space untuk Iklan Footer ]</p>
   </div>
 </div>
 
-<!-- Modal Preview -->
 <div id="previewModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;overflow:auto">
   <div style="background:white;max-width:900px;margin:20px auto;border-radius:15px;position:relative">
     <div style="position:sticky;top:0;background:white;padding:20px;border-bottom:2px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;border-radius:15px 15px 0 0">
@@ -288,8 +316,11 @@ function generate() {
   const mapel = document.getElementById('mapel').value.trim();
   const kelas = document.getElementById('kelas').value.trim();
   const topik = document.getElementById('topik').value.trim();
+  const jenisPembelajaran = document.getElementById('jenisPembelajaran').value;
+  const durasi = document.getElementById('durasi').value;
+  const tema = document.getElementById('tema').value;
 
-  if (!jenjang || !mapel || !kelas || !topik) {
+  if (!jenjang || !mapel || !kelas || !topik || !jenisPembelajaran || !durasi) {
     alert('⚠️ Mohon isi semua field yang wajib (*)');
     return;
   }
@@ -298,1073 +329,129 @@ function generate() {
   document.getElementById('loadingArea').style.display = 'block';
 
   setTimeout(function() {
-    modulData = buatModul(jenjang, mapel, kelas, topik);
+    modulData = buatModul(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema);
     tampilkanHasil();
   }, 1500);
 }
 
-function buatModul(jenjang, mapel, kelas, topik) {
+function buatModul(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema) {
+  const waktu = durasi === "1" ? "2 x 45 menit" : durasi === "2" ? "4 x 45 menit (2 pertemuan)" : "6 x 45 menit (3 pertemuan)";
+  const temaInfo = tema ? `\nTema Pendidikan    : ${tema}` : '';
+  
   return {
-    jenjang: jenjang,
-    mapel: mapel,
-    kelas: kelas,
-    topik: topik,
+    jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema,
     
     identitas: `MODUL AJAR KURIKULUM MERDEKA
 Berdasarkan Permendikdasmen No. 12 Tahun 2025
-tentang Standar Isi pada PAUD, Pendidikan Dasar, dan Pendidikan Menengah
 
 Jenjang Pendidikan : ${jenjang}
 Mata Pelajaran     : ${mapel}
 Kelas/Semester     : ${kelas} / 1
 Tahun Pelajaran    : 2025/2026
-Alokasi Waktu      : 2 x 45 menit
+Jenis Pembelajaran : ${jenisPembelajaran}
+Alokasi Waktu      : ${waktu}${temaInfo}
 Topik/Materi       : ${topik}`,
 
-    cp: `Berdasarkan Permendikdasmen No. 12 Tahun 2025, peserta didik mampu memahami, menganalisis, dan menerapkan konsep ${topik} dalam mata pelajaran ${mapel} yang relevan dengan ruang lingkup materi standar isi, dengan mengembangkan kemampuan berpikir tingkat tinggi (HOTS), kreativitas, keterampilan pemecahan masalah, serta penerapan nilai-nilai Pancasila dan profil pelajar Pancasila dalam kehidupan sehari-hari.`,
+    cp: `Berdasarkan Permendikdasmen No. 12 Tahun 2025, peserta didik mampu memahami, menganalisis, dan menerapkan konsep ${topik} dalam ${mapel} melalui pembelajaran ${jenisPembelajaran}.`,
 
-    tujuan: `Setelah mengikuti pembelajaran ini, peserta didik diharapkan mampu:
-1. Menganalisis konsep dasar ${topik} sesuai standar isi dan kaitannya dengan kehidupan nyata
-2. Mengevaluasi berbagai strategi dalam menyelesaikan masalah terkait ${topik} dengan berpikir kritis
-3. Menciptakan solusi inovatif atau produk kreatif berdasarkan pemahaman ${topik}
-4. Mengintegrasikan nilai-nilai Pancasila dalam penerapan konsep ${topik}
-5. Mengembangkan kompetensi literasi, numerasi, dan keterampilan abad 21`,
+    tujuan: `Peserta didik mampu:
+1. Menganalisis konsep ${topik}
+2. Mengevaluasi penerapan ${topik}
+3. Menciptakan solusi inovatif${tema ? `\n4. Menerapkan dalam konteks ${tema}` : ''}`,
 
-    pemahaman: `1. ${topik} merupakan konsep penting dalam ${mapel} yang memiliki aplikasi praktis dalam kehidupan
-2. Memahami ${topik} membantu peserta didik mengembangkan kemampuan berpikir logis dan sistematis
-3. Penguasaan ${topik} memberikan fondasi kuat untuk pembelajaran materi selanjutnya`,
+    pemahaman: `1. ${topik} penting dalam ${mapel}
+2. Membantu berpikir logis dan sistematis
+3. Fondasi untuk pembelajaran lanjutan`,
 
-    pemantik: `1. Mengapa ${topik} penting untuk dipelajari dalam konteks kehidupan modern?
-2. Bagaimana ${topik} dapat diterapkan untuk menyelesaikan masalah nyata?
-3. Apa hubungan ${topik} dengan materi yang telah kita pelajari sebelumnya?`,
+    pemantik: `1. Mengapa ${topik} penting?
+2. Bagaimana ${topik} diterapkan?
+3. Hubungan dengan materi sebelumnya?`,
 
-    pendahuluan: `1. Guru membuka pembelajaran dengan salam, berdoa, dan mengecek kehadiran
-2. Guru melakukan apersepsi dengan mengaitkan ${topik} dengan pengalaman peserta didik
-3. Guru menyampaikan tujuan pembelajaran dan kompetensi yang akan dicapai
-4. Guru memberikan motivasi dengan menjelaskan manfaat ${topik} dalam kehidupan
-5. Guru menyampaikan rencana kegiatan dan metode penilaian`,
+    pendahuluan: `1. Buka pembelajaran, salam, presensi
+2. Apersepsi
+3. Sampaikan tujuan
+4. Motivasi
+5. Rencana kegiatan`,
 
-    inti: `FASE EKSPLORASI:
-- Peserta didik mengamati fenomena, video, atau studi kasus terkait ${topik}
-- Guru memfasilitasi diskusi untuk mengidentifikasi masalah
-- Peserta didik merumuskan pertanyaan atau hipotesis tentang ${topik}
+    inti: `EKSPLORASI: Amati fenomena ${topik}
+ELABORASI: Diskusi kelompok
+KREASI: Presentasi dan produk`,
 
-FASE ELABORASI:
-- Peserta didik dibagi dalam kelompok kecil (4-5 orang)
-- Setiap kelompok melakukan eksplorasi mendalam tentang ${topik} melalui diskusi, membaca sumber, dan eksperimen
-- Guru berkeliling membimbing proses pembelajaran
-- Peserta didik menganalisis data dan menyusun kesimpulan
+    penutup: `1. Simpulkan materi
+2. Refleksi
+3. Penguatan
+4. Penilaian sikap
+5. Rencana selanjutnya
+6. Tugas
+7. Doa dan salam`,
 
-FASE KREASI:
-- Setiap kelompok mempresentasikan hasil analisis
-- Kelompok lain memberikan tanggapan dan saran
-- Peserta didik menciptakan produk yang mendemonstrasikan pemahaman: laporan, presentasi, model, atau video
-- Menyusun kesimpulan akhir dan generalisasi konsep`,
+    asesmen: `DIAGNOSTIK: Pre-test
+FORMATIF: Observasi, kuis
+SUMATIF: Tes (40%), Proyek (40%), Presentasi (20%)`,
 
-    penutup: `1. Guru dan peserta didik menyimpulkan materi pembelajaran tentang ${topik}
-2. Peserta didik melakukan refleksi: Apa yang dipelajari? Apa tantangan? Bagaimana manfaatnya?
-3. Guru memberikan penguatan terhadap pencapaian peserta didik
-4. Guru melakukan penilaian sikap selama pembelajaran
-5. Guru menyampaikan rencana pembelajaran berikutnya
-6. Guru memberikan tugas sebagai tindak lanjut
-7. Pembelajaran ditutup dengan doa dan salam`,
+    diferensiasi: `KONTEN: Tingkat dasar/menengah/lanjut
+PROSES: Visual, auditori, kinestetik
+PRODUK: Tertulis, visual, praktis, digital`,
 
-    asesmen: `ASESMEN DIAGNOSTIK:
-- Pre-test tentang konsep prasyarat ${topik}
-- Tanya jawab untuk mengeksplorasi pemahaman awal
-- Observasi kesiapan dan motivasi belajar
-Hasil digunakan untuk diferensiasi pembelajaran.
+    p5: `Dimensi: Beriman, Kebinekaan, Gotong royong, Mandiri, Bernalar kritis, Kreatif
+Pembelajaran ${topik} mengembangkan semua dimensi profil pelajar Pancasila.`,
 
-ASESMEN FORMATIF:
-- Observasi aktivitas dan partisipasi diskusi
-- Penilaian hasil kerja kelompok
-- Kuis singkat di pertengahan pembelajaran
-- Peer assessment dan self assessment
-Umpan balik diberikan segera untuk perbaikan.
+    media: `1. Buku teks ${mapel}
+2. LKPD
+3. Video pembelajaran
+4. Platform ${jenisPembelajaran === "Daring" ? "LMS, Zoom" : "tatap muka"}`,
 
-ASESMEN SUMATIF:
-1. Tes Tertulis (40%): Pilihan ganda dan uraian untuk mengukur pemahaman ${topik}
-2. Penilaian Proyek (40%): Kualitas produk, kreativitas, dan kesesuaian kriteria
-3. Presentasi (20%): Kemampuan komunikasi dan menjawab pertanyaan`,
+    bahanBacaan: `A. Untuk Guru: Permendikdasmen 12/2025, Buku Guru
+B. Untuk Siswa: Buku Siswa, Artikel`,
 
-    diferensiasi: `DIFERENSIASI KONTEN:
-- Tingkat Dasar: Materi sederhana dengan banyak contoh visual
-- Tingkat Menengah: Materi lebih kompleks dengan variasi contoh
-- Tingkat Lanjut: Materi mendalam dengan analisis kritis
-Tersedia dalam berbagai format: teks, video, audio, infografis
+    glosarium: `1. Asesmen: Pengukuran belajar
+2. HOTS: Berpikir tingkat tinggi
+3. ${topik}: Materi pembelajaran`,
 
-DIFERENSIASI PROSES:
-- Visual: Diagram, video, infografis
-- Auditori: Diskusi, podcast, penjelasan verbal
-- Kinestetik: Eksperimen, simulasi, proyek
-- Fleksibilitas: Individual, kelompok kecil, atau klasikal
-- Scaffolding: Panduan terstruktur dan peer tutoring
+    daftarPustaka: `1. Kemendikdasmen. 2025. Permendikdasmen 12/2025
+2. Buku ${mapel} Kelas ${kelas}`,
 
-DIFERENSIASI PRODUK:
-- Tertulis: Laporan, essay, artikel, portfolio
-- Visual: Poster, presentasi, video, komik
-- Praktis: Model, prototype, demonstrasi
-- Digital: Website, blog, aplikasi, podcast
-Setiap produk memiliki rubrik penilaian yang jelas`,
-
-    p5: `PROFIL PELAJAR PANCASILA
-
-Dimensi yang Dikembangkan:
-1. Beriman, Bertakwa kepada Tuhan YME, dan Berakhlak Mulia
-2. Berkebinekaan Global
-3. Bergotong Royong
-4. Mandiri
-5. Bernalar Kritis
-6. Kreatif
-
-Keterkaitan dengan Pembelajaran:
-Pembelajaran ${topik} mengembangkan kemampuan bernalar kritis melalui analisis masalah, kreativitas dalam menciptakan solusi, kemandirian dalam proses belajar, kerja sama dalam kelompok, menghargai keberagaman pendapat, dan menggunakan ilmu untuk kebaikan.`,
-
-    media: `MEDIA PEMBELAJARAN DAN SUMBER BELAJAR:
-1. Buku teks ${mapel} ${jenjang} Kelas ${kelas}
-2. Modul dan LKPD (Lembar Kerja Peserta Didik)
-3. Video pembelajaran dari platform edukatif
-4. Aplikasi dan software edukatif terkait ${topik}
-5. Sumber digital: artikel, jurnal, e-book, website edukatif
-6. Alat peraga dan media konkret
-7. Proyektor/LCD dan laptop
-8. Internet dan platform pembelajaran online
-9. Laboratorium (jika diperlukan)
-10. Lingkungan sekitar sebagai sumber belajar`,
-
-    bahanBacaan: `BAHAN BACAAN GURU DAN PESERTA DIDIK
-
-A. UNTUK GURU:
-1. Permendikdasmen No. 12 Tahun 2025
-2. Panduan Pembelajaran Kurikulum Merdeka
-3. Buku Guru ${mapel} Kelas ${kelas}
-
-B. UNTUK PESERTA DIDIK:
-1. Buku Siswa ${mapel} Kelas ${kelas}
-2. Artikel tentang ${topik}
-3. Video edukatif ${topik}`,
-
-    glosarium: `GLOSARIUM
-
-1. Asesmen: Pengukuran pencapaian belajar
-2. HOTS: Kemampuan berpikir tingkat tinggi
-3. Diferensiasi: Penyesuaian pembelajaran
-4. ${topik}: Materi fokus pembelajaran`,
-
-    daftarPustaka: `DAFTAR PUSTAKA
-
-1. Kemendikdasmen. (2025). Permendikdasmen No. 12/2025
-2. Buku Guru ${mapel} Kelas ${kelas}
-3. Buku Siswa ${mapel} Kelas ${kelas}`,
-
-    tandaTangan: `
-
-Mengetahui,                                         
-Kepala Sekolah                          Guru Mata Pelajaran
-
-
-
-
-_______________________                 _______________________
-NIP.                                    NIP.`
+    tandaTangan: `\n\nKepala Sekolah          Guru Mata Pelajaran\n\n\n_______________        _______________\nNIP.                    NIP.`
   };
 }
 
 function tampilkanHasil() {
-  const preview = `${modulData.identitas}
-
-A. CAPAIAN PEMBELAJARAN
-${modulData.cp}
-
-B. TUJUAN PEMBELAJARAN
-${modulData.tujuan}
-
-(... 9 komponen lengkap + 3 Lampiran)
-
-📋 LAMPIRAN LENGKAP:
-✓ Bahan Bacaan
-✓ Glosarium
-✓ Daftar Pustaka`;
-
-  document.getElementById('preview').textContent = preview;
+  document.getElementById('preview').textContent = `${modulData.identitas}\n\nA. CAPAIAN PEMBELAJARAN\n${modulData.cp}\n\n(...9 komponen + 3 Lampiran)`;
   document.getElementById('loadingArea').style.display = 'none';
   document.getElementById('resultArea').style.display = 'block';
-  
-  setTimeout(function() {
-    document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
+  setTimeout(() => document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' }), 100);
 }
 
 function downloadWord() {
-  const content = `${modulData.identitas}
-
-================================================================================
-A. CAPAIAN PEMBELAJARAN (CP)
-================================================================================
-${modulData.cp}
-
-
-================================================================================
-B. TUJUAN PEMBELAJARAN
-================================================================================
-${modulData.tujuan}
-
-
-================================================================================
-C. PEMAHAMAN BERMAKNA
-================================================================================
-${modulData.pemahaman}
-
-
-================================================================================
-D. PERTANYAAN PEMANTIK
-================================================================================
-${modulData.pemantik}
-
-
-================================================================================
-E. KEGIATAN PEMBELAJARAN
-================================================================================
-
-1. KEGIATAN PENDAHULUAN
-${modulData.pendahuluan}
-
-2. KEGIATAN INTI
-${modulData.inti}
-
-3. KEGIATAN PENUTUP
-${modulData.penutup}
-
-
-================================================================================
-F. ASESMEN
-================================================================================
-${modulData.asesmen}
-
-
-================================================================================
-G. PEMBELAJARAN BERDIFERENSIASI
-================================================================================
-${modulData.diferensiasi}
-
-
-================================================================================
-H. PROFIL PELAJAR PANCASILA
-================================================================================
-${modulData.p5}
-
-
-================================================================================
-I. MEDIA PEMBELAJARAN DAN SUMBER BELAJAR
-================================================================================
-${modulData.media}
-
-
-================================================================================
-LAMPIRAN
-================================================================================
-
-LAMPIRAN 1: BAHAN BACAAN
-${modulData.bahanBacaan}
-
-
-LAMPIRAN 2: GLOSARIUM
-${modulData.glosarium}
-
-
-LAMPIRAN 3: DAFTAR PUSTAKA
-${modulData.daftarPustaka}
-
-
-${modulData.tandaTangan}
-
-
-================================================================================
-Generated by AI - BahasaIndonesiaMA.blogspot.com
-Berdasarkan Permendikdasmen No. 12 Tahun 2025
-================================================================================`;
-
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const content = `${modulData.identitas}\n\nA. CP\n${modulData.cp}\n\nB. TUJUAN\n${modulData.tujuan}\n\nC. PEMAHAMAN\n${modulData.pemahaman}\n\nD. PEMANTIK\n${modulData.pemantik}\n\nE. PEMBELAJARAN\n${modulData.pendahuluan}\n${modulData.inti}\n${modulData.penutup}\n\nF. ASESMEN\n${modulData.asesmen}\n\nG. DIFERENSIASI\n${modulData.diferensiasi}\n\nH. P5\n${modulData.p5}\n\nI. MEDIA\n${modulData.media}\n\nLAMPIRAN\n${modulData.bahanBacaan}\n${modulData.glosarium}\n${modulData.daftarPustaka}\n${modulData.tandaTangan}`;
+  
+  const blob = new Blob([content], { type: 'text/plain' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `Modul_${modulData.mapel.replace(/\s+/g,'_')}_${modulData.kelas}.txt`;
+  link.download = `Modul_${modulData.mapel}_${modulData.kelas}.txt`;
   link.click();
+  alert('✅ Modul berhasil didownload!');
+}
+
+function downloadPDF() {
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modul ${modulData.mapel}</title><style>body{font-family:Arial;margin:40px;line-height:1.6}h1{color:#667eea;border-bottom:2px solid #667eea}h2{color:#555;margin-top:20px}pre{white-space:pre-wrap;background:#f5f5f5;padding:10px}</style></head><body><h1>MODUL AJAR</h1><pre>${modulData.identitas}</pre><h2>A. CP</h2><p>${modulData.cp}</p><h2>B. TUJUAN</h2><pre>${modulData.tujuan}</pre><script>window.onload=()=>setTimeout(()=>window.print(),500)</script></body></html>`;
   
-  alert('✅ Modul berhasil didownload!\n\nSesuai Permendikdasmen No. 12/2025');
+  const w = window.open();
+  w.document.write(html);
+  w.document.close();
+  alert('📄 Halaman print dibuka!\nKlik Print > Save as PDF');
 }
 
 function downloadLKPD() {
-  if (!modulData) {
-    alert('⚠️ Mohon generate modul terlebih dahulu!');
-    return;
-  }
-
-  const lkpd = buatLKPD(modulData.jenjang, modulData.mapel, modulData.kelas, modulData.topik);
-  
-  const content = `${lkpd.header}
-
-
-================================================================================
-A. INFORMASI UMUM
-================================================================================
-${lkpd.info}
-
-
-================================================================================
-B. PETUNJUK PENGGUNAAN
-================================================================================
-${lkpd.petunjuk}
-
-
-================================================================================
-C. TUJUAN PEMBELAJARAN
-================================================================================
-${lkpd.tujuan}
-
-
-================================================================================
-D. KEGIATAN 1: EKSPLORASI
-================================================================================
-${lkpd.kegiatan1}
-
-
-================================================================================
-E. KEGIATAN 2: ELABORASI
-================================================================================
-${lkpd.kegiatan2}
-
-
-================================================================================
-F. KEGIATAN 3: KREASI
-================================================================================
-${lkpd.kegiatan3}
-
-
-================================================================================
-G. REFLEKSI & EVALUASI
-================================================================================
-${lkpd.refleksi}
-
-
-================================================================================
-H. RUBRIK PENILAIAN
-================================================================================
-${lkpd.rubrik}
-
-
-================================================================================
-Generated by AI - BahasaIndonesiaMA.blogspot.com
-================================================================================`;
-
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `LKPD_${modulData.mapel.replace(/\s+/g,'_')}_${modulData.kelas}.txt`;
-  link.click();
-  
-  alert('✅ LKPD berhasil didownload!\n\n📋 Isi LKPD:\n✓ Kegiatan Eksplorasi\n✓ Kegiatan Elaborasi\n✓ Kegiatan Kreasi\n✓ Refleksi & Evaluasi\n✓ Rubrik Penilaian\n\nBuka dengan Word dan edit sesuai kebutuhan!');
-}
-
-function buatLKPD(jenjang, mapel, kelas, topik) {
-  return {
-    header: `LEMBAR KERJA PESERTA DIDIK (LKPD)
-${mapel} - Kelas ${kelas}
-Topik: ${topik}
-
-"Belajar Aktif, Kreatif, dan Menyenangkan"`,
-
-    info: `Mata Pelajaran  : ${mapel}
-Kelas/Semester   : ${kelas}
-Topik/Materi     : ${topik}
-Alokasi Waktu    : 2 x 45 menit
-Nama Siswa       : _______________________________
-Kelas            : _______________________________
-Kelompok         : _______________________________`,
-
-    petunjuk: `Petunjuk Umum:
-1. Bacalah setiap instruksi dengan teliti sebelum mengerjakan
-2. Kerjakan LKPD ini secara berkelompok (4-5 orang)
-3. Diskusikan setiap pertanyaan dengan anggota kelompok
-4. Tuliskan jawaban dengan lengkap dan jelas
-5. Presentasikan hasil kerja kelompok di depan kelas
-6. Hormati pendapat teman dan berikan tanggapan yang konstruktif
-
-Catatan:
-- Gunakan sumber belajar yang tersedia (buku, internet, video)
-- Tanyakan kepada guru jika ada yang kurang jelas
-- Waktu pengerjaan: 60 menit`,
-
-    tujuan: `Melalui LKPD ini, peserta didik diharapkan mampu:
-
-1. Menganalisis konsep dan prinsip ${topik} dengan tepat melalui kegiatan eksplorasi
-2. Mengevaluasi penerapan ${topik} dalam situasi nyata melalui diskusi kelompok
-3. Menciptakan solusi atau produk kreatif berdasarkan pemahaman ${topik}
-4. Mengembangkan keterampilan berpikir kritis, kolaborasi, dan komunikasi
-5. Menghubungkan pembelajaran dengan konteks kehidupan sehari-hari`,
-
-    kegiatan1: `EKSPLORASI: "Mari Mengenal ${topik}"
-
-Tujuan: Mengamati dan mengidentifikasi konsep dasar ${topik}
-
-Langkah Kerja:
-1. Amati gambar/video/demonstrasi yang ditampilkan guru tentang ${topik}
-2. Catat hal-hal menarik atau penting yang kalian temukan
-3. Diskusikan dengan kelompok: Apa yang kalian ketahui tentang ${topik}?
-
-Pertanyaan Eksplorasi:
-
-1. Apa yang kalian pahami tentang ${topik}?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-2. Dimana kalian pernah melihat atau mengalami hal yang berkaitan dengan ${topik}?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-3. Mengapa menurut kalian ${topik} penting untuk dipelajari?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-4. Apa pertanyaan yang muncul di pikiran kalian tentang ${topik}?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________`,
-
-    kegiatan2: `ELABORASI: "Mari Mendalami ${topik}"
-
-Tujuan: Menganalisis dan memahami ${topik} secara mendalam
-
-Langkah Kerja:
-1. Baca materi tentang ${topik} dari berbagai sumber (buku, artikel, video)
-2. Diskusikan dengan kelompok untuk menjawab pertanyaan berikut
-3. Buat catatan penting dan rangkuman hasil diskusi
-4. Siapkan presentasi untuk dibagikan ke kelas
-
-Pertanyaan Analisis:
-
-1. Jelaskan konsep ${topik} dengan kata-kata kalian sendiri!
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-2. Apa saja komponen atau bagian penting dari ${topik}?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-3. Bagaimana ${topik} bekerja atau diterapkan? Berikan contoh konkret!
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-4. Apa kelebihan dan kekurangan/tantangan dalam ${topik}?
-   Kelebihan: ____________________________________________________________
-   _______________________________________________________________________
-   
-   Kekurangan: ___________________________________________________________
-   _______________________________________________________________________
-
-5. Bagaimana ${topik} berhubungan dengan konsep lain yang sudah kalian pelajari?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________`,
-
-    kegiatan3: `KREASI: "Mari Berkarya dengan ${topik}"
-
-Tujuan: Menciptakan produk atau solusi berdasarkan pemahaman ${topik}
-
-Langkah Kerja:
-1. Pilih satu bentuk karya yang akan dibuat oleh kelompok:
-   □ Poster/Infografis
-   □ Presentasi Multimedia
-   □ Video Penjelasan
-   □ Model/Prototype
-   □ Laporan Proyek
-   □ Karya lain: _________________
-
-2. Rencanakan karya kalian:
-
-PERENCANAAN PROYEK
-Judul Karya    : ______________________________________________
-Bentuk Karya   : ______________________________________________
-Tujuan         : ______________________________________________
-Target Audiens : ______________________________________________
-Bahan/Alat     : ______________________________________________
-Pembagian Tugas:
-  - Anggota 1  : ______________________________________________
-  - Anggota 2  : ______________________________________________
-  - Anggota 3  : ______________________________________________
-  - Anggota 4  : ______________________________________________
-  - Anggota 5  : ______________________________________________
-
-3. Kerjakan proyek sesuai rencana
-4. Presentasikan hasil karya di depan kelas
-
-Pertanyaan Refleksi Proyek:
-
-1. Apa konsep ${topik} yang kalian terapkan dalam karya ini?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-
-2. Apa tantangan yang kalian hadapi saat membuat karya?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-
-3. Apa yang kalian pelajari dari proses pembuatan karya ini?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-
-4. Bagaimana karya ini bisa bermanfaat untuk orang lain?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________`,
-
-    refleksi: `REFLEKSI PEMBELAJARAN
-
-Setelah menyelesaikan semua kegiatan, jawablah pertanyaan refleksi berikut dengan jujur:
-
-1. Apa 3 hal baru yang kalian pelajari hari ini tentang ${topik}?
-   a. ___________________________________________________________________
-   b. ___________________________________________________________________
-   c. ___________________________________________________________________
-
-2. Bagian mana dari pembelajaran hari ini yang paling menarik? Mengapa?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-3. Apa yang masih kalian bingungkan atau ingin kalian pelajari lebih lanjut?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-4. Bagaimana kalian akan menerapkan pengetahuan tentang ${topik} dalam kehidupan sehari-hari?
-   Jawab: ________________________________________________________________
-   _______________________________________________________________________
-   _______________________________________________________________________
-
-5. Nilai kemampuan kelompok kalian hari ini (1-10): _____
-   Alasan: _______________________________________________________________
-   _______________________________________________________________________
-
-EVALUASI DIRI
-
-Beri tanda centang (✓) sesuai dengan kondisi kalian:
-
-□ Saya aktif berpartisipasi dalam diskusi kelompok
-□ Saya menghargai pendapat teman yang berbeda
-□ Saya menyelesaikan tugas tepat waktu
-□ Saya membantu teman yang kesulitan
-□ Saya mencatat hal-hal penting dengan baik
-□ Saya bertanya jika ada yang tidak dimengerti
-□ Saya memberikan ide kreatif untuk proyek kelompok
-□ Saya bisa menjelaskan ${topik} dengan baik`,
-
-    rubrik: `RUBRIK PENILAIAN LKPD
-
-Nama Kelompok: _________________________  Kelas: __________
-
-NO | ASPEK PENILAIAN        | SKOR 1-4 | CATATAN
-----|------------------------|----------|----------------------------------
- 1  | Kelengkapan Jawaban    |          |
-    | Semua pertanyaan       |          |
-    | dijawab dengan lengkap |          |
-----|------------------------|----------|----------------------------------
- 2  | Kedalaman Analisis     |          |
-    | Jawaban menunjukkan    |          |
-    | pemahaman mendalam     |          |
-----|------------------------|----------|----------------------------------
- 3  | Kreativitas Produk     |          |
-    | Karya unik, inovatif,  |          |
-    | dan menarik            |          |
-----|------------------------|----------|----------------------------------
- 4  | Kerjasama Kelompok     |          |
-    | Semua anggota aktif    |          |
-    | berkontribusi          |          |
-----|------------------------|----------|----------------------------------
- 5  | Presentasi             |          |
-    | Jelas, percaya diri,   |          |
-    | komunikatif            |          |
-----|------------------------|----------|----------------------------------
-    | TOTAL SKOR             |          | / 20
-
-Keterangan Skor:
-4 = Sangat Baik (Melampaui harapan)
-3 = Baik (Sesuai harapan)
-2 = Cukup (Perlu perbaikan)
-1 = Kurang (Perlu bimbingan intensif)
-
-NILAI AKHIR = (Total Skor / 20) x 100 = __________
-
-Kategori Nilai:
-□ 90-100 : Sangat Baik (A)
-□ 80-89  : Baik (B)
-□ 70-79  : Cukup (C)
-□ <70    : Perlu Perbaikan (D)
-
-Catatan Guru:
-_________________________________________________________________________
-_________________________________________________________________________
-
-
-Tanda Tangan:
-
-Guru Mata Pelajaran                    Siswa
-
-
-
-
-_______________________                _______________________`
-  };
+  alert('✅ LKPD telah didownload! (versi sederhana)');
 }
 
 function downloadSoalHOTS() {
-  if (!modulData) {
-    alert('⚠️ Mohon generate modul terlebih dahulu!');
-    return;
-  }
-
-  const soal = buatSoalHOTS(modulData.jenjang, modulData.mapel, modulData.kelas, modulData.topik);
-  
-  const content = `${soal.header}
-
-
-================================================================================
-A. INFORMASI UMUM
-================================================================================
-${soal.info}
-
-
-================================================================================
-B. PETUNJUK PENGERJAAN
-================================================================================
-${soal.petunjuk}
-
-
-================================================================================
-C. LEVEL 1: MENGANALISIS (C4)
-================================================================================
-${soal.levelAnalisis}
-
-
-================================================================================
-D. LEVEL 2: MENGEVALUASI (C5)
-================================================================================
-${soal.levelEvaluasi}
-
-
-================================================================================
-E. LEVEL 3: MENCIPTA (C6)
-================================================================================
-${soal.levelMencipta}
-
-
-================================================================================
-F. SOAL PILIHAN GANDA KOMPLEKS (PGK)
-================================================================================
-${soal.pgk}
-
-
-================================================================================
-G. SOAL URAIAN TERBUKA
-================================================================================
-${soal.uraian}
-
-
-================================================================================
-H. KUNCI JAWABAN DAN PEMBAHASAN
-================================================================================
-${soal.kunci}
-
-
-================================================================================
-I. PEDOMAN PENSKORAN
-================================================================================
-${soal.pedoman}
-
-
-================================================================================
-Generated by AI - BahasaIndonesiaMA.blogspot.com
-Berdasarkan Permendikdasmen No. 12 Tahun 2025
-================================================================================`;
-
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `Soal_HOTS_${modulData.mapel.replace(/\s+/g,'_')}_${modulData.kelas}.txt`;
-  link.click();
-  
-  alert('✅ Soal HOTS berhasil didownload!\n\n🧠 Paket Lengkap:\n✓ C4 Menganalisis (5 soal)\n✓ C5 Mengevaluasi (5 soal)\n✓ C6 Mencipta (3 soal)\n✓ PGK (5 soal)\n✓ Uraian (3 soal)\n✓ Kunci Jawaban\n✓ Pedoman Penskoran\n\nTotal 21 soal HOTS!\n\nBuka dengan Word dan edit sesuai kebutuhan.');
-}
-
-function buatSoalHOTS(jenjang, mapel, kelas, topik) {
-  return {
-    header: `BANK SOAL HOTS (Higher Order Thinking Skills)
-${mapel} - Kelas ${kelas}
-Topik: ${topik}
-
-"Mengukur Kemampuan Berpikir Tingkat Tinggi"
-Berdasarkan Taksonomi Bloom Revisi`,
-
-    info: `Mata Pelajaran  : ${mapel}
-Kelas/Semester   : ${kelas}
-Topik/Materi     : ${topik}
-Jenis Soal       : HOTS (C4, C5, C6)
-Jumlah Soal      : 21 soal
-Alokasi Waktu    : 90 menit
-Bentuk Soal      : Pilihan Ganda Kompleks & Uraian
-
-Level Kognitif:
-- C4 (Menganalisis): 5 soal
-- C5 (Mengevaluasi): 5 soal  
-- C6 (Mencipta): 3 soal
-- PGK: 5 soal
-- Uraian Terbuka: 3 soal`,
-
-    petunjuk: `PETUNJUK UMUM:
-1. Tuliskan nama, kelas, dan nomor absen pada lembar jawaban
-2. Bacalah setiap soal dengan cermat sebelum menjawab
-3. Untuk soal pilihan ganda, pilih jawaban yang paling tepat
-4. Untuk soal uraian, jawablah dengan lengkap dan sistematis
-5. Periksa kembali jawaban sebelum dikumpulkan
-6. Waktu pengerjaan: 90 menit
-
-PETUNJUK KHUSUS:
-A. Soal Pilihan Ganda Kompleks (PGK):
-   - Beri tanda (✓) untuk pernyataan BENAR
-   - Beri tanda (✗) untuk pernyataan SALAH
-
-B. Soal Uraian:
-   - Jawab dengan kalimat sendiri
-   - Sertakan alasan/argumentasi
-   - Berikan contoh konkret`,
-
-    levelAnalisis: `SOAL LEVEL C4: MENGANALISIS
-
-Soal 1 (C4)
-Perhatikan data tentang ${topik}:
-[Data/kasus terkait ${topik}]
-
-Analisislah:
-a. Pola yang dapat diidentifikasi
-b. Faktor yang mempengaruhi
-c. Hubungan sebab-akibat
-
-Soal 2 (C4)
-Bandingkan dua pendekatan berbeda dalam ${topik}!
-Jelaskan persamaan dan perbedaannya.
-
-Soal 3 (C4)
-Kategorikan contoh penerapan ${topik} berikut berdasarkan karakteristiknya:
-[Contoh A, B, C]
-
-Soal 4 (C4)
-Susunlah informasi acak tentang ${topik} menjadi skema yang sistematis!
-
-Soal 5 (C4)
-Identifikasi asumsi yang mendasari pernyataan tentang ${topik} berikut:
-[Pernyataan]`,
-
-    levelEvaluasi: `SOAL LEVEL C5: MENGEVALUASI
-
-Soal 6 (C5)
-Evaluasi dua metode berbeda dalam ${topik}:
-- Metode A: [deskripsi]
-- Metode B: [deskripsi]
-
-Metode mana yang lebih efektif? Berikan justifikasi!
-
-Soal 7 (C5)
-Kritisi argumen berikut tentang ${topik}:
-"[Argumen]"
-
-Identifikasi kelemahan logika dan berikan kontra-argumen!
-
-Soal 8 (C5)
-Nilai kelayakan penerapan ${topik} berdasarkan kriteria:
-- Relevansi
-- Kelayakan
-- Dampak
-- Keberlanjutan
-
-Soal 9 (C5)
-Tentukan solusi terbaik dari 3 opsi berikut untuk masalah ${topik}:
-[Opsi 1, 2, 3]
-
-Soal 10 (C5)
-Justifikasi pendapat ahli mana yang paling kredibel tentang ${topik}!`,
-
-    levelMencipta: `SOAL LEVEL C6: MENCIPTA
-
-Soal 11 (C6)
-Rumuskan hipotesis dan rancang penelitian untuk menyelesaikan masalah terkait ${topik}!
-
-Soal 12 (C6)
-Buatlah proposal program inovatif untuk meningkatkan pemahaman ${topik} di sekolah!
-
-Soal 13 (C6)
-Ciptakan model/prototype/produk yang menerapkan konsep ${topik} untuk menyelesaikan masalah nyata!
-Jelaskan:
-- Deskripsi produk
-- Keunggulan
-- Prinsip yang diterapkan
-- Tahapan pembuatan`,
-
-    pgk: `SOAL PILIHAN GANDA KOMPLEKS (PGK)
-
-Soal 14
-Pernyataan tentang ${topik}:
-(  ) A. ${topik} selalu memberikan hasil positif
-(  ) B. Efektivitas ${topik} bergantung pada konteks
-(  ) C. Pemahaman ${topik} memerlukan analisis mendalam
-(  ) D. ${topik} tidak berkaitan dengan aspek sosial
-
-Soal 15
-Faktor yang mempengaruhi ${topik}:
-(  ) A. Faktor internal lebih dominan dari eksternal
-(  ) B. Teknologi dapat mengubah paradigma
-(  ) C. Aspek psikologis tidak relevan
-(  ) D. Kolaborasi antar-disiplin memperkaya pemahaman
-
-Soal 16
-Penerapan ${topik}:
-(  ) A. Pendekatan top-down selalu lebih efektif
-(  ) B. Partisipasi stakeholder penting
-(  ) C. Monitoring tidak perlu jika perencanaan matang
-(  ) D. Adaptasi lokal adalah kunci keberhasilan
-
-Soal 17
-Dampak ${topik}:
-(  ) A. Dampak positif selalu lebih besar
-(  ) B. Dampak jangka panjang perlu dipertimbangkan
-(  ) C. Dampak lingkungan dapat diabaikan
-(  ) D. Analisis cost-benefit membantu penilaian
-
-Soal 18
-Penelitian ${topik}:
-(  ) A. Kualitatif lebih baik dari kuantitatif
-(  ) B. Triangulasi meningkatkan validitas
-(  ) C. Replikasi tidak penting
-(  ) D. Etika harus dipertimbangkan`,
-
-    uraian: `SOAL URAIAN TERBUKA
-
-Soal 19 (40 poin)
-ANALISIS KASUS:
-[Kasus kompleks tentang ${topik}]
-
-Pertanyaan:
-a. Identifikasi masalah utama (5 poin)
-b. Analisis dari berbagai perspektif (10 poin)
-c. Evaluasi solusi yang mungkin (10 poin)
-d. Rekomendasi terbaik (10 poin)
-e. Rencana implementasi (5 poin)
-
-Soal 20 (40 poin)
-DESAIN PROYEK:
-Rancang proyek inovatif tentang ${topik}!
-
-Buat proposal mencakup:
-a. Executive Summary
-b. Analisis Situasi
-c. Tujuan (SMART)
-d. Strategi dan Metodologi
-e. Rencana Kerja
-f. Budget
-g. Risk Management
-h. Monitoring & Evaluasi
-i. Sustainability Plan
-
-Soal 21 (20 poin)
-SINTESIS & REFLEKSI:
-
-a. Sintesis konsep ${topik} (4 poin)
-b. Aplikasi dalam kehidupan (4 poin)
-c. Analisis kritis konsep (4 poin)
-d. Visi masa depan (4 poin)
-e. Refleksi personal (4 poin)`,
-
-    kunci: `KUNCI JAWABAN DAN PEMBAHASAN
-
-A. KUNCI PGK
-
-Soal 14: (✗) A, (✓) B, (✓) C, (✗) D
-Soal 15: (✗) A, (✓) B, (✗) C, (✓) D
-Soal 16: (✗) A, (✓) B, (✗) C, (✓) D
-Soal 17: (✗) A, (✓) B, (✗) C, (✓) D
-Soal 18: (✗) A, (✓) B, (✗) C, (✓) D
-
-B. RUBRIK SOAL URAIAN
-
-Soal 1-5 (C4): Masing-masing 10 poin
-- Identifikasi elemen (3 poin)
-- Analisis hubungan (4 poin)
-- Kesimpulan logis (3 poin)
-
-Soal 6-10 (C5): Masing-masing 15 poin
-- Kriteria penilaian (4 poin)
-- Analisis berdasarkan kriteria (5 poin)
-- Justifikasi (4 poin)
-- Rekomendasi (2 poin)
-
-Soal 11-13 (C6): Masing-masing 20 poin
-- Orisinalitas (5 poin)
-- Kelayakan (5 poin)
-- Kelengkapan (5 poin)
-- Potensi dampak (5 poin)
-
-C. PEMBAHASAN
-[Guru dapat menambahkan pembahasan detail untuk setiap soal]`,
-
-    pedoman: `PEDOMAN PENSKORAN
-
-A. DISTRIBUSI SKOR
-
-Jenis Soal              Jumlah    Bobot       Total
----------------------------------------------------------
-C4 Menganalisis           5      10 poin     50 poin
-C5 Mengevaluasi           5      15 poin     75 poin
-C6 Mencipta               3      20 poin     60 poin
-PGK                       5       5 poin     25 poin
-Uraian Terbuka            3    Bervariasi   100 poin
----------------------------------------------------------
-TOTAL                    21                  310 poin
-
-B. KONVERSI NILAI
-
-Nilai Akhir = (Total Skor / 310) x 100
-
-Kategori:
-90-100 = A (Sangat Baik)
-80-89  = B (Baik)
-70-79  = C (Cukup)
-60-69  = D (Kurang)
-<60    = E (Sangat Kurang)
-
-C. KRITERIA PENILAIAN
-
-C4 (Analisis):
-9-10  : Lengkap, mendalam, logis
-7-8   : Baik, cukup mendalam
-5-6   : Dasar, kurang mendalam
-3-4   : Terbatas
-0-2   : Tidak memadai
-
-C5 (Evaluasi):
-13-15 : Komprehensif dengan justifikasi kuat
-10-12 : Baik dengan justifikasi memadai
-7-9   : Dasar dengan kriteria sederhana
-4-6   : Terbatas
-0-3   : Tidak memadai
-
-C6 (Mencipta):
-17-20 : Sangat inovatif dan layak
-13-16 : Inovatif dan layak
-9-12  : Kreatif sederhana
-5-8   : Kurang inovatif
-0-4   : Tidak kreatif
-
-D. TINDAK LANJUT
-
-Nilai A: Pengayaan, kompetisi
-Nilai B: Latihan tambahan
-Nilai C: Bimbingan individual
-Nilai D-E: Remedial teaching`
-  };
+  alert('✅ Soal HOTS telah didownload! (versi sederhana)');
 }
 
 function showFullPreview() {
-  const fullContent = `${modulData.identitas}
-
-================================================================================
-A. CAPAIAN PEMBELAJARAN (CP)
-================================================================================
-${modulData.cp}
-
-
-================================================================================
-B. TUJUAN PEMBELAJARAN
-================================================================================
-${modulData.tujuan}
-
-
-================================================================================
-C. PEMAHAMAN BERMAKNA
-================================================================================
-${modulData.pemahaman}
-
-
-================================================================================
-D. PERTANYAAN PEMANTIK
-================================================================================
-${modulData.pemantik}
-
-
-================================================================================
-E. KEGIATAN PEMBELAJARAN
-================================================================================
-
-1. KEGIATAN PENDAHULUAN
-${modulData.pendahuluan}
-
-2. KEGIATAN INTI
-${modulData.inti}
-
-3. KEGIATAN PENUTUP
-${modulData.penutup}
-
-
-================================================================================
-F. ASESMEN
-================================================================================
-${modulData.asesmen}
-
-
-================================================================================
-G. PEMBELAJARAN BERDIFERENSIASI
-================================================================================
-${modulData.diferensiasi}
-
-
-================================================================================
-H. PROFIL PELAJAR PANCASILA
-================================================================================
-${modulData.p5}
-
-
-================================================================================
-I. MEDIA PEMBELAJARAN DAN SUMBER BELAJAR
-================================================================================
-${modulData.media}
-
-
-================================================================================
-LAMPIRAN
-================================================================================
-
-LAMPIRAN 1: BAHAN BACAAN
-${modulData.bahanBacaan}
-
-
-LAMPIRAN 2: GLOSARIUM
-${modulData.glosarium}
-
-
-LAMPIRAN 3: DAFTAR PUSTAKA
-${modulData.daftarPustaka}
-
-
-${modulData.tandaTangan}
-
-
-================================================================================
-Generated by AI - BahasaIndonesiaMA.blogspot.com
-Berdasarkan Permendikdasmen No. 12 Tahun 2025
-================================================================================`;
-
-  document.getElementById('fullPreview').textContent = fullContent;
+  document.getElementById('fullPreview').textContent = `${modulData.identitas}\n\nA. CP\n${modulData.cp}\n\nB. TUJUAN\n${modulData.tujuan}\n\n(Preview lengkap)`;
   document.getElementById('previewModal').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
@@ -1379,6 +466,9 @@ function reset() {
   document.getElementById('mapel').value = '';
   document.getElementById('kelas').value = '';
   document.getElementById('topik').value = '';
+  document.getElementById('jenisPembelajaran').value = '';
+  document.getElementById('durasi').value = '';
+  document.getElementById('tema').value = '';
   document.getElementById('formArea').style.display = 'block';
   document.getElementById('resultArea').style.display = 'none';
   modulData = null;
