@@ -204,7 +204,7 @@ input:focus, select:focus {
       </select>
     </div>
 
-    <button class="btn" onclick="generateModul()">🚀 Generate Modul</button>
+    <button class="btn" onclick="buatModul()">🚀 Generate Modul</button>
   </div>
 
   <div id="loadingArea" class="loading">
@@ -231,21 +231,21 @@ input:focus, select:focus {
       </p>
     </div>
     
-    <button class="btn" onclick="resetForm()" style="margin-top:15px;background:#6b7280">📝 Buat Baru</button>
+    <button class="btn" onclick="buatBaru()" style="margin-top:15px;background:#6b7280">📝 Buat Baru</button>
   </div>
 </div>
 
 <script>
-let modulData = null;
+var modulData = null;
 
-function generateModul() {
-  const jenjang = document.getElementById('jenjang').value;
-  const mapel = document.getElementById('mapel').value.trim();
-  const kelas = document.getElementById('kelas').value.trim();
-  const topik = document.getElementById('topik').value.trim();
-  const jenisPembelajaran = document.getElementById('jenisPembelajaran').value;
-  const durasi = document.getElementById('durasi').value;
-  const tema = document.getElementById('tema').value;
+function buatModul() {
+  var jenjang = document.getElementById('jenjang').value;
+  var mapel = document.getElementById('mapel').value.trim();
+  var kelas = document.getElementById('kelas').value.trim();
+  var topik = document.getElementById('topik').value.trim();
+  var jenisPembelajaran = document.getElementById('jenisPembelajaran').value;
+  var durasi = document.getElementById('durasi').value;
+  var tema = document.getElementById('tema').value;
 
   if (!jenjang || !mapel || !kelas || !topik || !jenisPembelajaran || !durasi) {
     alert('⚠️ Mohon isi semua field yang wajib (*)');
@@ -256,23 +256,27 @@ function generateModul() {
   document.getElementById('loadingArea').style.display = 'block';
 
   setTimeout(function() {
-    modulData = buatModulData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema);
+    modulData = generateData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema);
     tampilkanHasil();
   }, 1500);
 }
 
-function buatModulData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema) {
-  const waktu = durasi === "1" ? "2 x 45 menit" : durasi === "2" ? "4 x 45 menit" : "6 x 45 menit";
+function generateData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema) {
+  var waktu = durasi === "1" ? "2 x 45 menit" : durasi === "2" ? "4 x 45 menit" : "6 x 45 menit";
   
-  const identitas = "MODUL AJAR KURIKULUM MERDEKA\nPermendikdasmen No. 12 Tahun 2025\n\nJenjang : " + jenjang + "\nMapel   : " + mapel + "\nKelas   : " + kelas + "\nTopik   : " + topik + "\nJenis   : " + jenisPembelajaran + "\nWaktu   : " + waktu + (tema ? "\nTema    : " + tema : "");
+  var identitas = "MODUL AJAR KURIKULUM MERDEKA\nPermendikdasmen No. 12 Tahun 2025\n\nJenjang : " + jenjang + "\nMapel   : " + mapel + "\nKelas   : " + kelas + "\nTopik   : " + topik + "\nJenis   : " + jenisPembelajaran + "\nWaktu   : " + waktu;
+  
+  if (tema) {
+    identitas = identitas + "\nTema    : " + tema;
+  }
 
-  const cp = "Peserta didik mampu memahami dan menerapkan " + topik + " dalam " + mapel + " melalui pembelajaran " + jenisPembelajaran + ".";
+  var cp = "Peserta didik mampu memahami dan menerapkan " + topik + " dalam " + mapel + " melalui pembelajaran " + jenisPembelajaran + ".";
   
-  const tujuan = "1. Menganalisis konsep " + topik + "\n2. Mengevaluasi penerapan\n3. Menciptakan solusi";
+  var tujuan = "1. Menganalisis konsep " + topik + "\n2. Mengevaluasi penerapan\n3. Menciptakan solusi";
   
-  const kegiatan = "PENDAHULUAN: Apersepsi dan motivasi\nINTI: Eksplorasi, Elaborasi, Kreasi\nPENUTUP: Simpulan dan refleksi";
+  var kegiatan = "PENDAHULUAN: Apersepsi dan motivasi\nINTI: Eksplorasi, Elaborasi, Kreasi\nPENUTUP: Simpulan dan refleksi";
   
-  const asesmen = "Diagnostik, Formatif, Sumatif";
+  var asesmen = "Diagnostik, Formatif, Sumatif";
   
   return {
     jenjang: jenjang,
@@ -288,7 +292,7 @@ function buatModulData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, 
 }
 
 function tampilkanHasil() {
-  const preview = modulData.identitas + "\n\nA. CAPAIAN PEMBELAJARAN\n" + modulData.cp + "\n\n(...9 komponen lengkap + 3 Lampiran)";
+  var preview = modulData.identitas + "\n\nA. CAPAIAN PEMBELAJARAN\n" + modulData.cp + "\n\n(...9 komponen lengkap + 3 Lampiran)";
   
   document.getElementById('preview').textContent = preview;
   document.getElementById('loadingArea').style.display = 'none';
@@ -296,10 +300,10 @@ function tampilkanHasil() {
 }
 
 function downloadTXT() {
-  const content = modulData.identitas + "\n\nA. CP\n" + modulData.cp + "\n\nB. TUJUAN\n" + modulData.tujuan + "\n\nC. KEGIATAN\n" + modulData.kegiatan + "\n\nD. ASESMEN\n" + modulData.asesmen;
+  var content = modulData.identitas + "\n\nA. CP\n" + modulData.cp + "\n\nB. TUJUAN\n" + modulData.tujuan + "\n\nC. KEGIATAN\n" + modulData.kegiatan + "\n\nD. ASESMEN\n" + modulData.asesmen;
   
-  const blob = new Blob([content], { type: 'text/plain' });
-  const link = document.createElement('a');
+  var blob = new Blob([content], { type: 'text/plain' });
+  var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = "Modul_" + modulData.mapel + "_" + modulData.kelas + ".txt";
   link.click();
@@ -308,9 +312,9 @@ function downloadTXT() {
 }
 
 function downloadPDF() {
-  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modul</title><style>body{font-family:Arial;margin:40px}h1{color:#667eea}</style></head><body><h1>MODUL AJAR</h1><pre>' + modulData.identitas + '</pre><h2>A. CP</h2><p>' + modulData.cp + '</p><script>window.onload=function(){setTimeout(function(){window.print()},500)}<\/script></body></html>';
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modul</title><style>body{font-family:Arial;margin:40px}h1{color:#667eea}</style></head><body><h1>MODUL AJAR</h1><pre>' + modulData.identitas + '</pre><h2>A. CP</h2><p>' + modulData.cp + '</p><script>window.onload=function(){setTimeout(function(){window.print()},500)}<\/script></body></html>';
   
-  const w = window.open();
+  var w = window.open();
   w.document.write(html);
   w.document.close();
   
@@ -325,7 +329,7 @@ function downloadSOAL() {
   alert('✅ Soal HOTS untuk ' + modulData.topik + ' telah didownload!');
 }
 
-function resetForm() {
+function buatBaru() {
   document.getElementById('jenjang').value = '';
   document.getElementById('mapel').value = '';
   document.getElementById('kelas').value = '';
