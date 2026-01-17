@@ -479,6 +479,39 @@ function closePreview() {
   document.body.style.overflow = 'auto';
 }
 
+function ucapkanTerimaKasih() {
+  var nama = prompt('💝 Terima kasih atas dukungannya!\n\nSilakan tulis nama Anda (opsional):');
+  var pesan = prompt('📝 Tulis pesan atau saran Anda untuk kami:');
+  
+  if (pesan && pesan.trim() !== '') {
+    var ucapan = '\n\n==============================================\n';
+    ucapan += '💝 UCAPAN TERIMA KASIH & FEEDBACK\n';
+    ucapan += '==============================================\n';
+    if (nama && nama.trim() !== '') {
+      ucapan += 'Dari: ' + nama + '\n';
+    }
+    ucapan += 'Tanggal: ' + new Date().toLocaleDateString('id-ID') + '\n';
+    ucapan += 'Pesan:\n' + pesan + '\n';
+    ucapan += '==============================================\n\n';
+    ucapan += 'Data Modul yang Dibuat:\n';
+    ucapan += 'Jenjang: ' + modulData.jenjang + '\n';
+    ucapan += 'Mapel: ' + modulData.mapel + '\n';
+    ucapan += 'Kelas: ' + modulData.kelas + '\n';
+    ucapan += 'Topik: ' + modulData.topik + '\n';
+    ucapan += '==============================================\n';
+    
+    var blob = new Blob([ucapan], { type: 'text/plain;charset=utf-8' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Ucapan_Terimakasih_' + (nama ? nama.replace(/\s+/g,'_') : 'User') + '.txt';
+    link.click();
+    
+    alert('🎉 Terima kasih banyak atas dukungan Anda!\n\n📥 File ucapan terima kasih telah didownload.\n\n💝 Anda bisa:\n• Kirim file ini ke email: bahasaindonesiama@gmail.com\n• Atau share ke media sosial dengan tag kami\n• Atau tulis di kolom komentar blog kami\n\nDukungan Anda sangat berarti! 🙏');
+  } else {
+    alert('💝 Terima kasih sudah menggunakan Generator Modul Ajar AI!\n\nJangan lupa share ke sesama guru ya! 😊');
+  }
+}
+
 function buatBaru() {
   document.getElementById('jenjang').value = '';
   document.getElementById('mapel').value = '';
