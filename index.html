@@ -264,23 +264,15 @@ function generateModul() {
 function buatModulData(jenjang, mapel, kelas, topik, jenisPembelajaran, durasi, tema) {
   const waktu = durasi === "1" ? "2 x 45 menit" : durasi === "2" ? "4 x 45 menit" : "6 x 45 menit";
   
-  const identitas = `MODUL AJAR KURIKULUM MERDEKA
-Permendikdasmen No. 12 Tahun 2025
+  const identitas = "MODUL AJAR KURIKULUM MERDEKA\nPermendikdasmen No. 12 Tahun 2025\n\nJenjang : " + jenjang + "\nMapel   : " + mapel + "\nKelas   : " + kelas + "\nTopik   : " + topik + "\nJenis   : " + jenisPembelajaran + "\nWaktu   : " + waktu + (tema ? "\nTema    : " + tema : "");
 
-Jenjang : ${jenjang}
-Mapel   : ${mapel}
-Kelas   : ${kelas}
-Topik   : ${topik}
-Jenis   : ${jenisPembelajaran}
-Waktu   : ${waktu}` + (tema ? `\nTema    : ${tema}` : '');
-
-  const cp = `Peserta didik mampu memahami dan menerapkan ${topik} dalam ${mapel} melalui pembelajaran ${jenisPembelajaran}.`;
+  const cp = "Peserta didik mampu memahami dan menerapkan " + topik + " dalam " + mapel + " melalui pembelajaran " + jenisPembelajaran + ".";
   
-  const tujuan = `1. Menganalisis konsep ${topik}\n2. Mengevaluasi penerapan\n3. Menciptakan solusi`;
+  const tujuan = "1. Menganalisis konsep " + topik + "\n2. Mengevaluasi penerapan\n3. Menciptakan solusi";
   
-  const kegiatan = `PENDAHULUAN: Apersepsi dan motivasi\nINTI: Eksplorasi, Elaborasi, Kreasi\nPENUTUP: Simpulan dan refleksi`;
+  const kegiatan = "PENDAHULUAN: Apersepsi dan motivasi\nINTI: Eksplorasi, Elaborasi, Kreasi\nPENUTUP: Simpulan dan refleksi";
   
-  const asesmen = `Diagnostik, Formatif, Sumatif`;
+  const asesmen = "Diagnostik, Formatif, Sumatif";
   
   return {
     jenjang: jenjang,
@@ -296,7 +288,7 @@ Waktu   : ${waktu}` + (tema ? `\nTema    : ${tema}` : '');
 }
 
 function tampilkanHasil() {
-  const preview = modulData.identitas + '\n\nA. CAPAIAN PEMBELAJARAN\n' + modulData.cp + '\n\n(...9 komponen lengkap + 3 Lampiran)';
+  const preview = modulData.identitas + "\n\nA. CAPAIAN PEMBELAJARAN\n" + modulData.cp + "\n\n(...9 komponen lengkap + 3 Lampiran)";
   
   document.getElementById('preview').textContent = preview;
   document.getElementById('loadingArea').style.display = 'none';
@@ -304,19 +296,19 @@ function tampilkanHasil() {
 }
 
 function downloadTXT() {
-  const content = modulData.identitas + '\n\nA. CP\n' + modulData.cp + '\n\nB. TUJUAN\n' + modulData.tujuan + '\n\nC. KEGIATAN\n' + modulData.kegiatan + '\n\nD. ASESMEN\n' + modulData.asesmen;
+  const content = modulData.identitas + "\n\nA. CP\n" + modulData.cp + "\n\nB. TUJUAN\n" + modulData.tujuan + "\n\nC. KEGIATAN\n" + modulData.kegiatan + "\n\nD. ASESMEN\n" + modulData.asesmen;
   
   const blob = new Blob([content], { type: 'text/plain' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'Modul_' + modulData.mapel + '_' + modulData.kelas + '.txt';
+  link.download = "Modul_" + modulData.mapel + "_" + modulData.kelas + ".txt";
   link.click();
   
   alert('✅ File TXT berhasil didownload!');
 }
 
 function downloadPDF() {
-  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modul</title><style>body{font-family:Arial;margin:40px}h1{color:#667eea}</style></head><body><h1>MODUL AJAR</h1><pre>' + modulData.identitas + '</pre><h2>A. CP</h2><p>' + modulData.cp + '</p><script>window.onload=function(){setTimeout(function(){window.print()},500)}</script></body></html>';
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modul</title><style>body{font-family:Arial;margin:40px}h1{color:#667eea}</style></head><body><h1>MODUL AJAR</h1><pre>' + modulData.identitas + '</pre><h2>A. CP</h2><p>' + modulData.cp + '</p><script>window.onload=function(){setTimeout(function(){window.print()},500)}<\/script></body></html>';
   
   const w = window.open();
   w.document.write(html);
