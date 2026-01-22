@@ -1,4 +1,314 @@
-<!DOCTYPE html>
+function unduhSoalPG() {
+  var garis = '='.repeat(80);
+  var t = dataModul.topik;
+  var m = dataModul.mapel;
+  var k = dataModul.kelas;
+  
+  var isi = 'BANK SOAL PILIHAN GANDA BERBASIS HOTS\n' +
+    m + ' - Kelas ' + k + '\n' +
+    'Topik: ' + t + '\n\n' +
+    '"Higher Order Thinking Skills Assessment"\n\n' +
+    garis + '\n' +
+    'A. INFORMASI UMUM\n' +
+    garis + '\n' +
+    'Mata Pelajaran : ' + m + '\n' +
+    'Kelas/Semester : ' + k + ' / 1\n' +
+    'Topik/Materi   : ' + t + '\n' +
+    'Jumlah Soal    : 15 soal Pilihan Ganda (A-E)\n' +
+    'Alokasi Waktu  : 45 menit\n' +
+    'Level Kognitif : C4 (Menganalisis), C5 (Mengevaluasi), C6 (Mencipta)\n\n' +
+    'Nama Siswa     : _______________________________\n' +
+    'Kelas          : _______________________________\n' +
+    'Nomor Absen    : _______________________________\n\n' +
+    garis + '\n' +
+    'B. PETUNJUK PENGERJAAN\n' +
+    garis + '\n' +
+    '1. Tuliskan identitas lengkap pada tempat yang disediakan\n' +
+    '2. Bacalah setiap soal dengan cermat dan teliti\n' +
+    '3. Pilihlah SATU jawaban yang paling tepat (A, B, C, D, atau E)\n' +
+    '4. Periksa kembali jawaban sebelum mengumpulkan\n' +
+    '5. Kerjakan dengan jujur dan percaya diri\n' +
+    '6. Soal berbasis HOTS memerlukan analisis dan penalaran mendalam\n\n' +
+    garis + '\n' +
+    'C. SOAL PILIHAN GANDA BERBASIS HOTS\n' +
+    garis + '\n\n' +
+    '════════════════════════════════════════════════════════════════════════════\n' +
+    'BAGIAN 1: LEVEL C4 - MENGANALISIS (Soal 1-5)\n' +
+    '════════════════════════════════════════════════════════════════════════════\n\n' +
+    '1. Seorang peneliti mengamati bahwa dalam implementasi ' + t + ', terdapat\n' +
+    '   perbedaan hasil yang signifikan antara kelompok A dan kelompok B meskipun\n' +
+    '   menggunakan metode yang sama. Manakah faktor yang PALING MUNGKIN menyebabkan\n' +
+    '   perbedaan tersebut?\n\n' +
+    '   A. Kedua kelompok memiliki pemahaman yang identik tentang ' + t + '\n' +
+    '   B. Perbedaan karakteristik individu dan konteks penerapan dalam setiap kelompok\n' +
+    '   C. Metode yang sama akan selalu menghasilkan hasil yang identik\n' +
+    '   D. ' + t + ' tidak memiliki variabel yang dapat mempengaruhi hasil\n' +
+    '   E. Peneliti pasti melakukan kesalahan dalam pengukuran data\n\n' +
+    '2. Perhatikan pernyataan-pernyataan berikut tentang ' + t + ':\n\n' +
+    '   I.   ' + t + ' memiliki hubungan erat dengan perkembangan ' + m + ' modern\n' +
+    '   II.  Penerapan ' + t + ' dapat bervariasi tergantung pada konteks situasional\n' +
+    '   III. Pemahaman ' + t + ' hanya berguna dalam konteks akademis formal\n' +
+    '   IV.  ' + t + ' merupakan konsep statis yang tidak mengalami perkembangan\n\n' +
+    '   Pernyataan yang menunjukkan pemahaman mendalam dan analitis adalah...\n\n' +
+    '   A. I dan II\n' +
+    '   B. I dan III\n' +
+    '   C. II dan III\n' +
+    '   D. II dan IV\n' +
+    '   E. III dan IV\n\n' +
+    '3. Dalam suatu kasus, penerapan ' + t + ' menghasilkan dampak yang tidak\n' +
+    '   diharapkan. Setelah dianalisis, ditemukan bahwa penyebabnya adalah\n' +
+    '   interpretasi yang keliru terhadap salah satu prinsip dasar. Langkah\n' +
+    '   PALING TEPAT untuk mengatasi masalah ini adalah...\n\n' +
+    '   A. Mengabaikan dampak negatif dan melanjutkan penerapan seperti semula\n' +
+    '   B. Menghentikan total penerapan ' + t + ' dalam semua situasi\n' +
+    '   C. Mengidentifikasi kesalahan interpretasi dan memperbaiki pemahaman prinsip dasar\n' +
+    '   D. Mengganti seluruh metode dengan pendekatan berbeda tanpa evaluasi\n' +
+    '   E. Menyalahkan individu yang melakukan interpretasi keliru\n\n' +
+    '4. Perhatikan hubungan konsep berikut:\n\n' +
+    '   [' + t + '] ← → [Konsep X] ← → [Konsep Y] ← → [Hasil Z]\n\n' +
+    '   Jika terjadi perubahan fundamental pada ' + t + ', manakah prediksi\n' +
+    '   yang PALING LOGIS berdasarkan hubungan tersebut?\n\n' +
+    '   A. Hanya Konsep X yang terpengaruh, sementara Y dan Z tetap stabil\n' +
+    '   B. Perubahan akan berpengaruh secara berurutan dan sistematis hingga Hasil Z\n' +
+    '   C. Konsep Y berubah tetapi X dan Z tidak mengalami perubahan\n' +
+    '   D. Tidak terjadi perubahan apapun pada komponen lainnya\n' +
+    '   E. Hasil Z langsung berubah tanpa melalui proses intermediate\n\n' +
+    '5. Seorang ahli menyatakan: "Penguasaan ' + t + ' tanpa pemahaman konteks\n' +
+    '   aplikasinya sama dengan menghafal rumus tanpa mengerti maknanya."\n' +
+    '   Pernyataan ini PALING TEPAT mengimplikasikan bahwa...\n\n' +
+    '   A. ' + t + ' hanya perlu dihafal tanpa dipahami secara mendalam\n' +
+    '   B. Konteks aplikasi tidak penting dalam mempelajari ' + t + '\n' +
+    '   C. Pemahaman konseptual dan kemampuan aplikatif harus berkembang beriringan\n' +
+    '   D. Menghafal rumus sudah cukup untuk menguasai ' + t + ' dengan baik\n' +
+    '   E. Pemahaman konteks lebih penting daripada penguasaan konsep dasar\n\n' +
+    '════════════════════════════════════════════════════════════════════════════\n' +
+    'BAGIAN 2: LEVEL C5 - MENGEVALUASI (Soal 6-10)\n' +
+    '════════════════════════════════════════════════════════════════════════════\n\n' +
+    '6. Seorang guru ingin menilai pemahaman siswa tentang ' + t + '. Tersedia\n' +
+    '   empat metode asesmen:\n\n' +
+    '   I.   Tes pilihan ganda tentang definisi dan fakta hafalan\n' +
+    '   II.  Proyek penerapan ' + t + ' dalam konteks kehidupan nyata\n' +
+    '   III. Presentasi analisis kasus terkait ' + t + '\n' +
+    '   IV.  Kuis menghapal langkah-langkah prosedural\n\n' +
+    '   Metode yang PALING EFEKTIF untuk mengukur pemahaman mendalam adalah...\n\n' +
+    '   A. I dan IV karena objektif dan mudah dinilai secara konsisten\n' +
+    '   B. II dan III karena mengukur kemampuan aplikasi dan analisis tingkat tinggi\n' +
+    '   C. I dan II karena merupakan kombinasi teori dan praktik\n' +
+    '   D. III dan IV karena melibatkan presentasi dan hafalan\n' +
+    '   E. Semua metode sama efektifnya untuk mengukur pemahaman\n\n' +
+    '7. Berikut adalah empat argumen tentang pentingnya mempelajari ' + t + ':\n\n' +
+    '   Argumen 1: "' + t + ' penting karena sering muncul dalam ujian."\n' +
+    '   Argumen 2: "' + t + ' mengembangkan kemampuan berpikir kritis dan analitis."\n' +
+    '   Argumen 3: "' + t + ' mudah dipelajari sehingga semua orang harus menguasainya."\n' +
+    '   Argumen 4: "' + t + ' memberikan fondasi untuk memahami konsep lanjutan."\n\n' +
+    '   Argumen yang PALING KUAT dan berbasis pemahaman substansial adalah...\n\n' +
+    '   A. Argumen 1 dan 3\n' +
+    '   B. Argumen 2 dan 4\n' +
+    '   C. Argumen 1 dan 2\n' +
+    '   D. Argumen 3 dan 4\n' +
+    '   E. Argumen 1 dan 4\n\n' +
+    '8. Anda diminta mengevaluasi kualitas suatu penelitian tentang ' + t + '.\n' +
+    '   Manakah kriteria yang PALING PENTING untuk menilai kredibilitas dan\n' +
+    '   validitas penelitian tersebut?\n\n' +
+    '   A. Jumlah halaman laporan yang tebal menunjukkan kualitas penelitian\n' +
+    '   B. Nama peneliti yang terkenal secara otomatis menjamin hasil akurat\n' +
+    '   C. Metodologi yang ketat, data valid, dan analisis objektif\n' +
+    '   D. Hasil penelitian sesuai dengan ekspektasi umum masyarakat\n' +
+    '   E. Penelitian dipublikasikan di media sosial dengan banyak pengikut\n\n' +
+    '9. Sebuah artikel populer menyatakan bahwa "' + t + ' adalah satu-satunya\n' +
+    '   kunci sukses dalam menguasai ' + m + '." Evaluasi kritis terhadap\n' +
+    '   pernyataan ini menunjukkan bahwa...\n\n' +
+    '   A. Pernyataan ini sepenuhnya benar dan didukung oleh bukti ilmiah\n' +
+    '   B. Pernyataan terlalu absolut dan mengabaikan kompleksitas serta faktor lain\n' +
+    '   C. ' + t + ' memang satu-satunya faktor penting dalam ' + m + '\n' +
+    '   D. Artikel populer selalu memberikan informasi akurat dan terpercaya\n' +
+    '   E. Evaluasi kritis tidak diperlukan untuk pernyataan seperti ini\n\n' +
+    '10. Dalam konteks penerapan ' + t + ', manakah indikator yang PALING VALID\n' +
+    '    untuk mengukur keberhasilan pembelajaran?\n\n' +
+    '    A. Jumlah waktu yang dihabiskan siswa untuk mempelajari materi\n' +
+    '    B. Tingkat kepuasan siswa terhadap proses pembelajaran\n' +
+    '    C. Kemampuan menerapkan konsep dalam berbagai situasi baru dan berbeda\n' +
+    '    D. Skor rata-rata kelas dalam tes pilihan ganda berbasis hafalan\n' +
+    '    E. Jumlah materi yang berhasil disampaikan dalam satu pertemuan\n\n' +
+    '════════════════════════════════════════════════════════════════════════════\n' +
+    'BAGIAN 3: LEVEL C6 - MENCIPTA (Soal 11-15)\n' +
+    '════════════════════════════════════════════════════════════════════════════\n\n' +
+    '11. Anda ditugaskan merancang sebuah kegiatan pembelajaran inovatif tentang\n' +
+    '    ' + t + ' yang dapat meningkatkan keterlibatan dan pemahaman mendalam siswa.\n' +
+    '    Komponen mana yang PALING PENTING untuk diintegrasikan?\n\n' +
+    '    A. Ceramah panjang dan mendetail tentang semua aspek ' + t + '\n' +
+    '    B. Tugas menghafal definisi dan rumus-rumus penting\n' +
+    '    C. Masalah autentik yang menantang siswa menerapkan ' + t + ' secara kreatif\n' +
+    '    D. Kuis harian untuk memastikan siswa mengingat semua fakta\n' +
+    '    E. Pemberian banyak PR untuk melatih keterampilan prosedural\n\n' +
+    '12. Jika Anda diminta mengembangkan sebuah media pembelajaran interaktif\n' +
+    '    yang mendemonstrasikan konsep ' + t + ', fitur apa yang PALING ESENSIAL\n' +
+    '    untuk disertakan agar efektif?\n\n' +
+    '    A. Animasi menarik tanpa penjelasan konsep yang jelas\n' +
+    '    B. Teks panjang yang menjelaskan teori secara sangat mendetail\n' +
+    '    C. Simulasi interaktif yang memvisualisasikan hubungan sebab-akibat\n' +
+    '    D. Kumpulan soal pilihan ganda untuk latihan menghapal\n' +
+    '    E. Musik latar yang menarik untuk meningkatkan engagement semata\n\n' +
+    '13. Anda ingin membuat infografis yang menjelaskan ' + t + ' kepada\n' +
+    '    masyarakat umum yang belum familiar dengan konsep ini. Prinsip desain\n' +
+    '    mana yang PALING PENTING untuk diperhatikan?\n\n' +
+    '    A. Menggunakan sebanyak mungkin istilah teknis agar terlihat profesional\n' +
+    '    B. Menyajikan informasi secara visual, sederhana, dan mudah dipahami\n' +
+    '    C. Memuat seluruh detail teknis tanpa mempertimbangkan target audiens\n' +
+    '    D. Fokus pada estetika visual tanpa memperhatikan keakuratan informasi\n' +
+    '    E. Menampilkan banyak data numerik dalam bentuk tabel yang kompleks\n\n' +
+    '14. Sebuah komunitas belajar ingin mengembangkan metode baru untuk mengajarkan\n' +
+    '    ' + t + ' yang berbeda dari pendekatan konvensional. Langkah PERTAMA\n' +
+    '    yang harus dilakukan adalah...\n\n' +
+    '    A. Langsung mengimplementasikan metode baru tanpa perencanaan matang\n' +
+    '    B. Mengidentifikasi kelemahan metode konvensional dan kebutuhan pembelajar\n' +
+    '    C. Mengabaikan sepenuhnya metode konvensional dan membuat yang baru total\n' +
+    '    D. Meniru metode yang digunakan sekolah lain tanpa adaptasi kontekstual\n' +
+    '    E. Fokus pada penggunaan teknologi canggih tanpa pertimbangan substansi\n\n' +
+    '15. Dalam era digital, bagaimana Anda akan mendesain ulang pembelajaran ' + t + '\n' +
+    '    agar lebih relevan dengan kebutuhan dan karakteristik abad 21?\n\n' +
+    '    A. Menghilangkan semua metode tradisional dan menggantinya dengan teknologi\n' +
+    '    B. Mempertahankan metode lama tanpa perubahan karena sudah terbukti\n' +
+    '    C. Mengintegrasikan teknologi untuk mendukung pembelajaran aktif dan kolaboratif\n' +
+    '    D. Menggunakan teknologi semata sebagai hiburan tanpa tujuan pembelajaran\n' +
+    '    E. Fokus hanya pada aspek teknis tanpa mengembangkan soft skills\n\n' +
+    garis + '\n' +
+    'D. KUNCI JAWABAN\n' +
+    garis + '\n\n' +
+    '1.  B  |  6.  B  | 11. C\n' +
+    '2.  A  |  7.  B  | 12. C\n' +
+    '3.  C  |  8.  C  | 13. B\n' +
+    '4.  B  |  9.  B  | 14. B\n' +
+    '5.  C  | 10.  C  | 15. C\n\n' +
+    garis + '\n' +
+    'E. PEMBAHASAN LENGKAP\n' +
+    garis + '\n\n' +
+    'SOAL 1 (C4-Analisis): Jawaban B\n' +
+    'Pembahasan:\n' +
+    'Dalam konteks penelitian atau penerapan ' + t + ', meskipun metode yang\n' +
+    'digunakan sama, perbedaan karakteristik individu (seperti usia, latar belakang\n' +
+    'pendidikan, pengalaman, motivasi, gaya belajar) dan konteks penerapan dapat\n' +
+    'menghasilkan hasil yang berbeda. Ini menunjukkan pemahaman tentang variabel-\n' +
+    'variabel yang mempengaruhi hasil.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Pemahaman yang identik tidak menjamin hasil yang identik\n' +
+    'C. Salah - Mengabaikan pengaruh variabel individu dan konteks\n' +
+    'D. Salah - Ada banyak variabel yang mempengaruhi hasil\n' +
+    'E. Salah - Ini mungkin terjadi, tetapi bukan faktor PALING MUNGKIN\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 2 (C4-Analisis): Jawaban A\n' +
+    'Pembahasan:\n' +
+    'Pernyataan I benar karena ' + t + ' berkontribusi pada perkembangan ' + m + '\n' +
+    'modern. Pernyataan II benar karena penerapan dapat bervariasi sesuai konteks\n' +
+    'situasional yang berbeda. Kedua pernyataan ini menunjukkan pemahaman yang\n' +
+    'dinamis dan kontekstual.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'Pernyataan III salah - ' + t + ' juga berguna dalam kehidupan praktis\n' +
+    'Pernyataan IV salah - Konsep ilmiah berkembang seiring penelitian baru\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 3 (C4-Analisis): Jawaban C\n' +
+    'Pembahasan:\n' +
+    'Pendekatan problem-solving yang sistematis dan efektif adalah mengidentifikasi\n' +
+    'akar masalah (dalam hal ini interpretasi yang keliru) kemudian memperbaikinya\n' +
+    'melalui pembelajaran dan pemahaman yang benar. Ini menunjukkan kemampuan\n' +
+    'analisis kausal dan pemecahan masalah yang matang.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Mengabaikan masalah tidak menyelesaikan akar persoalan\n' +
+    'B. Salah - Terlalu ekstrem, tidak perlu menghentikan total\n' +
+    'D. Salah - Perubahan tanpa evaluasi berisiko mengulangi kesalahan\n' +
+    'E. Salah - Menyalahkan tidak konstruktif dan tidak menyelesaikan masalah\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 4 (C4-Analisis): Jawaban B\n' +
+    'Pembahasan:\n' +
+    'Dalam sistem yang saling terhubung (ditunjukkan dengan simbol ← →), perubahan\n' +
+    'pada satu komponen akan merambat ke komponen lain secara berurutan melalui\n' +
+    'hubungan sebab-akibat yang sistematis. Ini menguji pemahaman tentang sistem\n' +
+    'dan hubungan antar variabel.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Mengabaikan sifat sistemik dari hubungan\n' +
+    'C. Salah - Tidak logis jika X tidak berubah tapi Y berubah\n' +
+    'D. Salah - Bertentangan dengan prinsip hubungan sebab-akibat\n' +
+    'E. Salah - Mengabaikan proses intermediate yang penting\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 5 (C4-Analisis): Jawaban C\n' +
+    'Pembahasan:\n' +
+    'Pernyataan ahli menggunakan analogi untuk menekankan pentingnya keseimbangan\n' +
+    'antara pemahaman konseptual (understanding) dan kemampuan aplikatif (application).\n' +
+    'Implikasinya adalah kedua aspek harus berkembang secara seimbang dan terintegrasi.\n' +
+    'Ini menguji kemampuan inferensi dan analisis makna implisit.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Bertentangan dengan inti pernyataan ahli\n' +
+    'B. Salah - Justru konteks sangat penting menurut pernyataan\n' +
+    'D. Salah - Menghafal saja tidak cukup, perlu pemahaman\n' +
+    'E. Salah - Keduanya sama penting, bukan salah satu lebih penting\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 6 (C5-Evaluasi): Jawaban B\n' +
+    'Pembahasan:\n' +
+    'Metode II (proyek penerapan nyata) dan III (presentasi analisis kasus) mengukur\n' +
+    'kemampuan tingkat tinggi seperti aplikasi, analisis, dan evaluasi - bukan\n' +
+    'sekadar mengingat fakta. Metode I dan IV hanya mengukur kemampuan hafalan\n' +
+    'dan prosedural tingkat rendah. Ini menguji kemampuan mengevaluasi kesesuaian\n' +
+    'metode asesmen dengan tujuan pengukuran.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - I dan IV hanya mengukur hafalan, bukan pemahaman mendalam\n' +
+    'C. Salah - I masih terbatas pada hafalan\n' +
+    'D. Salah - IV (kuis hafalan) tidak mengukur pemahaman mendalam\n' +
+    'E. Salah - Metode berbeda memiliki kedalaman pengukuran berbeda\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 7 (C5-Evaluasi): Jawaban B\n' +
+    'Pembahasan:\n' +
+    'Argumen 2 kuat karena fokus pada pengembangan keterampilan berpikir kritis\n' +
+    'yang merupakan tujuan pembelajaran autentik dan bermakna. Argumen 4 kuat\n' +
+    'karena menekankan nilai konsep sebagai fondasi untuk pembelajaran berkelanjutan.\n' +
+    'Argumen 1 dan 3 lemah karena berbasis alasan superfisial atau eksternal.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Argumen 1 (muncul dalam ujian) dan 3 (mudah) lemah\n' +
+    'C. Salah - Argumen 1 tidak substansial\n' +
+    'D. Salah - Argumen 3 tidak mencerminkan nilai intrinsik\n' +
+    'E. Salah - Argumen 1 berbasis motivasi eksternal\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 8 (C5-Evaluasi): Jawaban C\n' +
+    'Pembahasan:\n' +
+    'Kredibilitas penelitian ilmiah ditentukan oleh rigor metodologis (keketatan\n' +
+    'metode), validitas data (data yang akurat dan dapat dipercaya), dan\n' +
+    'objektivitas analisis (analisis yang tidak bias). Ini adalah standar ilmiah\n' +
+    'universal, bukan faktor superfisial seperti panjang laporan atau popularitas.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Panjang laporan tidak menjamin kualitas konten\n' +
+    'B. Salah - Reputasi peneliti tidak otomatis menjamin kualitas\n' +
+    'D. Salah - Hasil harus objektif, bukan sesuai ekspektasi\n' +
+    'E. Salah - Publikasi media sosial bukan indikator kredibilitas ilmiah\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 9 (C5-Evaluasi): Jawaban B\n' +
+    'Pembahasan:\n' +
+    'Pernyataan "satu-satunya kunci" adalah klaim absolut (mutlak) yang mengabaikan\n' +
+    'kompleksitas proses belajar dan faktor-faktor lain yang berperan. Berpikir\n' +
+    'kritis memerlukan kemampuan mengidentifikasi overgeneralisasi (generalisasi\n' +
+    'berlebihan) dan klaim yang tidak proporsional.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Pernyataan absolut jarang sepenuhnya benar\n' +
+    'C. Salah - Ada banyak faktor yang berkontribusi pada penguasaan\n' +
+    'D. Salah - Artikel populer perlu dievaluasi kritis\n' +
+    'E. Salah - Evaluasi kritis selalu diperlukan\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 10 (C5-Evaluasi): Jawaban C\n' +
+    'Pembahasan:\n' +
+    'Indikator yang valid harus mengukur transfer pembelajaran (kemampuan menerapkan\n' +
+    'pengetahuan) ke situasi baru yang berbeda dari konteks pembelajaran awal.\n' +
+    'Ini menunjukkan pemahaman autentik dan mendalam, bukan sekadar hafalan.\n\n' +
+    'Mengapa opsi lain salah:\n' +
+    'A. Salah - Waktu belajar tidak berkorelasi langsung dengan pemahaman\n' +
+    'B. Salah - Kepuasan subjektif tidak sama dengan pemahaman objektif\n' +
+    'D. Salah - Skor hafalan tidak mengukur pemahaman mendalam\n' +
+    'E. Salah - Kuantitas materi tidak sama dengan kualitas pemahaman\n\n' +
+    '─────────────────────────────────────────────────────────────────────────\n\n' +
+    'SOAL 11 (C6-Kreasi): Jawaban C\n' +
+    'Pembahasan:\n' +
+    'Pembelajaran inovatif dan efektif melibatkan siswa dalam pemecahan masalah\n' +
+    'autentik (nyata dan bermakna) yang menantang mereka untuk berpikir kreatif\n' +
+    'dan menerapkan konsep secara aplikatif - bukan pembelajaran pasif seperti\n' +
+    'ceramah atau hafalan. Ini menguji kemampuan merancang pengalaman belajar\n' +
+    'yang engaging<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
