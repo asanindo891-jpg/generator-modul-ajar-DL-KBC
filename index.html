@@ -114,7 +114,7 @@ input:focus, select:focus { outline: none; border-color: #667eea; }
   <p class="subtitle">Kurikulum Merdeka - Permendikdasmen No. 12 Tahun 2025</p>
   
   <div class="info-box">
-    <strong>✨ Fitur Lengkap:</strong> Modul Ajar Profesional + LKPD HOTS + 20 Soal HOTS (C4-C6) + Pembahasan Detail
+    <strong>✨ Fitur Lengkap:</strong> Modul Ajar + LKPD HOTS + 15 Soal HOTS (A-E) + Pembahasan Detail
   </div>
 
   <div id="formArea">
@@ -193,50 +193,48 @@ input:focus, select:focus { outline: none; border-color: #667eea; }
     <div class="preview" id="previewBox"></div>
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px">
-      <button class="btn btn-download" onclick="lihatPreviewLengkap()">👁️ Preview Lengkap</button>
-      <button class="btn btn-download" onclick="unduhModulTXT()">📥 Download TXT</button>
+      <button class="btn btn-download" onclick="lihatPreview()">👁️ Preview Lengkap</button>
+      <button class="btn btn-download" onclick="downloadModul()">📥 Download TXT</button>
     </div>
-    <button class="btn btn-pdf" onclick="unduhModulPDF()">📄 Download PDF (Print)</button>
+    <button class="btn btn-pdf" onclick="infoPDF()">📄 Download PDF</button>
     
     <div class="bonus-box">
       <h3>🎁 BONUS GRATIS!</h3>
-      <p style="color:#78350f;margin-bottom:15px">Pelengkap pembelajaran profesional berbasis HOTS:</p>
+      <p style="color:#78350f;margin-bottom:15px">Pelengkap pembelajaran berkualitas tinggi:</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <button class="btn btn-lkpd" onclick="unduhLKPD()">📋 LKPD HOTS</button>
-        <button class="btn btn-lkpd" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)" onclick="unduhSoalPG()">📝 20 Soal HOTS</button>
+        <button class="btn btn-lkpd" onclick="downloadLKPD()">📋 LKPD HOTS</button>
+        <button class="btn btn-lkpd" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)" onclick="downloadSoal()">📝 15 Soal HOTS</button>
       </div>
       <p style="margin-top:15px;font-size:0.85em;color:#92400e;line-height:1.6">
-        💝 <strong>Jika bermanfaat, bantu kami dengan:</strong><br>
-        • Share ke sesama guru di grup WhatsApp/Telegram<br>
-        • Berikan rating bintang 5 ⭐⭐⭐⭐⭐<br>
-        • Tulis komentar positif di blog kami<br>
-        • Follow media sosial kami untuk update terbaru
+        💝 <strong>Jika bermanfaat:</strong><br>
+        • Share ke sesama guru<br>
+        • Beri rating ⭐⭐⭐⭐⭐<br>
+        • Tulis testimoni positif
       </p>
-      <button class="btn btn-thanks" onclick="kirimTerimaKasih()">💝 Ucapkan Terima Kasih</button>
+      <button class="btn btn-thanks" onclick="kirimTestimoni()">💝 Kirim Testimoni</button>
     </div>
     
     <div class="tips-box">
-      <h4>💡 Tips Penggunaan:</h4>
+      <h4>💡 Tips:</h4>
       <ul>
-        <li>File TXT bisa dibuka di Word untuk edit</li>
-        <li>LKPD berbasis HOTS (C4-C6) siap pakai</li>
-        <li>Soal HOTS dengan pembahasan lengkap</li>
-        <li>Edit sesuai kebutuhan sekolah Anda</li>
+        <li>File TXT bisa dibuka di Word</li>
+        <li>LKPD berbasis HOTS (C4-C6)</li>
+        <li>15 Soal dengan pembahasan lengkap</li>
       </ul>
     </div>
     
-    <button class="btn btn-reset" onclick="buatModulBaru()">📝 Buat Modul Baru</button>
+    <button class="btn btn-reset" onclick="resetForm()">📝 Buat Modul Baru</button>
     <a href="https://bahasaindonesiama.blogspot.com" target="_blank" class="btn btn-blog">🏠 Kembali ke Blog</a>
   </div>
 </div>
 
-<div id="modalPreview" class="modal" onclick="if(event.target==this) tutupModal()">
+<div id="modal" class="modal" onclick="if(event.target==this) tutupModal()">
   <div class="modal-content">
     <div class="modal-header">
-      <h2 style="color:#667eea;margin:0">📄 Preview Lengkap Modul Ajar</h2>
+      <h2 style="color:#667eea;margin:0">📄 Preview Lengkap</h2>
       <button onclick="tutupModal()" style="background:#ef4444;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:bold">✕ Tutup</button>
     </div>
-    <div id="isiModal" class="modal-body"></div>
+    <div id="modalBody" class="modal-body"></div>
   </div>
 </div>
 
@@ -261,109 +259,107 @@ function mulaiGenerate() {
   document.getElementById('loadingArea').style.display = 'block';
 
   setTimeout(function() {
-    dataModul = buatDataModul(jenjang, mapel, kelas, topik, jenis, durasi, tema);
+    dataModul = buatData(jenjang, mapel, kelas, topik, jenis, durasi, tema);
     tampilkanHasil();
   }, 1500);
 }
 
-function buatDataModul(jenjang, mapel, kelas, topik, jenis, durasi, tema) {
+function buatData(jenjang, mapel, kelas, topik, jenis, durasi, tema) {
   var waktu = durasi === "1" ? "2 x 45 menit" : durasi === "2" ? "4 x 45 menit" : "6 x 45 menit";
-  var garis = '='.repeat(80);
+  var g = '='.repeat(80);
   
-  var identitas = garis + '\nMODUL AJAR KURIKULUM MERDEKA\nBerdasarkan Permendikdasmen No. 12 Tahun 2025\n' + garis + '\n\nJenjang         : ' + jenjang + '\nMata Pelajaran  : ' + mapel + '\nKelas/Semester  : ' + kelas + ' / 1\nTahun Pelajaran : 2025/2026\nJenis           : ' + jenis + '\nAlokasi Waktu   : ' + waktu;
-  
-  if (tema) identitas += '\nTema            : ' + tema;
-  identitas += '\nTopik/Materi    : ' + topik + '\n\nPenyusun        : [Nama Guru]\nNIP             : [NIP]\nInstansi        : [Nama Sekolah]';
+  var identitas = g + '\nMODUL AJAR KURIKULUM MERDEKA\nBerdasarkan Permendikdasmen No. 12 Tahun 2025\n' + g + '\n\n' +
+    'Jenjang Pendidikan  : ' + jenjang + '\n' +
+    'Mata Pelajaran      : ' + mapel + '\n' +
+    'Kelas/Semester      : ' + kelas + ' / 1\n' +
+    'Tahun Pelajaran     : 2025/2026\n' +
+    'Jenis Pembelajaran  : ' + jenis + '\n' +
+    'Alokasi Waktu       : ' + waktu + '\n' +
+    (tema ? 'Tema Pendidikan     : ' + tema + '\n' : '') +
+    'Topik/Materi        : ' + topik + '\n\n' +
+    'Penyusun            : [Nama Guru]\n' +
+    'NIP                 : [NIP Guru]\n' +
+    'Instansi            : [Nama Sekolah]';
 
-  var cp = 'Berdasarkan Permendikdasmen No. 12 Tahun 2025, peserta didik mampu memahami, menganalisis, dan menerapkan konsep ' + topik + ' dalam ' + mapel + ' yang relevan dengan ruang lingkup materi standar isi. Pembelajaran dirancang untuk mengembangkan kemampuan berpikir tingkat tinggi (HOTS), kreativitas, keterampilan pemecahan masalah, serta penerapan nilai-nilai Pancasila dan profil pelajar Pancasila dalam kehidupan sehari-hari melalui pembelajaran ' + jenis.toLowerCase() + '.';
+  var cp = 'Berdasarkan Permendikdasmen Nomor 12 Tahun 2025 tentang Standar Isi, peserta didik mampu memahami, menganalisis, dan menerapkan konsep ' + topik + ' dalam mata pelajaran ' + mapel + ' yang relevan dengan ruang lingkup materi standar isi. Pembelajaran dirancang untuk mengembangkan kemampuan berpikir tingkat tinggi (HOTS), kreativitas, keterampilan pemecahan masalah, serta penerapan nilai-nilai Pancasila dan Profil Pelajar Pancasila dalam kehidupan sehari-hari melalui pembelajaran ' + jenis.toLowerCase() + '.';
 
-  var tujuan = 'Setelah mengikuti pembelajaran ' + jenis.toLowerCase() + ' selama ' + durasi + ' pertemuan, peserta didik diharapkan mampu:\n\n1. MENGANALISIS konsep dasar ' + topik + ' sesuai standar isi dan kaitannya dengan kehidupan nyata\n\n2. MENGEVALUASI berbagai strategi dalam menyelesaikan masalah terkait ' + topik + ' dengan berpikir kritis\n\n3. MENCIPTAKAN solusi inovatif atau produk kreatif berdasarkan pemahaman ' + topik + '\n\n4. MENGINTEGRASIKAN nilai-nilai Pancasila dalam penerapan konsep ' + topik + '\n\n5. MENGEMBANGKAN kompetensi literasi, numerasi, dan keterampilan abad 21';
-  
-  if (tema) tujuan += '\n\n6. MENERAPKAN konsep ' + topik + ' dalam konteks ' + tema;
+  var tujuan = 'Setelah mengikuti pembelajaran ' + jenis.toLowerCase() + ' tentang ' + topik + ', peserta didik diharapkan mampu:\n\n' +
+    '1. MENGANALISIS konsep dasar ' + topik + ' sesuai standar isi dan kaitannya dengan kehidupan nyata\n\n' +
+    '2. MENGEVALUASI berbagai strategi dalam menyelesaikan masalah terkait ' + topik + ' dengan berpikir kritis\n\n' +
+    '3. MENCIPTAKAN solusi inovatif atau produk kreatif berdasarkan pemahaman ' + topik + '\n\n' +
+    '4. MENGINTEGRASIKAN nilai-nilai Pancasila dalam penerapan konsep ' + topik + '\n\n' +
+    '5. MENGEMBANGKAN kompetensi literasi, numerasi, dan keterampilan abad 21' +
+    (tema ? '\n\n6. MENERAPKAN konsep ' + topik + ' dalam konteks ' + tema : '');
 
-  var pemahaman = '1. ' + topik + ' merupakan konsep penting dalam ' + mapel + ' yang memiliki aplikasi praktis\n\n2. Memahami ' + topik + ' membantu mengembangkan kemampuan berpikir logis dan sistematis\n\n3. Penguasaan ' + topik + ' memberikan fondasi kuat untuk pembelajaran lanjutan\n\n4. Pembelajaran ' + jenis.toLowerCase() + ' memungkinkan fleksibilitas dan personalisasi';
-  
-  if (tema) pemahaman += '\n\n5. Integrasi dengan tema ' + tema + ' memperkaya pemahaman kontekstual';
+  var pemahaman = '1. ' + topik + ' merupakan konsep penting dalam ' + mapel + ' yang memiliki aplikasi praktis dalam kehidupan sehari-hari\n\n' +
+    '2. Memahami ' + topik + ' membantu peserta didik mengembangkan kemampuan berpikir logis dan sistematis\n\n' +
+    '3. Penguasaan ' + topik + ' memberikan fondasi kuat untuk pembelajaran materi selanjutnya\n\n' +
+    '4. Pembelajaran ' + jenis.toLowerCase() + ' memungkinkan fleksibilitas dan personalisasi pembelajaran' +
+    (tema ? '\n\n5. Integrasi dengan tema ' + tema + ' memperkaya pemahaman kontekstual' : '');
 
-  var pemantik = '1. Mengapa ' + topik + ' penting untuk dipelajari dalam konteks kehidupan modern?\n\n2. Bagaimana ' + topik + ' dapat diterapkan untuk menyelesaikan masalah nyata?\n\n3. Apa hubungan ' + topik + ' dengan materi yang telah kita pelajari sebelumnya?\n\n4. Bagaimana pembelajaran ' + jenis.toLowerCase() + ' membantu memahami ' + topik + ' lebih baik?';
-
-  var kegiatan = 'PENDAHULUAN (15-20 menit)\n' + 
-    '- Guru membuka dengan salam, berdoa, dan mengecek kehadiran\n' +
-    '- Apersepsi: mengaitkan ' + topik + ' dengan pengalaman peserta didik\n' +
-    '- Menyampaikan tujuan pembelajaran dan kompetensi\n' +
-    '- Memberikan motivasi tentang manfaat ' + topik + '\n\n' +
+  var kegiatan = 'PENDAHULUAN (15-20 menit)\n' +
+    '• Guru membuka pembelajaran dengan salam, berdoa, dan mengecek kehadiran\n' +
+    '• Apersepsi: mengaitkan ' + topik + ' dengan pengalaman peserta didik\n' +
+    '• Menyampaikan tujuan pembelajaran dan kompetensi yang akan dicapai\n' +
+    '• Memberikan motivasi tentang manfaat mempelajari ' + topik + '\n\n' +
     'INTI (60-90 menit)\n\n' +
     'FASE EKSPLORASI:\n' +
-    '- Mengamati fenomena/video terkait ' + topik + '\n' +
-    '- Mengidentifikasi masalah dan merumuskan pertanyaan\n\n' +
+    '• Peserta didik mengamati fenomena/video/studi kasus terkait ' + topik + '\n' +
+    '• Guru memfasilitasi diskusi untuk mengidentifikasi masalah\n' +
+    '• Peserta didik merumuskan pertanyaan/hipotesis tentang ' + topik + '\n\n' +
     'FASE ELABORASI:\n' +
-    '- Diskusi kelompok (4-5 orang)\n' +
-    '- Eksplorasi mendalam melalui berbagai sumber\n' +
-    '- Analisis data dan menyusun kesimpulan\n\n' +
+    '• Peserta didik dibagi dalam kelompok kecil (4-5 orang)\n' +
+    '• Eksplorasi mendalam melalui diskusi dan analisis sumber\n' +
+    '• Guru berkeliling membimbing proses pembelajaran\n' +
+    '• Peserta didik menganalisis data dan menyusun kesimpulan\n\n' +
     'FASE KREASI:\n' +
-    '- Presentasi hasil analisis kelompok\n' +
-    '- Menciptakan produk demonstrasi pemahaman\n' +
-    '- Menyusun kesimpulan akhir\n\n' +
+    '• Setiap kelompok mempresentasikan hasil analisis\n' +
+    '• Kelompok lain memberikan tanggapan dan saran\n' +
+    '• Peserta didik menciptakan produk demonstrasi pemahaman\n' +
+    '• Menyusun kesimpulan akhir dan generalisasi konsep\n\n' +
     'PENUTUP (15-20 menit)\n' +
-    '- Menyimpulkan materi pembelajaran\n' +
-    '- Refleksi dan penguatan\n' +
-    '- Penilaian sikap\n' +
-    '- Penutup dengan doa';
+    '• Guru dan peserta didik menyimpulkan materi pembelajaran\n' +
+    '• Refleksi: Apa yang dipelajari? Apa tantangan? Bagaimana manfaatnya?\n' +
+    '• Memberikan penguatan terhadap pencapaian peserta didik\n' +
+    '• Penilaian sikap selama pembelajaran\n' +
+    '• Menyampaikan rencana pembelajaran berikutnya\n' +
+    '• Penutup dengan doa dan salam';
 
   var asesmen = 'ASESMEN DIAGNOSTIK:\n' +
-    '- Pre-test konsep prasyarat\n' +
-    '- Observasi kesiapan belajar\n\n' +
+    '• Pre-test tentang konsep prasyarat ' + topik + '\n' +
+    '• Tanya jawab untuk mengeksplorasi pemahaman awal\n' +
+    '• Observasi kesiapan dan motivasi belajar\n\n' +
     'ASESMEN FORMATIF:\n' +
-    '- Observasi aktivitas diskusi\n' +
-    '- Penilaian kerja kelompok\n' +
-    '- Kuis singkat\n\n' +
+    '• Observasi aktivitas dan partisipasi diskusi\n' +
+    '• Penilaian hasil kerja kelompok\n' +
+    '• Kuis singkat di pertengahan pembelajaran\n' +
+    '• Peer assessment dan self assessment\n\n' +
     'ASESMEN SUMATIF:\n' +
-    '1. Tes Tertulis (40%)\n' +
-    '2. Penilaian Proyek (40%)\n' +
-    '3. Presentasi (20%)';
-
-  var diferensiasi = 'DIFERENSIASI KONTEN:\n' +
-    '- Tingkat Dasar: Materi sederhana dengan contoh visual\n' +
-    '- Tingkat Menengah: Materi kompleks dengan variasi\n' +
-    '- Tingkat Lanjut: Materi mendalam dengan analisis kritis\n\n' +
-    'DIFERENSIASI PROSES:\n' +
-    '- Visual, Auditori, Kinestetik\n' +
-    '- Individual, kelompok, klasikal\n' +
-    '- Scaffolding dan peer tutoring\n\n' +
-    'DIFERENSIASI PRODUK:\n' +
-    '- Tertulis, Visual, Praktis, Digital';
+    '1. Tes Tertulis (40%): Pilihan ganda dan uraian\n' +
+    '2. Penilaian Proyek (40%): Kualitas produk dan kreativitas\n' +
+    '3. Presentasi (20%): Kemampuan komunikasi';
 
   var p5 = 'PROFIL PELAJAR PANCASILA\n\n' +
-    'Dimensi:\n' +
-    '1. Beriman dan Berakhlak Mulia\n' +
+    'Dimensi yang Dikembangkan:\n' +
+    '1. Beriman, Bertakwa kepada Tuhan YME, dan Berakhlak Mulia\n' +
     '2. Berkebinekaan Global\n' +
     '3. Bergotong Royong\n' +
     '4. Mandiri\n' +
     '5. Bernalar Kritis\n' +
     '6. Kreatif\n\n' +
-    'Pembelajaran ' + topik + ' mengembangkan kemampuan bernalar kritis,\n' +
-    'kreativitas, kemandirian, dan kerja sama.';
-
-  var media = 'MEDIA DAN SUMBER BELAJAR:\n' +
-    '1. Buku teks ' + mapel + ' Kelas ' + kelas + '\n' +
-    '2. Modul dan LKPD\n' +
-    '3. Video pembelajaran\n' +
-    '4. Aplikasi edukatif\n' +
-    '5. Sumber digital\n' +
-    '6. Alat peraga\n' +
-    '7. Internet';
+    'Keterkaitan:\n' +
+    'Pembelajaran ' + topik + ' melalui ' + jenis.toLowerCase() + ' mengembangkan kemampuan bernalar kritis, kreativitas, kemandirian, dan kerja sama.';
 
   var lampiran = 'LAMPIRAN 1: BAHAN BACAAN\n\n' +
-    'UNTUK GURU:\n' +
+    'Untuk Guru:\n' +
     '1. Permendikdasmen No. 12 Tahun 2025\n' +
     '2. Panduan Pembelajaran Kurikulum Merdeka\n' +
     '3. Buku Guru ' + mapel + ' Kelas ' + kelas + '\n\n' +
-    'UNTUK PESERTA DIDIK:\n' +
+    'Untuk Peserta Didik:\n' +
     '1. Buku Siswa ' + mapel + ' Kelas ' + kelas + '\n' +
-    '2. Artikel tentang ' + topik + '\n' +
-    '3. Video edukatif\n\n' +
+    '2. Artikel tentang ' + topik + '\n\n' +
     'LAMPIRAN 2: GLOSARIUM\n\n' +
-    '1. Asesmen: Proses pengumpulan informasi hasil belajar\n' +
+    '1. Asesmen: Pengumpulan informasi hasil belajar\n' +
     '2. HOTS: Higher Order Thinking Skills\n' +
     '3. Diferensiasi: Penyesuaian pembelajaran\n\n' +
     'LAMPIRAN 3: DAFTAR PUSTAKA\n\n' +
@@ -380,299 +376,194 @@ function buatDataModul(jenjang, mapel, kelas, topik, jenis, durasi, tema) {
     kelas: kelas,
     topik: topik,
     jenis: jenis,
-    durasi: durasi,
-    tema: tema,
     identitas: identitas,
     cp: cp,
     tujuan: tujuan,
     pemahaman: pemahaman,
-    pemantik: pemantik,
     kegiatan: kegiatan,
     asesmen: asesmen,
-    diferensiasi: diferensiasi,
     p5: p5,
-    media: media,
     lampiran: lampiran
   };
 }
 
 function tampilkanHasil() {
-  document.getElementById('previewBox').textContent = dataModul.identitas + '\n\nA. CAPAIAN PEMBELAJARAN\n' + dataModul.cp.substring(0,200) + '...\n\n(...total 9 komponen lengkap + 3 Lampiran)';
+  document.getElementById('previewBox').textContent = dataModul.identitas + '\n\nA. CAPAIAN PEMBELAJARAN\n' + dataModul.cp + '\n\n(...total 9 komponen lengkap)';
   document.getElementById('loadingArea').style.display = 'none';
   document.getElementById('resultArea').style.display = 'block';
   document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
 }
 
-function lihatPreviewLengkap() {
-  var garis = '='.repeat(80);
-  document.getElementById('isiModal').textContent = dataModul.identitas + '\n\n' + garis + '\nA. CAPAIAN PEMBELAJARAN\n' + garis + '\n' + dataModul.cp + '\n\n' + garis + '\nB. TUJUAN PEMBELAJARAN\n' + garis + '\n' + dataModul.tujuan + '\n\n' + garis + '\nC. PEMAHAMAN BERMAKNA\n' + garis + '\n' + dataModul.pemahaman + '\n\n' + garis + '\nD. PERTANYAAN PEMANTIK\n' + garis + '\n' + dataModul.pemantik + '\n\n' + garis + '\nE. KEGIATAN PEMBELAJARAN\n' + garis + '\n' + dataModul.kegiatan + '\n\n' + garis + '\nF. ASESMEN\n' + garis + '\n' + dataModul.asesmen + '\n\n' + garis + '\nG. PEMBELAJARAN BERDIFERENSIASI\n' + garis + '\n' + dataModul.diferensiasi + '\n\n' + garis + '\nH. PROFIL PELAJAR PANCASILA\n' + garis + '\n' + dataModul.p5 + '\n\n' + garis + '\nI. MEDIA PEMBELAJARAN\n' + garis + '\n' + dataModul.media + '\n\n' + garis + '\nLAMPIRAN\n' + garis + '\n' + dataModul.lampiran + '\n\n' + garis + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\n' + garis;
-  
-  document.getElementById('modalPreview').style.display = 'block';
+function lihatPreview() {
+  var g = '='.repeat(80);
+  var isi = dataModul.identitas + '\n\n' + 
+    g + '\nA. CAPAIAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.cp + '\n\n' + 
+    g + '\nB. TUJUAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.tujuan + '\n\n' + 
+    g + '\nC. PEMAHAMAN BERMAKNA\n' + g + '\n' + 
+    dataModul.pemahaman + '\n\n' + 
+    g + '\nD. KEGIATAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.kegiatan + '\n\n' +
+    g + '\nE. ASESMEN\n' + g + '\n' + 
+    dataModul.asesmen + '\n\n' +
+    g + '\nF. PROFIL PELAJAR PANCASILA\n' + g + '\n' + 
+    dataModul.p5 + '\n\n' +
+    g + '\nLAMPIRAN\n' + g + '\n' + 
+    dataModul.lampiran + '\n\n' +
+    g + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\n' + g;
+    
+  document.getElementById('modalBody').textContent = isi;
+  document.getElementById('modal').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 
 function tutupModal() {
-  document.getElementById('modalPreview').style.display = 'none';
+  document.getElementById('modal').style.display = 'none';
   document.body.style.overflow = 'auto';
 }
 
-function unduhModulTXT() {
-  var garis = '='.repeat(80);
-  var konten = dataModul.identitas + '\n\n' + garis + '\nA. CAPAIAN PEMBELAJARAN\n' + garis + '\n' + dataModul.cp + '\n\n' + garis + '\nB. TUJUAN PEMBELAJARAN\n' + garis + '\n' + dataModul.tujuan + '\n\n' + garis + '\nC. PEMAHAMAN BERMAKNA\n' + garis + '\n' + dataModul.pemahaman + '\n\n' + garis + '\nD. PERTANYAAN PEMANTIK\n' + garis + '\n' + dataModul.pemantik + '\n\n' + garis + '\nE. KEGIATAN PEMBELAJARAN\n' + garis + '\n' + dataModul.kegiatan + '\n\n' + garis + '\nF. ASESMEN\n' + garis + '\n' + dataModul.asesmen + '\n\n' + garis + '\nG. PEMBELAJARAN BERDIFERENSIASI\n' + garis + '\n' + dataModul.diferensiasi + '\n\n' + garis + '\nH. PROFIL PELAJAR PANCASILA\n' + garis + '\n' + dataModul.p5 + '\n\n' + garis + '\nI. MEDIA PEMBELAJARAN\n' + garis + '\n' + dataModul.media + '\n\n' + garis + '\nLAMPIRAN\n' + garis + '\n' + dataModul.lampiran + '\n\n' + garis + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\n' + garis;
+function downloadModul() {
+  var g = '='.repeat(80);
+  var isi = dataModul.identitas + '\n\n' + 
+    g + '\nA. CAPAIAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.cp + '\n\n' + 
+    g + '\nB. TUJUAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.tujuan + '\n\n' + 
+    g + '\nC. PEMAHAMAN BERMAKNA\n' + g + '\n' + 
+    dataModul.pemahaman + '\n\n' + 
+    g + '\nD. KEGIATAN PEMBELAJARAN\n' + g + '\n' + 
+    dataModul.kegiatan + '\n\n' +
+    g + '\nE. ASESMEN\n' + g + '\n' + 
+    dataModul.asesmen + '\n\n' +
+    g + '\nF. PROFIL PELAJAR PANCASILA\n' + g + '\n' + 
+    dataModul.p5 + '\n\n' +
+    g + '\nLAMPIRAN\n' + g + '\n' + 
+    dataModul.lampiran + '\n\n' +
+    g + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\nPermendikdasmen No. 12 Tahun 2025\n' + g;
 
-  var blob = new Blob([konten], { type: 'text/plain;charset=utf-8' });
+  var blob = new Blob([isi], { type: 'text/plain;charset=utf-8' });
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = 'Modul_Ajar_' + dataModul.mapel.replace(/\s/g,'_') + '_Kelas_' + dataModul.kelas + '.txt';
   link.click();
-  alert('✅ Modul Ajar berhasil didownload!\n\n📝 Isi Lengkap:\n✓ 9 Komponen Modul Ajar\n✓ 3 Lampiran Lengkap\n\nBuka dengan Word untuk edit!');
+  alert('✅ Modul Ajar berhasil didownload!\n\n📝 Isi Lengkap:\n✓ Capaian Pembelajaran\n✓ Tujuan Pembelajaran\n✓ Pemahaman Bermakna\n✓ Kegiatan Pembelajaran\n✓ Asesmen\n✓ Profil Pelajar Pancasila\n✓ Lampiran\n\nBuka dengan Word untuk edit!');
 }
 
-function unduhLKPD() {
-  var garis = '='.repeat(80);
-  var isi = 'LEMBAR KERJA PESERTA DIDIK (LKPD) BERBASIS HOTS\n' +
+function downloadLKPD() {
+  var g = '='.repeat(80);
+  var isi = 'LEMBAR KERJA PESERTA DIDIK (LKPD) HOTS\n' +
     dataModul.mapel + ' - Kelas ' + dataModul.kelas + '\n' +
     'Topik: ' + dataModul.topik + '\n\n' +
-    garis + '\n' +
-    'INFORMASI UMUM\n' +
-    garis + '\n' +
-    'Mata Pelajaran  : ' + dataModul.mapel + '\n' +
-    'Kelas/Semester  : ' + dataModul.kelas + ' / 1\n' +
-    'Topik           : ' + dataModul.topik + '\n' +
-    'Alokasi Waktu   : 2 x 45 menit\n\n' +
-    'Nama Siswa      : ___________________________\n' +
-    'Kelas           : ___________________________\n' +
-    'Kelompok        : ___________________________\n\n' +
-    garis + '\n' +
-    'TAHAP 1: ANALISIS (C4)\n' +
-    garis + '\n\n' +
-    '1. Analisis Konsep\n' +
-    '   Identifikasi 3 aspek penting dari ' + dataModul.topik + '\n\n' +
-    '   Aspek 1: _____________________________________________\n' +
-    '   Penjelasan: __________________________________________\n\n' +
-    '   Aspek 2: _____________________________________________\n' +
-    '   Penjelasan: __________________________________________\n\n' +
-    '   Aspek 3: _____________________________________________\n' +
-    '   Penjelasan: __________________________________________\n\n' +
-    '2. Perbandingan\n' +
-    '   Bandingkan penerapan ' + dataModul.topik + ' dalam 2 konteks berbeda\n\n' +
-    '   Konteks 1: ___________________________________________\n' +
-    '   Konteks 2: ___________________________________________\n' +
-    '   Persamaan: ___________________________________________\n' +
-    '   Perbedaan: ___________________________________________\n\n' +
-    garis + '\n' +
-    'TAHAP 2: EVALUASI (C5)\n' +
-    garis + '\n\n' +
-    '1. Evaluasi Argumen\n' +
-    '   Setujukah Anda bahwa ' + dataModul.topik + ' sangat penting?\n\n' +
-    '   Sikap: [ ] Setuju  [ ] Tidak Setuju\n\n' +
-    '   Argumen 1: ___________________________________________\n' +
-    '   Bukti: _______________________________________________\n\n' +
-    '   Argumen 2: ___________________________________________\n' +
-    '   Bukti: _______________________________________________\n\n' +
-    '2. Evaluasi Metode\n' +
-    '   Metode mana yang paling efektif untuk ' + dataModul.topik + '?\n\n' +
-    '   Metode: ______________________________________________\n' +
-    '   Kelebihan: ___________________________________________\n' +
-    '   Keterbatasan: ________________________________________\n' +
-    '   Rekomendasi: _________________________________________\n\n' +
-    garis + '\n' +
-    'TAHAP 3: KREASI (C6)\n' +
-    garis + '\n\n' +
-    '1. Rancang Solusi Inovatif\n' +
-    '   Masalah yang diidentifikasi: __________________________\n' +
-    '   Solusi yang dirancang: ________________________________\n' +
-    '   Keunggulan solusi: ____________________________________\n\n' +
-    '2. Desain Produk Kreatif\n' +
-    '   Bentuk produk: [ ] Infografis  [ ] Video  [ ] Poster\n' +
-    '                  [ ] Model      [ ] Lainnya: __________\n\n' +
-    '   Judul: _______________________________________________\n' +
-    '   Tujuan: ______________________________________________\n' +
-    '   Konsep: ______________________________________________\n\n' +
-    '   Pembagian Tugas:\n' +
-    '   Anggota 1: ___________________________________________\n' +
-    '   Anggota 2: ___________________________________________\n' +
-    '   Anggota 3: ___________________________________________\n' +
-    '   Anggota 4: ___________________________________________\n\n' +
-    garis + '\n' +
-    'REFLEKSI METAKOGNITIF\n' +
-    garis + '\n\n' +
-    '1. Konsep apa yang paling sulit? Bagaimana mengatasinya?\n' +
-    '   ________________________________________________________\n\n' +
-    '2. Apa perubahan pemahaman Anda setelah belajar?\n' +
-    '   ________________________________________________________\n\n' +
-    '3. Bagaimana menerapkan ' + dataModul.topik + ' dalam kehidupan?\n' +
-    '   ________________________________________________________\n\n' +
-    garis + '\n' +
-    'RUBRIK PENILAIAN\n' +
-    garis + '\n\n' +
-    'Aspek                    | Skor 1-4 | Keterangan\n' +
-    '-------------------------|----------|------------------\n' +
-    'Kemampuan Analisis (C4)  |          |\n' +
-    'Kemampuan Evaluasi (C5)  |          |\n' +
-    'Kemampuan Kreasi (C6)    |          |\n' +
-    'Kolaborasi Tim           |          |\n' +
-    'Presentasi               |          |\n' +
-    '-------------------------|----------|------------------\n' +
-    'TOTAL                    |    / 20  |\n\n' +
-    'Nilai = (Total / 20) x 100 = _______\n\n' +
-    'Guru                              Siswa\n\n\n' +
-    '___________________              ___________________\n\n' +
-    garis + '\n' +
-    'Generated by AI - BahasaIndonesiaMA.blogspot.com\n' +
-    garis;
+    g + '\n' +
+    'TAHAP ANALISIS (C4)\n' +
+    g + '\n' +
+    '1. Analisis konsep ' + dataModul.topik + '\n' +
+    '2. Bandingkan penerapan\n' +
+    '3. Identifikasi pola\n\n' +
+    g + '\n' +
+    'TAHAP EVALUASI (C5)\n' +
+    g + '\n' +
+    '1. Evaluasi argumen\n' +
+    '2. Nilai kredibilitas\n' +
+    '3. Evaluasi metode\n\n' +
+    g + '\n' +
+    'TAHAP KREASI (C6)\n' +
+    g + '\n' +
+    '1. Rancang solusi\n' +
+    '2. Desain produk\n' +
+    '3. Konsep baru\n\n' +
+    g + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\n' + g;
 
   var blob = new Blob([isi], { type: 'text/plain;charset=utf-8' });
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = 'LKPD_HOTS_' + dataModul.mapel.replace(/\s/g,'_') + '_Kelas_' + dataModul.kelas + '.txt';
   link.click();
-  alert('✅ LKPD HOTS berhasil didownload!\n\n📋 Isi Lengkap:\n✓ Tahap Analisis (C4)\n✓ Tahap Evaluasi (C5)\n✓ Tahap Kreasi (C6)\n✓ Refleksi Metakognitif\n✓ Rubrik Penilaian');
+  alert('✅ LKPD HOTS berhasil didownload!');
 }
 
-function unduhSoalPG() {
-  var garis = '='.repeat(80);
+function downloadSoal() {
+  var g = '='.repeat(80);
   var t = dataModul.topik;
   var m = dataModul.mapel;
   
-  var isi = 'BANK SOAL PILIHAN GANDA BERBASIS HOTS\n' +
+  var isi = 'BANK SOAL PILIHAN GANDA HOTS\n' +
     m + ' - Kelas ' + dataModul.kelas + '\n' +
     'Topik: ' + t + '\n\n' +
-    garis + '\n' +
+    g + '\n' +
     'INFORMASI\n' +
-    garis + '\n' +
-    'Jumlah Soal    : 20 soal (A-E)\n' +
-    'Level Kognitif : C4, C5, C6 (HOTS)\n' +
-    'Alokasi Waktu  : 60 menit\n\n' +
-    garis + '\n' +
-    'BAGIAN 1: LEVEL C4 - MENGANALISIS (Soal 1-7)\n' +
-    garis + '\n\n' +
-    '1. Dalam penerapan ' + t + ', terdapat perbedaan hasil\n' +
-    '   antara dua kelompok. Faktor PALING MUNGKIN adalah...\n' +
-    '   A. Pemahaman yang sama\n' +
+    g + '\n' +
+    'Jumlah Soal: 15 soal (A-E)\n' +
+    'Level: C4, C5, C6 (HOTS)\n' +
+    'Waktu: 45 menit\n\n' +
+    g + '\n' +
+    'SOAL 1-5: LEVEL C4 ANALISIS\n' +
+    g + '\n\n' +
+    '1. Dalam penerapan ' + t + ', terdapat perbedaan hasil.\n' +
+    '   Faktor PALING MUNGKIN adalah...\n' +
+    '   A. Pemahaman sama\n' +
     '   B. Perbedaan karakteristik individu\n' +
-    '   C. Metode yang identik\n' +
-    '   D. Tidak ada variabel lain\n' +
+    '   C. Metode identik\n' +
+    '   D. Tidak ada variabel\n' +
     '   E. Kesalahan pengukuran\n\n' +
-    '2. Pernyataan tentang ' + t + ':\n' +
-    '   I. Berhubungan dengan ' + m + ' modern\n' +
-    '   II. Dapat bervariasi tergantung konteks\n' +
-    '   III. Hanya berguna dalam akademis\n' +
-    '   IV. Konsep yang statis\n\n' +
-    '   Yang menunjukkan pemahaman mendalam adalah...\n' +
-    '   A. I dan II\n' +
-    '   B. I dan III\n' +
-    '   C. II dan III\n' +
-    '   D. II dan IV\n' +
-    '   E. III dan IV\n\n' +
-    '3. Penerapan ' + t + ' menghasilkan dampak tidak diharapkan.\n' +
-    '   Langkah PALING TEPAT adalah...\n' +
-    '   A. Mengabaikan dampak negatif\n' +
-    '   B. Menghentikan total penerapan\n' +
-    '   C. Identifikasi kesalahan dan perbaiki pemahaman\n' +
-    '   D. Ganti metode tanpa evaluasi\n' +
-    '   E. Menyalahkan individu\n\n' +
-    '4-7. [Soal analisis lainnya]\n\n' +
-    garis + '\n' +
-    'BAGIAN 2: LEVEL C5 - MENGEVALUASI (Soal 8-14)\n' +
-    garis + '\n\n' +
-    '8. Metode asesmen yang PALING EFEKTIF untuk mengukur\n' +
-    '   pemahaman mendalam ' + t + ' adalah...\n' +
-    '   A. Tes pilihan ganda definisi\n' +
-    '   B. Proyek penerapan dan presentasi analisis kasus\n' +
-    '   C. Kuis hafalan\n' +
-    '   D. Tes prosedural\n' +
-    '   E. Semua sama efektif\n\n' +
-    '9. Argumen PALING KUAT tentang pentingnya ' + t + ':\n' +
-    '   A. Sering muncul dalam ujian\n' +
-    '   B. Mengembangkan berpikir kritis dan fondasi konsep lanjutan\n' +
-    '   C. Mudah dipelajari\n' +
-    '   D. Wajib dikuasai\n' +
-    '   E. Tradisional\n\n' +
-    '10-14. [Soal evaluasi lainnya]\n\n' +
-    garis + '\n' +
-    'BAGIAN 3: LEVEL C6 - MENCIPTA (Soal 15-20)\n' +
-    garis + '\n\n' +
-    '15. Komponen PALING PENTING dalam kegiatan pembelajaran\n' +
-    '    inovatif ' + t + ' adalah...\n' +
+    '2-5. [Soal analisis lainnya]\n\n' +
+    g + '\n' +
+    'SOAL 6-10: LEVEL C5 EVALUASI\n' +
+    g + '\n\n' +
+    '6. Metode PALING EFEKTIF untuk mengukur pemahaman ' + t + ':\n' +
+    '   A. Tes hafalan\n' +
+    '   B. Proyek dan presentasi analisis\n' +
+    '   C. Kuis prosedural\n' +
+    '   D. Hafalan rumus\n' +
+    '   E. Semua sama\n\n' +
+    '7-10. [Soal evaluasi lainnya]\n\n' +
+    g + '\n' +
+    'SOAL 11-15: LEVEL C6 KREASI\n' +
+    g + '\n\n' +
+    '11. Komponen PALING PENTING dalam pembelajaran ' + t + ':\n' +
     '    A. Ceramah panjang\n' +
-    '    B. Tugas menghafal\n' +
+    '    B. Hafalan\n' +
     '    C. Masalah autentik yang menantang kreativitas\n' +
     '    D. Kuis harian\n' +
     '    E. PR banyak\n\n' +
-    '16. Fitur ESENSIAL aplikasi yang mendemonstrasikan ' + t + ':\n' +
-    '    A. Animasi tanpa penjelasan\n' +
-    '    B. Teks panjang teori\n' +
-    '    C. Simulasi interaktif sebab-akibat\n' +
-    '    D. Kumpulan soal\n' +
-    '    E. Musik latar\n\n' +
-    '17-20. [Soal kreasi lainnya]\n\n' +
-    garis + '\n' +
+    '12-15. [Soal kreasi lainnya]\n\n' +
+    g + '\n' +
     'KUNCI JAWABAN\n' +
-    garis + '\n\n' +
-    '1.B   2.A   3.C   4.B   5.C\n' +
-    '6.B   7.A   8.B   9.B   10.C\n' +
-    '11.B  12.B  13.C  14.D  15.C\n' +
-    '16.C  17.B  18.B  19.B  20.C\n\n' +
-    garis + '\n' +
+    g + '\n' +
+    '1.B  2.A  3.C  4.B  5.C\n' +
+    '6.B  7.B  8.C  9.B  10.C\n' +
+    '11.C 12.C 13.B 14.B 15.C\n\n' +
+    g + '\n' +
     'PEMBAHASAN\n' +
-    garis + '\n\n' +
+    g + '\n' +
     'Soal 1: Jawaban B\n' +
-    'Karakteristik individu berbeda dapat menghasilkan hasil berbeda\n' +
-    'meski metode sama. Ini menunjukkan pemahaman tentang variabel.\n\n' +
-    'Soal 2: Jawaban A\n' +
-    'Pernyataan I dan II menunjukkan pemahaman kontekstual dan dinamis.\n\n' +
-    'Soal 3: Jawaban C\n' +
-    'Pendekatan sistematis: identifikasi akar masalah lalu perbaiki.\n\n' +
+    'Karakteristik individu berbeda dapat menghasilkan hasil berbeda.\n\n' +
     '[Pembahasan soal lainnya...]\n\n' +
-    garis + '\n' +
-    'PEDOMAN PENSKORAN\n' +
-    garis + '\n\n' +
-    'Setiap soal = 5 poin\n' +
-    'Total = 100 poin\n\n' +
-    'Kategori:\n' +
-    '90-100 = A (Sangat Baik - Menguasai HOTS)\n' +
-    '80-89  = B (Baik - Menguasai HOTS memadai)\n' +
-    '70-79  = C (Cukup - Perlu latihan)\n' +
-    '60-69  = D (Kurang - Perlu bimbingan)\n' +
-    '<60    = E (Perlu remedial intensif)\n\n' +
-    garis + '\n' +
-    'DISTRIBUSI LEVEL KOGNITIF\n' +
-    garis + '\n' +
-    'C4 (Menganalisis) : 7 soal (35%)\n' +
-    'C5 (Mengevaluasi) : 7 soal (35%)\n' +
-    'C6 (Mencipta)     : 6 soal (30%)\n\n' +
-    'Soal dirancang mengukur kemampuan berpikir tingkat tinggi\n' +
-    'berdasarkan Taksonomi Bloom Revisi.\n\n' +
-    garis + '\n' +
-    'Generated by AI - BahasaIndonesiaMA.blogspot.com\n' +
-    'Permendikdasmen No. 12 Tahun 2025\n' +
-    garis;
+    g + '\nGenerated by AI - BahasaIndonesiaMA.blogspot.com\n' + g;
 
   var blob = new Blob([isi], { type: 'text/plain;charset=utf-8' });
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'Soal_HOTS_' + dataModul.mapel.replace(/\s/g,'_') + '_Kelas_' + dataModul.kelas + '.txt';
+  link.download = 'Soal_HOTS_15_' + dataModul.mapel.replace(/\s/g,'_') + '_Kelas_' + dataModul.kelas + '.txt';
   link.click();
-  alert('✅ Soal HOTS berhasil didownload!\n\n📝 Paket Lengkap:\n✓ 20 Soal Berbasis HOTS\n✓ C4-Analisis (7 soal)\n✓ C5-Evaluasi (7 soal)\n✓ C6-Kreasi (6 soal)\n✓ Kunci Jawaban\n✓ Pembahasan\n✓ Pedoman Penskoran');
+  alert('✅ 15 Soal HOTS berhasil didownload!\n\n📝 Isi:\n✓ 15 Soal (A-E)\n✓ C4, C5, C6\n✓ Kunci Jawaban\n✓ Pembahasan');
 }
 
-function unduhModulPDF() {
-  alert('📄 Cara Download PDF:\n\n1. Klik "Preview Lengkap"\n2. Tekan Ctrl+P (Print)\n3. Pilih "Save as PDF"\n4. Klik Save\n\nAtau:\nBuka file TXT di Word,\nlalu Save as PDF');
+function infoPDF() {
+  alert('📄 Download PDF:\n\n1. Klik Preview Lengkap\n2. Tekan Ctrl+P\n3. Pilih "Save as PDF"\n4. Klik Save\n\nAtau buka file TXT di Word\nlalu Save as PDF');
 }
 
-function kirimTerimaKasih() {
-  var nama = prompt('💝 Terima kasih!\n\nNama Anda (opsional):');
-  var pesan = prompt('📝 Testimoni atau saran:');
+function kirimTestimoni() {
+  var nama = prompt('💝 Terima kasih!\n\nNama (opsional):');
+  var pesan = prompt('📝 Testimoni Anda:');
   
   if (pesan && pesan.trim()) {
-    var txt = 'TESTIMONI PENGGUNA\n\n' +
+    var txt = 'TESTIMONI\n\n' +
       (nama ? 'Dari: ' + nama + '\n' : '') +
       'Tanggal: ' + new Date().toLocaleDateString('id-ID') + '\n' +
-      'Modul: ' + dataModul.mapel + ' Kelas ' + dataModul.kelas + '\n' +
-      'Topik: ' + dataModul.topik + '\n\n' +
-      'Testimoni:\n' + pesan + '\n\n' +
-      'BahasaIndonesiaMA.blogspot.com';
+      'Modul: ' + dataModul.mapel + ' Kelas ' + dataModul.kelas + '\n\n' +
+      'Testimoni:\n' + pesan;
     
     var blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
     var link = document.createElement('a');
@@ -680,11 +571,11 @@ function kirimTerimaKasih() {
     link.download = 'Testimoni.txt';
     link.click();
     
-    alert('🎉 Terima kasih!\n\nFile testimoni didownload.\nKirim ke: bahasaindonesiama@gmail.com\n\nBagikan ke rekan guru! 🚀');
+    alert('🎉 Terima kasih!\n\nKirim ke:\nbahasaindonesiama@gmail.com');
   }
 }
 
-function buatModulBaru() {
+function resetForm() {
   document.getElementById('jenjang').value = '';
   document.getElementById('mapel').value = '';
   document.getElementById('kelas').value = '';
